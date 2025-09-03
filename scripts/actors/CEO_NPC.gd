@@ -119,7 +119,11 @@ func _give_insider_info() -> Dictionary:
 	
 	# Schedule the insider move for tomorrow
 	_schedule_insider_move(ticker_to_reveal, is_accurate)
-	
+
+	# NEW: persist tip so the Phone > Insider Info tab can show it
+	if typeof(InsiderInfo) != TYPE_NIL:
+		InsiderInfo.add_move_tomorrow_tip(String(ticker_to_reveal), "Move expected tomorrow for " + String(ticker_to_reveal))
+
 	emit_signal("insider_info_given", ticker_to_reveal)
 	
 	# Use the new sequence helper instead of await
@@ -140,6 +144,7 @@ func _give_insider_info() -> Dictionary:
 		"ticker": ticker_to_reveal,
 		"is_tip": true
 	}
+
 
 func _roll_insider_info() -> void:
 	"""Pre-determine which ticker will actually move tomorrow"""

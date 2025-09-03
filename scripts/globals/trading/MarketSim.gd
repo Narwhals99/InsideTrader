@@ -49,6 +49,11 @@ var _mover_target_daily_drift: float = 0.0	# e.g., 0.02 = +2% over the day
 var _forced_next_mover: StringName = &""
 var _forced_next_move_size: float = 0.0
 
+# Rolling daily history: { sym:StringName -> Array[{day:int, open:float, close:float}] }
+var history: Dictionary = {}
+const MAX_HISTORY_DAYS: int = 60
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_rng.randomize()
@@ -74,10 +79,34 @@ func _ready() -> void:
 
 	_apply_rate_to_timer(true)
 
+func _on_game_phase_changed(new_phase: StringName, day: int) -> void:
+	var ph := String(new_phase).to_lower()
+	if ph == "evening" or ph == "afterhours" or ph == "close" or ph == "closed":
+		_record_today_to_history(day)
+
+func _record_today_to_history(day: int) -> void:
+	# Only record if the day actually had an open
+	for sn in symbols:
+		var sym: StringName = sn
+		var open_px: float = get_today_open(sym)
+		if open_px <= 0.0:
+			continue
+		var close_px: float = get_today_close(sym)
+		if close_px <= 0.0:
+			# if you don't have an explicit close, fall back to last price
+			close_px = get_price(sym)
+		_history_append(sym, day, open_px, close_px)
+
+
 	# Debug UI
 	if debug_overlay:
 		_ensure_debug_ui()
 		_update_debug_ui()
+		
+	# ... your existing setup ...
+	if typeof(Game) != TYPE_NIL and Game.has_signal("phase_changed"):
+		if not Game.phase_changed.is_connected(_on_game_phase_changed):
+			Game.phase_changed.connect(_on_game_phase_changed)
 
 func _process(_dt: float) -> void:
 	var mr: float = _get_minutes_rate()
@@ -472,5 +501,15 @@ func get_current_mover() -> Dictionary:
 		"direction": _mover_dir,
 		"target_drift": _mover_target_daily_drift
 	}
-	
-	
+
+func _history_ensure(sym: StringName) -> void:
+	if not history.has(sym):
+		history[sym] = []
+
+func _history_append(sym: StringName, day: int, open_px: float, close_px: float) -> void:
+	_history_ensure(sym)
+	var arr: Array = history[sym]
+	arr.append({"day": day, "open": open_px, "close": close_px})
+	if arr.size() > MAX_HISTORY_DAYS:
+		arr = arr.slice(arr.size() - MAX_HISTORY_DAYS, arr.size())
+	history[sym] = arr

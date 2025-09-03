@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctann63bkwex5"]
+[gd_scene load_steps=3 format=3 uid="uid://ctann63bkwex5"]
 
 [ext_resource type="Script" uid="uid://cbj3wvgl8e3qj" path="res://scripts/globals/trading/PhoneUI.gd" id="1_uwhl5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwhl5"]
+bg_color = Color(0, 0.613084, 0.148616, 1)
 
 [node name="PhoneUI" type="CanvasLayer" groups=["phone_ui"]]
 layer = 20
@@ -17,6 +20,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="Root"]
 custom_minimum_size = Vector2(420, 560)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwhl5")
 
 [node name="VBox" type="VBoxContainer" parent="Root/Panel"]
 layout_mode = 2
@@ -74,3 +78,14 @@ text = "Qty"
 layout_mode = 2
 min_value = 1.0
 value = 1.0
+
+[node name="InsiderScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="InsiderList" type="ItemList" parent="Root/Panel/VBox/InsiderScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

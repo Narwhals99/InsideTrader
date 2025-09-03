@@ -28,9 +28,97 @@ var _day_rows: Dictionary = {}
 @onready var _qty_label: Label = $Root/Panel/VBox/Footer/QtyLabel
 @onready var _qty_spin: SpinBox = $Root/Panel/VBox/Footer/QtySpin
 
+# --- new for Insider Info ---
+@onready var insider_scroll: ScrollContainer = $Root/Panel/VBox/InsiderScroll
+@onready var insider_list: ItemList = $Root/Panel/VBox/InsiderScroll/InsiderList
+var _insider_tab_index: int = -1
+
+
 var _clock_accum: float = 0.0
 var _pos_header: HBoxContainer = null
 var _day_header: HBoxContainer = null
+
+# Partial-close popup
+var _close_popup: PopupPanel = null
+var _close_popup_spin: SpinBox = null
+var _close_popup_sym: String = ""
+
+# --- Ticker details popup ---
+var _details_popup: PopupPanel = null
+var _details_title: Label = null
+var _details_sector: Label = null
+var _details_list: VBoxContainer = null
+
+
+func _refresh_insider_info() -> void:
+	if insider_list == null:
+		return
+
+	insider_list.clear()
+
+	var data: Array = []
+	if typeof(InsiderInfo) != TYPE_NIL and InsiderInfo.has_method("get_active_tips"):
+		data = InsiderInfo.get_active_tips()
+
+	for t in data:
+		var expires := "Day " + str(t.expires_day) + " @ " + str(t.expires_phase).capitalize()
+		var line := str(t.ticker) + " — " + str(t.message) + "  (" + expires + ")"
+		insider_list.add_item(line)
+
+	if _tabs and _insider_tab_index >= 0:
+		_tabs.set_tab_title(_insider_tab_index, "Insider Info (" + str(data.size()) + ")")
+
+func _on_close_button_gui_input(event: InputEvent, sym: String) -> void:
+	# Right-click opens partial close popup
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		# Get current shares for this symbol
+		var sym_sn: StringName = StringName(sym)
+		var pos: Dictionary = Portfolio.get_position(sym_sn)
+		var shares: int = int(pos.get("shares", 0))
+		if shares <= 0:
+			return
+		_close_popup_sym = sym
+		_close_popup_spin.max_value = shares
+		_close_popup_spin.value = shares	# default to all; user can dial it down
+
+		# Show near mouse; fallback to centered
+		var mouse := get_viewport().get_mouse_position()
+		_close_popup.popup(Rect2(mouse, Vector2(220, 110)))
+
+func _on_close_popup_ok() -> void:
+	if _close_popup_sym == "":
+		_close_popup.hide()
+		return
+	# Market open check
+	if not _is_market_open():
+		print("[Phone] Market closed")
+		_close_popup.hide()
+		return
+
+	var qty: int = int(_close_popup_spin.value)
+	if qty <= 0:
+		_close_popup.hide()
+		return
+
+	var sym_sn: StringName = StringName(_close_popup_sym)
+	var pos: Dictionary = Portfolio.get_position(sym_sn)
+	var shares: int = int(pos.get("shares", 0))
+	if shares <= 0:
+		_close_popup.hide()
+		return
+	qty = clamp(qty, 1, shares)
+
+	var px: float = MarketSim.get_price(sym_sn)
+	var ok: bool = Portfolio.sell(sym_sn, qty, px)
+	print("[Phone CLOSE-PARTIAL]", _close_popup_sym, qty, "@", px, " ok=", ok)
+
+	_close_popup.hide()
+	# Refresh affected views
+	_refresh_positions()
+	_refresh_totals()
+	_refresh_market_all()
+	_refresh_day()
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -41,6 +129,11 @@ func _ready() -> void:
 		_tabs.add_tab("Market")
 		_tabs.add_tab("Positions")
 		_tabs.add_tab("Today")
+
+		# --- Insider Info tab ---
+		_insider_tab_index = _tabs.get_tab_count()
+		_tabs.add_tab("Insider Info (0)")
+
 		_tabs.current_tab = 0
 		if not _tabs.tab_selected.is_connected(_on_tab_selected):
 			_tabs.tab_selected.connect(_on_tab_selected)
@@ -53,12 +146,109 @@ func _ready() -> void:
 	_ensure_pos_header()
 	_ensure_day_header()
 
+	# Hide Insider section by default
+	if insider_scroll:
+		insider_scroll.visible = false
+
+	# --- listen for tip updates ---
+	if typeof(InsiderInfo) != TYPE_NIL and not InsiderInfo.tips_changed.is_connected(_refresh_insider_info):
+		InsiderInfo.tips_changed.connect(_refresh_insider_info)
+
+	# --- Partial Close popup (build once) ---
+	_close_popup = PopupPanel.new()
+	_close_popup.name = "ClosePopup"
+	var vb := VBoxContainer.new()
+	vb.add_theme_constant_override("separation", 8)
+	var title := Label.new()
+	title.text = "Close quantity"
+	_close_popup_spin = SpinBox.new()
+	_close_popup_spin.min_value = 1
+	_close_popup_spin.step = 1
+	_close_popup_spin.value = 1
+	_close_popup_spin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var hb := HBoxContainer.new()
+	hb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var ok := Button.new()
+	ok.text = "Close"
+	var cancel := Button.new()
+	cancel.text = "Cancel"
+	hb.add_child(ok)
+	hb.add_child(cancel)
+	vb.add_child(title)
+	vb.add_child(_close_popup_spin)
+	vb.add_child(hb)
+	_close_popup.add_child(vb)
+	add_child(_close_popup)
+	ok.pressed.connect(_on_close_popup_ok)
+	cancel.pressed.connect(func() -> void: _close_popup.hide())
+
+		# --- Ticker Details popup (build once) ---
+	_details_popup = PopupPanel.new()
+	_details_popup.name = "TickerDetails"
+
+	# NEW: solid background so text is easy to read
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.15, 0.15, 0.15, 0.95)  # dark gray, 95% opaque
+	style.border_color = Color(0.25, 0.25, 0.25)
+
+	# Godot 4 requires setting border widths per side:
+	style.border_width_top = 2
+	style.border_width_bottom = 2
+	style.border_width_left = 2
+	style.border_width_right = 2
+
+	_details_popup.add_theme_stylebox_override("panel", style)
+
+
+	var dv := VBoxContainer.new()
+	dv.add_theme_constant_override("separation", 8)
+
+	_details_title = Label.new()
+	_details_title.add_theme_font_size_override("font_size", 16)
+
+	_details_sector = Label.new()  # "Sector: X"
+
+	var sep := HSeparator.new()
+
+	var sc := ScrollContainer.new()
+	sc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+
+	_details_list = VBoxContainer.new()
+	_details_list.add_theme_constant_override("separation", 4)
+	_details_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_details_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.add_child(_details_list)
+
+	var close_row := HBoxContainer.new()
+	close_row.add_theme_constant_override("separation", 8)
+	var details_close := Button.new()
+	details_close.text = "Close"
+	details_close.pressed.connect(func() -> void: _details_popup.hide())
+	close_row.add_child(details_close)
+
+	dv.add_child(_details_title)
+	dv.add_child(_details_sector)
+	dv.add_child(sep)
+	dv.add_child(sc)
+	dv.add_child(close_row)
+
+	_details_popup.add_child(dv)
+	add_child(_details_popup)
+
+
+
 	# Default to Market tab visibility
 	_on_tab_selected(0)
 
 	_refresh_market_all()
 	_refresh_totals()
 	_update_title_clock()
+
+	# Initial paint of insider list
+	_refresh_insider_info()
+
 
 func open() -> void:
 	visible = true
@@ -103,26 +293,31 @@ func _on_tab_selected(idx: int) -> void:
 	var show_market: bool = (idx == 0)
 	var show_positions: bool = (idx == 1)
 	var show_today: bool = (idx == 2)
+	var show_insider: bool = (_insider_tab_index >= 0 and idx == _insider_tab_index)
 
-	if _market_scroll != null:
-		_market_scroll.visible = show_market
-	if _footer != null:
-		_footer.visible = show_market
+	# hide all
+	if _market_scroll: _market_scroll.visible = false
+	if _footer: _footer.visible = false
+	if _pos_scroll: _pos_scroll.visible = false
+	if _pos_header: _pos_header.visible = false
+	if _day_scroll: _day_scroll.visible = false
+	if _day_header: _day_header.visible = false
+	if insider_scroll: insider_scroll.visible = false
 
-	if _pos_scroll != null:
-		_pos_scroll.visible = show_positions
-	if _pos_header != null:
-		_pos_header.visible = show_positions
-
-	if _day_scroll != null:
-		_day_scroll.visible = show_today
-	if _day_header != null:
-		_day_header.visible = show_today
-
-	if show_positions:
-		_refresh_positions()
+	# show the chosen one
+	if show_market:
+		if _market_scroll: _market_scroll.visible = true
+		if _footer: _footer.visible = true
+	elif show_positions:
+		if _pos_scroll: _pos_scroll.visible = true
+		if _pos_header: _pos_header.visible = true
 	elif show_today:
-		_refresh_day()
+		if _day_scroll: _day_scroll.visible = true
+		if _day_header: _day_header.visible = true
+	elif show_insider:
+		if insider_scroll: insider_scroll.visible = true
+		_refresh_insider_info()
+
 
 # ------------- Signals wiring -------------
 func _wire_signals() -> void:
@@ -158,6 +353,10 @@ func _build_market_rows() -> void:
 		var name_label := Label.new()
 		name_label.text = sym
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		# NEW: make ticker clickable on Market tab
+		name_label.mouse_filter = Control.MOUSE_FILTER_STOP
+		name_label.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		name_label.gui_input.connect(_on_ticker_label_gui_input.bind(sym))
 
 		var price_label := Label.new()
 		price_label.text = "$0.00"
@@ -181,6 +380,7 @@ func _build_market_rows() -> void:
 		_list.add_child(row)
 
 		_rows[sym] = {"price": price_label, "buy": buy_btn, "sell": sell_btn}
+
 
 func _refresh_market_all() -> void:
 	var market_open: bool = _is_market_open()
@@ -258,10 +458,14 @@ func _refresh_positions() -> void:
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		name_label.size_flags_stretch_ratio = 2.0
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		# NEW: make ticker clickable
+		name_label.mouse_filter = Control.MOUSE_FILTER_STOP
+		name_label.gui_input.connect(_on_ticker_label_gui_input.bind(sym))
 
 		var qty_label := Label.new()
 		qty_label.text = str(shares)
 		qty_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var _unused := qty_label.size_flags_stretch_ratio
 		qty_label.size_flags_stretch_ratio = 1.0
 		qty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
@@ -293,6 +497,8 @@ func _refresh_positions() -> void:
 		close_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		close_btn.size_flags_stretch_ratio = 1.0
 		close_btn.pressed.connect(_on_close_position_pressed.bind(sym))
+		# right-click for partial close
+		close_btn.gui_input.connect(_on_close_button_gui_input.bind(sym))
 
 		row.add_child(name_label)
 		row.add_child(qty_label)
@@ -309,6 +515,7 @@ func _refresh_positions() -> void:
 			"pnl": pnl_label,
 			"close": close_btn
 		}
+
 
 func _refresh_positions_values_only() -> void:
 	for key in _pos_rows.keys():
@@ -381,6 +588,9 @@ func _refresh_day() -> void:
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		name_label.size_flags_stretch_ratio = 2.0
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		# NEW: make ticker clickable
+		name_label.mouse_filter = Control.MOUSE_FILTER_STOP
+		name_label.gui_input.connect(_on_ticker_label_gui_input.bind(sym))
 
 		var open_label := Label.new()
 		open_label.text = "$" + String.num(open_px, 2)
@@ -429,6 +639,7 @@ func _refresh_day() -> void:
 			"chg": chg_label,
 			"close": close_label
 		}
+
 
 func _refresh_day_values_only() -> void:
 	for key in _day_rows.keys():
@@ -638,3 +849,136 @@ func _make_header_label(text: String, ratio: float, align: int) -> Label:
 	lbl.horizontal_alignment = align
 	lbl.add_theme_font_size_override("font_size", 12)
 	return lbl
+
+func _on_ticker_label_gui_input(event: InputEvent, sym: String) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_open_ticker_details(sym)
+
+func _open_ticker_details(sym: String) -> void:
+	if _details_popup == null:
+		return
+
+	_details_title.text = sym + " — Details"
+	_details_sector.text = "Sector: " + _fetch_sector(sym)
+	_fill_last5(sym)
+
+	# Centered, roomy
+	_details_popup.popup_centered(Vector2(420, 360))
+
+
+func _fetch_sector(sym: String) -> String:
+	if typeof(MarketSim) != TYPE_NIL:
+		# try common patterns, degrade gracefully
+		if MarketSim.has_method("get_sector"):
+			return String(MarketSim.get_sector(StringName(sym)))
+		if "sectors" in MarketSim and MarketSim.sectors.has(StringName(sym)):
+			return String(MarketSim.sectors[StringName(sym)])
+	return "—"
+
+func _fill_last5(sym: String) -> void:
+	# clear old rows
+	for c in _details_list.get_children():
+		c.queue_free()
+
+	var rows: Array = _get_last5_rows(sym)
+	if rows.is_empty():
+		var lbl := Label.new()
+		lbl.text = "No history available."
+		_details_list.add_child(lbl)
+		return
+
+	# header
+	var hdr := HBoxContainer.new()
+	hdr.add_child(_make_cell("Day", 1.0, HORIZONTAL_ALIGNMENT_LEFT))
+	hdr.add_child(_make_cell("Open", 1.0, HORIZONTAL_ALIGNMENT_RIGHT))
+	hdr.add_child(_make_cell("Close", 1.0, HORIZONTAL_ALIGNMENT_RIGHT))
+	hdr.add_child(_make_cell("Δ%", 1.0, HORIZONTAL_ALIGNMENT_RIGHT))
+	_details_list.add_child(hdr)
+
+	for r in rows:
+		var row := HBoxContainer.new()
+		row.add_child(_make_cell("Day " + str(r.day), 1.0, HORIZONTAL_ALIGNMENT_LEFT))
+		row.add_child(_make_cell("$" + String.num(r.open, 2), 1.0, HORIZONTAL_ALIGNMENT_RIGHT))
+		row.add_child(_make_cell("$" + String.num(r.close, 2), 1.0, HORIZONTAL_ALIGNMENT_RIGHT))
+
+		var chg := 0.0
+		if r.open != 0.0:
+			chg = ((r.close - r.open) / r.open) * 100.0
+		var chg_lbl := _make_cell(String.num(chg, 2) + "%", 1.0, HORIZONTAL_ALIGNMENT_RIGHT)
+		if chg > 0.0:
+			chg_lbl.add_theme_color_override("font_color", Color(0.2, 0.8, 0.2))
+		elif chg < 0.0:
+			chg_lbl.add_theme_color_override("font_color", Color(0.85, 0.3, 0.3))
+		row.add_child(chg_lbl)
+
+		_details_list.add_child(row)
+
+func _make_cell(text: String, ratio: float, align: int) -> Label:
+	var lbl := Label.new()
+	lbl.text = text
+	lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	lbl.size_flags_stretch_ratio = ratio
+	lbl.horizontal_alignment = align
+	return lbl
+
+func _get_last5_rows(sym: String) -> Array:
+	var out: Array = []
+
+	if typeof(MarketSim) == TYPE_NIL:
+		return out
+
+	var sn: StringName = StringName(sym)
+
+	# Preferred: a direct history API
+	if MarketSim.has_method("get_last_n_days"):
+		var arr: Array = MarketSim.get_last_n_days(sn, 5) as Array
+		for i in arr.size():
+			var di: Dictionary = arr[i] as Dictionary
+			out.append({
+				"day": int(di.get("day", 0)),
+				"open": float(di.get("open", 0.0)),
+				"close": float(di.get("close", 0.0))
+			})
+		return out
+
+	# Alternate: property-based history like: MarketSim.history[sn] = [{day,open,close}, ...]
+	if "history" in MarketSim and MarketSim.history is Dictionary and MarketSim.history.has(sn):
+		var hist: Array = MarketSim.history[sn] as Array
+		var start: int = max(0, hist.size() - 5)
+		for i in range(start, hist.size()):
+			var dj: Dictionary = hist[i] as Dictionary
+			out.append({
+				"day": int(dj.get("day", 0)),
+				"open": float(dj.get("open", 0.0)),
+				"close": float(dj.get("close", 0.0))
+			})
+		return out
+
+	# Fallback: today-only
+	if MarketSim.has_method("get_today_open") and MarketSim.has_method("get_today_close"):
+		var today: int = 0
+		if typeof(Game) != TYPE_NIL:
+			today = int(Game.day)
+		out.append({
+			"day": today,
+			"open": float(MarketSim.get_today_open(sn)),
+			"close": float(MarketSim.get_today_close(sn))
+		})
+		return out
+
+	return out
+
+
+	# Fallback: today-only (if you expose today open/close)
+	if MarketSim.has_method("get_today_open") and MarketSim.has_method("get_today_close"):
+		var today := 0
+		if typeof(Game) != TYPE_NIL:
+			today = int(Game.day)
+		out.append({
+			"day": today,
+			"open": float(MarketSim.get_today_open(sn)),
+			"close": float(MarketSim.get_today_close(sn))
+		})
+		return out
+
+	return out

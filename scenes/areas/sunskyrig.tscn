@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn5rkhekjrqo3"]
+
+[ext_resource type="Script" uid="uid://crsngcpknta42" path="res://scripts/areas/SunSkyRig.gd" id="1_277b1"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xva6n"]
+
+[sub_resource type="Sky" id="Sky_qgdfl"]
+sky_material = SubResource("PhysicalSkyMaterial_xva6n")
+
+[sub_resource type="Environment" id="Environment_h1bkf"]
+background_mode = 2
+sky = SubResource("Sky_qgdfl")
+ambient_light_energy = 0.3
+tonemap_mode = 3
+sdfgi_enabled = true
+
+[node name="SunSkyRig" type="Node3D" node_paths=PackedStringArray("sun_orbit", "sun_tilt", "sun", "env")]
+script = ExtResource("1_277b1")
+sun_orbit = NodePath("SunOrbit")
+sun_tilt = NodePath("SunOrbit/SunTilt")
+sun = NodePath("SunOrbit/SunTilt/Sun")
+env = NodePath("WorldEnv")
+
+[node name="SunOrbit" type="Node3D" parent="."]
+
+[node name="SunTilt" type="Node3D" parent="SunOrbit"]
+
+[node name="Sun" type="DirectionalLight3D" parent="SunOrbit/SunTilt"]
+light_energy = 1.8
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 0.8
+directional_shadow_blend_splits = true
+
+[node name="WorldEnv" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h1bkf")

@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctann63bkwex5"]
+
+[ext_resource type="Script" uid="uid://cbj3wvgl8e3qj" path="res://scripts/globals/trading/PhoneUI.gd" id="1_uwhl5"]
+
+[node name="PhoneUI" type="CanvasLayer" groups=["phone_ui"]]
+layer = 20
+visible = false
+script = ExtResource("1_uwhl5")
+
+[node name="Root" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+custom_minimum_size = Vector2(420, 560)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Root/Panel"]
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Root/Panel/VBox/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Phone - Markets"
+
+[node name="CloseBtn" type="Button" parent="Root/Panel/VBox/Title"]
+layout_mode = 2
+text = "Close"
+
+[node name="Tabs" type="TabBar" parent="Root/Panel/VBox"]
+layout_mode = 2
+current_tab = 0
+tab_count = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="Root/Panel/VBox/Scroll"]
+layout_mode = 2
+
+[node name="PosScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PosList" type="VBoxContainer" parent="Root/Panel/VBox/PosScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DayScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DayList" type="VBoxContainer" parent="Root/Panel/VBox/DayScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Footer" type="HBoxContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="QtyLabel" type="Label" parent="Root/Panel/VBox/Footer"]
+layout_mode = 2
+text = "Qty"
+
+[node name="QtySpin" type="SpinBox" parent="Root/Panel/VBox/Footer"]
+layout_mode = 2
+min_value = 1.0
+value = 1.0

@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://w0w1is3q545g"]
+
+[ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_28mff"]
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_upudx"]
+[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_upudx"]
+[ext_resource type="Script" uid="uid://dusrq2akkodyr" path="res://scripts/globals/SleepZone.gd" id="4_degq8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_upudx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qw24i"]
+radius = 0.75
+height = 2.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpaig"]
+
+[node name="Apartment" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(10, 0.2, 8)
+
+[node name="Roof" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+use_collision = true
+size = Vector3(10, 0.2, 8)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.25, 0)
+size = Vector3(0.2, 3, 8)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.25, 0)
+size = Vector3(0.2, 3, 8)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -4)
+size = Vector3(10, 3, 0.2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 4)
+size = Vector3(10, 3, 0.2)
+
+[node name="Door" type="CSGBox3D" parent="CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, -0.25, 0)
+operation = 2
+size = Vector3(1, 2.5, 0.5)
+
+[node name="Player" parent="." instance=ExtResource("1_28mff")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+
+[node name="Exit_To_Hub" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+script = ExtResource("2_upudx")
+target_spawn = "Spawn_Hub_Apt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit_To_Hub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+shape = SubResource("CapsuleShape3D_upudx")
+
+[node name="Spawn_Apt_From_Hub" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, -4.70885e-07, 0, 1, 0, 4.70885e-07, 0, 1, 0, 0.5, 2.5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.5)
+light_color = Color(1, 1, 0.862745, 1)
+shadow_enabled = true
+omni_range = 7.0
+
+[node name="SunSkyRig" parent="." instance=ExtResource("3_upudx")]
+
+[node name="Bed" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -3)
+script = ExtResource("4_degq8")
+wake_spawn = "WakeSpawn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_qw24i")
+
+[node name="bedbox" type="CSGBox3D" parent="Bed"]
+size = Vector3(1, 0.5, 2)
+
+[node name="pillow" type="CSGCylinder3D" parent="Bed"]
+transform = Transform3D(-1.09278e-08, 0.5, 0, -0.25, -2.18557e-08, 0, 0, 0, 0.5, 0, 0.3, -0.5)
+radius = 0.441
+sides = 14
+material = SubResource("StandardMaterial3D_dpaig")
+
+[node name="WakeSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.5)
+
+[node name="ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 16.5)
+size = Vector3(48, 0.2, 25)
+
+[node name="street" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 16.5)
+size = Vector3(48, 0.3, 18)

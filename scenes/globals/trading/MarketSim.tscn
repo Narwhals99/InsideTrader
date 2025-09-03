@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkei7y3wf5lyq"]
+
+[ext_resource type="Script" uid="uid://cq8itjn31abj8" path="res://scripts/globals/trading/MarketSim.gd" id="1_imy4j"]
+
+[node name="MarketSim" type="Node"]
+script = ExtResource("1_imy4j")

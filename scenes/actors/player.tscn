@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://bugch1mtersd1"]
+
+[ext_resource type="Script" uid="uid://d3cgpb1rjvh6w" path="res://scripts/actors/Player.gd" id="1_15tap"]
+[ext_resource type="PackedScene" uid="uid://bnb3f4enhukjp" path="res://assets/actors/CAUCASIAN MAN.glb" id="2_ru62r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cacbb"]
+radius = 0.4
+height = 1.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_15tap"]
+radius = 0.38
+height = 1.78
+
+[sub_resource type="Animation" id="Animation_ru62r"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("caucasian/Skeleton3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.566667, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ktjr4"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("caucasian/Skeleton3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wueq"]
+_data = {
+&"RESET": SubResource("Animation_ktjr4"),
+&"Walk": SubResource("Animation_ru62r")
+}
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_15tap")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CapsuleShape3D_cacbb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.844061, -0.134208)
+
+[node name="ModelPivot" type="Node3D" parent="."]
+
+[node name="MyModel" parent="ModelPivot" instance=ExtResource("2_ru62r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.8, 0)
+
+[node name="Skeleton3D" parent="ModelPivot/MyModel/caucasian" index="0"]
+transform = Transform3D(1, 0, 1.69407e-21, 0, 1, 0, -1.69407e-21, 0, 1, 0.0678706, -0.113809, -0.436436)
+bones/8/position = Vector3(0.23131, 1.33185, 0.729293)
+bones/8/rotation = Quaternion(-0.00551331, -0.0642987, 0.0400964, 0.99711)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(0.836, 0.200004, -0.0970001)
+bones/9/rotation = Quaternion(-0.0269356, 0.0461587, -0.242557, 0.968664)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.880679, -0.173399, -0.0230938)
+bones/10/rotation = Quaternion(0.00912587, -0.0285631, -0.213669, 0.976446)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(0.618504, -0.0977477, -0.0133483)
+bones/11/rotation = Quaternion(0.0411036, -0.0450571, -0.31518, 0.94707)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/position = Vector3(1.91866, 0.00495263, -0.114338)
+bones/12/rotation = Quaternion(-0.0140199, -0.0678208, -0.0828721, 0.994151)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(1.28702, 0.06874, -0.245715)
+bones/13/rotation = Quaternion(-0.00279252, 0.00380943, 0.0228766, 0.999727)
+bones/14/position = Vector3(1.28845, 0.0690672, -0.245359)
+bones/14/rotation = Quaternion(0.00401155, -0.146083, -0.000394242, 0.989264)
+bones/14/scale = Vector3(1, 1, 1)
+bones/34/rotation = Quaternion(-0.0133161, 0.0481333, 0.0378326, 0.998035)
+bones/34/scale = Vector3(1, 1, 1)
+bones/35/position = Vector3(-0.835952, 0.256195, -0.0966465)
+bones/35/rotation = Quaternion(-0.00369106, -0.0656446, 0.164574, 0.984171)
+bones/35/scale = Vector3(1, 1, 1)
+bones/36/position = Vector3(-0.880975, -0.173446, -0.0231057)
+bones/36/rotation = Quaternion(0.0396195, 0.00592252, 0.244859, 0.968731)
+bones/36/scale = Vector3(1, 1, 1)
+bones/37/position = Vector3(-0.618208, -0.0977002, -0.0133417)
+bones/37/rotation = Quaternion(0.0305075, 0.0406531, 0.20623, 0.977183)
+bones/37/scale = Vector3(1, 1, 1)
+bones/38/position = Vector3(-1.91866, 0.00495232, -0.114338)
+bones/38/rotation = Quaternion(0.0387399, 0.131782, 0.106055, 0.984827)
+bones/38/scale = Vector3(1, 1, 1)
+bones/39/position = Vector3(-1.28702, 0.0687397, -0.245715)
+bones/39/rotation = Quaternion(0.0213679, 0.00501364, 0.0579064, 0.998081)
+bones/39/scale = Vector3(1, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_15tap")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ModelPivot/MyModel")
+libraries = {
+&"": SubResource("AnimationLibrary_7wueq")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[editable path="ModelPivot/MyModel"]

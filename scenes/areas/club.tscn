@@ -1,0 +1,322 @@
+[gd_scene load_steps=8 format=3 uid="uid://codipplwd5y0e"]
+
+[ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_7r51h"]
+[ext_resource type="Script" uid="uid://duiihgandplaj" path="res://scripts/areas/ClubStrobeController.gd" id="1_qkptu"]
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_ucc0o"]
+[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_ucc0o"]
+[ext_resource type="AudioStream" uid="uid://llhqojnys24e" path="res://assets/environments/020.   Under-the-Gun_FULL_WSR1861501.wav" id="4_6nkdg"]
+[ext_resource type="Script" uid="uid://bnnw7sdoatovm" path="res://scripts/areas/ClubMusic.gd" id="5_6endk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ucc0o"]
+
+[node name="club" type="Node3D"]
+
+[node name="building" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="building"]
+use_collision = true
+size = Vector3(15, 0.2, 10)
+
+[node name="roof" type="CSGBox3D" parent="building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
+size = Vector3(15, 0.2, 10)
+
+[node name="wall" type="CSGBox3D" parent="building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2, 0)
+use_collision = true
+size = Vector3(0.2, 4, 10)
+
+[node name="wall2" type="CSGBox3D" parent="building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 0)
+use_collision = true
+size = Vector3(0.2, 4, 10)
+
+[node name="wall3" type="CSGBox3D" parent="building"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -5)
+use_collision = true
+size = Vector3(0.2, 4, 15)
+
+[node name="wall4" type="CSGBox3D" parent="building"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 5)
+use_collision = true
+size = Vector3(0.2, 4, 15)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="building/wall4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, 0)
+operation = 2
+size = Vector3(1, 2.75, 0.3)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35533, 2.5, 0)
+size = Vector3(0.1, 2, 8)
+
+[node name="Bar" type="Node3D" parent="building"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.5, 0)
+use_collision = true
+size = Vector3(1, 1, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.23928, 1.80477, 0)
+size = Vector3(0.2, 0.15, 6.6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.23928, 3.29671, 0)
+size = Vector3(0.2, 0.15, 6.6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.23928, 2.55061, 3.37214)
+size = Vector3(0.2, 0.15, 1.63)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.23928, 2.55061, -3.37526)
+size = Vector3(0.2, 0.15, 1.63)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.23928, 2.55061, 0.00141805)
+size = Vector3(0.2, 0.15, 6.7)
+
+[node name="bottle" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.00773, 0)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle5" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.00773, -1.56103)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle6" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.74829, -1.56103)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle2" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.00773, 1.50277)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle3" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.00773, 2.8871)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle7" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.74599, 2.52211)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle8" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.74599, 0.354289)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle9" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.74599, 0.163455)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle10" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.74599, -0.924525)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle11" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.74599, -2.41722)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="bottle4" type="CSGCylinder3D" parent="building/Bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22099, 2.00773, -2.92685)
+radius = 0.048
+height = 0.236
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="building/Bar/bottle4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
+radius = 0.02
+height = 0.114
+
+[node name="ClubStrobe" type="Node3D" parent="." groups=["ClubStrobe"]]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.5, 0)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.5, -3)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -3)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3.5, -3)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3.5, -0.5)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3.5, 3)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.5, 2.5)
+light_color = Color(1, 0.494118, 1, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 10.0
+omni_range = 7.0
+script = ExtResource("1_qkptu")
+bpm = 142.0
+changes_per_beat = 3.0
+mode = "Lerp"
+per_light_step_offset = 1
+
+[node name="Player" parent="." instance=ExtResource("1_7r51h")]
+transform = Transform3D(1, 0, 1.17225e-07, 0, 1, 0, -1.17225e-07, 0, 1, 0, 1.5, 0)
+
+[node name="Spawn_Club_From_Hub" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+
+[node name="Exit_To_Hub" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+script = ExtResource("2_ucc0o")
+target_spawn = "Spawn_Hub_Club"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit_To_Hub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+shape = SubResource("CapsuleShape3D_ucc0o")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+size = Vector3(40, 0.2, 20)
+
+[node name="SunSkyRig" parent="." instance=ExtResource("3_ucc0o")]
+profile = "interior"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_6nkdg")
+script = ExtResource("5_6endk")

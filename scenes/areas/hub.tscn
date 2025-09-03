@@ -747,8 +747,8 @@ size = Vector3(0.05, 1, 0.05)
 [node name="Door_C_Trigger" type="Area3D" parent="Apt"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -2, -12)
 script = ExtResource("1_gqehd")
-target_scene_key = "apartment"
-target_spawn = "Spawn_Apt_From_Hub"
+target_scene_key = "aptlobby"
+target_spawn = "Spawn_Lobby_From_Hub"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Apt/Door_C_Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.5)

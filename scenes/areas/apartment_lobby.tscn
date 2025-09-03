@@ -1,47 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2s2n4vkyqhre"]
+[gd_scene load_steps=6 format=3 uid="uid://d2s2n4vkyqhre"]
 
 [ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_i8f47"]
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_weatt"]
+[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_8vr11"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vr11"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_siuli"]
+radius = 0.515102
 
 [node name="Apartment Lobby" type="Node3D"]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(20, 0.2, 20)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 5.07142, -10)
-use_collision = true
-size = Vector3(20, 0.2, 20)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89523, 0)
-use_collision = true
-size = Vector3(20, 0.2, 20)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D3"]
-transform = Transform3D(-3.46964e-08, 5.27359e-16, 1, 1.10405e-08, -1.11338, 2.68657e-16, 0.793761, 1.54861e-08, 4.37114e-08, 7, 0.0088129, -5.68311)
-operation = 2
-size = Vector3(4, 0.2, 6)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-2.98023e-08, -1, -4.37114e-08, -1, 2.98023e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, -3, 2, -7)
-use_collision = true
-size = Vector3(4, 0.2, 6)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(-2.98023e-08, -1, -4.37114e-08, -1, 2.98023e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, -3, 2, -7)
-use_collision = true
-size = Vector3(4, 0.2, 6)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, 2.98023e-08, -4.37114e-08, -2.98023e-08, -1, 0, 0, 2, -4)
-use_collision = true
-size = Vector3(4, 0.2, 20)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 3.88235e-23, 0, 1, 0, 0, 0)
-operation = 2
-size = Vector3(4, 0.2, 6)
 
 [node name="Stairs" type="Node3D" parent="."]
 
@@ -52,6 +20,11 @@ size = Vector3(1, 0.3, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Stairs"]
 transform = Transform3D(0.340931, 0, 0, 0, 0.5, 0, 0, 0, 2.75569, 3.14537, 0.1751, -8.61622)
+use_collision = true
+size = Vector3(1, 0.3, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(0.340931, 0, 0, 0, 0.5, 0, 0, 0, 2.75569, 2.81842, 0.0906952, -8.61622)
 use_collision = true
 size = Vector3(1, 0.3, 1)
 
@@ -112,6 +85,11 @@ size = Vector3(1, 0.3, 1)
 
 [node name="CSGBox3D40" type="CSGBox3D" parent="Stairs"]
 transform = Transform3D(0.340931, 0, 0, 0, 0.5, 0, 0, 0, 1.80938, 8.13923, 2.4746, -4.97422)
+use_collision = true
+size = Vector3(1, 0.3, 1)
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(0.340931, 0, 0, 0, 0.5, 0, 0, 0, 1.80938, 8.32622, 2.39322, -4.9735)
 use_collision = true
 size = Vector3(1, 0.3, 1)
 
@@ -293,8 +271,396 @@ size = Vector3(1, 0.3, 1)
 [node name="Player" parent="." instance=ExtResource("1_i8f47")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.5)
+[node name="Lights" type="Node3D" parent="."]
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D18" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01523, 3, -0.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D19" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.56094, 3, -0.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D20" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50804, 3.27942, 7.76399)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D21" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50804, 3.27942, 3.09655)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D22" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.92897, 3.27942, 3.09655)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D23" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.628585, 3.27942, 3.09655)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D24" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9256, 3.27942, 3.09655)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D25" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50874, 3.27942, 6.88508)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 3, -0.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 3, 7.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 7.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 3, 7.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 3, -0.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, -0.5)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, -7)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 9.5, -7)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.68537, 8.25848, -6.48487)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, 1)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 9.5, 1)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D13" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 9.5, -7)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D14" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.68156, -6.66794)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D15" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307115, 3.02871, -7)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D16" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22683, 3.02871, -5.44)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D26" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.48966, 1.45716, -7.30301)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D27" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.48966, 3.32866, -9.0611)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D28" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15379, 3.32866, -9.0611)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D29" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15379, 6.61487, -9.0611)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D30" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5324, 6.61487, -9.0611)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D31" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16735, 6.61487, -9.0611)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D32" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16735, 6.61487, -4.29897)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D33" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18961, 6.61487, -4.29897)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D34" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.924688, 6.61487, -4.29897)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D35" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80025, 6.61487, -4.29897)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D36" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7837, 6.61487, -8.43668)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D17" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73199, 6.00825, -5.44)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls"]
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 5.07142, -10)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -2, -8.74228e-08, 0, -0.394741, -3.14334)
+operation = 2
+size = Vector3(1, 1.33997, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, -1, 2.18557e-08, 0, -4.37114e-08, -0.5, 1, -4.37114e-08, 9.55343e-16, -10, 5.07142, 0.108739)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, -1, 2.18557e-08, 0, -4.37114e-08, -0.5, 1, -4.37114e-08, 9.55343e-16, 10, 5.07142, 0.108739)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 5.07142, 10.1087)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.310109, 0, 1, -1.35553e-08, 0, 6.96156, -2.89126)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89523, 0)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Walls/CSGBox3D3"]
+transform = Transform3D(-4.86127e-08, 5.27359e-16, 1, 1.54687e-08, -1.11338, 2.68657e-16, 1.11213, 1.54861e-08, 4.37114e-08, 7, 0.0088129, -6.18311)
+operation = 2
+size = Vector3(4, 0.2, 6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-2.98023e-08, -1, -4.37114e-08, -1, 2.98023e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, -3, 2, -7)
+use_collision = true
+size = Vector3(4, 0.2, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-2.98023e-08, -1, -4.37114e-08, -1, 2.98023e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, -3, 2, -7)
+use_collision = true
+size = Vector3(4, 0.2, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, 2.98023e-08, -4.37114e-08, -2.98023e-08, -1, 0, 0, 2, -4)
+use_collision = true
+size = Vector3(4, 0.2, 20)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Walls/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 3.88235e-23, 0, 1, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 6)
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, -3)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5.5, -3)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, -3)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, -3)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, -3)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, -3)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.688675, 0.614855, 9.97312)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.688675, 1.61485, 9.97312)
+use_collision = true
+size = Vector3(1, 1, 0.1)
+
+[node name="To_Apt" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53889, 4.33972, -3.51317)
+script = ExtResource("2_weatt")
+target_scene_key = "apartment"
+target_spawn = "Spawn_Apt_From_Lobby"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="To_Apt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741974, 0.518799)
+shape = SubResource("CapsuleShape3D_8vr11")
+
+[node name="Spawn_Lobby_From_Apt" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52732, 4.58781, -5.41916)
+
+[node name="Spawn_Lobby_From_Hub" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.670674, 0.361728, 7.3461)
+
+[node name="To_Hub" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87318, 0.529969, 9.7978)
+script = ExtResource("2_weatt")
+target_spawn = "Spawn_Hub_Apt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="To_Hub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243651, 0.51128, 0.172212)
+shape = SubResource("CapsuleShape3D_siuli")
+
+[node name="SunSkyRig" parent="." instance=ExtResource("3_8vr11")]

@@ -49,16 +49,17 @@ size = Vector3(1, 2.5, 0.5)
 [node name="Player" parent="." instance=ExtResource("1_28mff")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
 
-[node name="Exit_To_Hub" type="Area3D" parent="."]
+[node name="Exit_To_Lobby" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 script = ExtResource("2_upudx")
-target_spawn = "Spawn_Hub_Apt"
+target_scene_key = "aptlobby"
+target_spawn = "Spawn_Lobby_From_Apt"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit_To_Hub"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit_To_Lobby"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
 shape = SubResource("CapsuleShape3D_upudx")
 
-[node name="Spawn_Apt_From_Hub" type="Marker3D" parent="."]
+[node name="Spawn_Apt_From_Lobby" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, -4.70885e-07, 0, 1, 0, 4.70885e-07, 0, 1, 0, 0.5, 2.5)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

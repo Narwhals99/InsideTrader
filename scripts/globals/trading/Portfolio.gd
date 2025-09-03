@@ -49,6 +49,7 @@ func buy(sym: StringName, qty: int, price: float = -1.0) -> bool:
 		price = MarketSim.get_price(sym)
 	var cost: float = price * qty + commission_per_trade
 	if cash < cost:
+		DialogueUI.notify("Not enough cash for trade!", "danger")
 		return false
 
 	var pos := get_position(sym)
@@ -72,6 +73,8 @@ func buy(sym: StringName, qty: int, price: float = -1.0) -> bool:
 	emit_signal("order_executed", order)
 	emit_signal("portfolio_changed")
 	return true
+	
+	DialogueUI.show_trade_result(true, "Bought " + str(qty) + " " + String(sym))
 
 func sell(sym: StringName, qty: int, price: float = -1.0) -> bool:
 	if qty <= 0:

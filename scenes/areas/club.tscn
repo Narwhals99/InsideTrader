@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://codipplwd5y0e"]
+[gd_scene load_steps=15 format=3 uid="uid://codipplwd5y0e"]
 
 [ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_7r51h"]
 [ext_resource type="Script" uid="uid://duiihgandplaj" path="res://scripts/areas/ClubStrobeController.gd" id="1_qkptu"]
@@ -6,8 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_ucc0o"]
 [ext_resource type="AudioStream" uid="uid://llhqojnys24e" path="res://assets/environments/020.   Under-the-Gun_FULL_WSR1861501.wav" id="4_6nkdg"]
 [ext_resource type="Script" uid="uid://bnnw7sdoatovm" path="res://scripts/areas/ClubMusic.gd" id="5_6endk"]
+[ext_resource type="Script" uid="uid://beu8kt6csl6i7" path="res://scripts/actors/Bartender_NPC.gd" id="7_omdma"]
+[ext_resource type="Script" uid="uid://cxbili8tnk263" path="res://scripts/actors/CEO_NPC.gd" id="8_p4lku"]
+[ext_resource type="Script" uid="uid://dmv4t4pq04eui" path="res://scripts/areas/ClubInteractionSystem.gd" id="9_dql63"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ucc0o"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfsgt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_st0xj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30nmv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oysu8"]
 
 [node name="club" type="Node3D"]
 
@@ -320,3 +331,29 @@ profile = "interior"
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_6nkdg")
 script = ExtResource("5_6endk")
+
+[node name="Bartender_NPC" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01992, 1.01655, 0)
+script = ExtResource("7_omdma")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bartender_NPC"]
+shape = SubResource("CapsuleShape3D_wfsgt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bartender_NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16593, 0, 0)
+mesh = SubResource("CapsuleMesh_st0xj")
+
+[node name="CEO_NPC" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.57708, 0.665045, 0)
+script = ExtResource("8_p4lku")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CEO_NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07278, 0.478532, 0)
+shape = SubResource("CapsuleShape3D_30nmv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CEO_NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0630851, 0.448895, 0)
+mesh = SubResource("CapsuleMesh_oysu8")
+
+[node name="ClubInteractionSystem" type="Node" parent="."]
+script = ExtResource("9_dql63")

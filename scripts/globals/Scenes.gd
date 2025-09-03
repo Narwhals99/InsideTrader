@@ -5,6 +5,7 @@ var db: Dictionary = {
 	"apartment": preload("res://scenes/areas/apartment.tscn"),
 	"office": preload("res://scenes/areas/office.tscn"),
 	"club": preload("res://scenes/areas/club.tscn"),
+	"aptlobby": preload("res://scenes/areas/apartment_lobby.tscn")
 }
 
 func scene_for(key: String) -> PackedScene:

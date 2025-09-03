@@ -22,6 +22,7 @@ Portfolio="*res://scripts/globals/trading/Portfolio.gd"
 Scenes="*res://scripts/globals/Scenes.gd"
 PhoneUi="*res://scenes/globals/trading/phone_ui.tscn"
 MarketSim="*res://scenes/globals/trading/MarketSim.tscn"
+DialogueUI="*res://scripts/actors/DialogueUI.gd"
 
 [input]
 

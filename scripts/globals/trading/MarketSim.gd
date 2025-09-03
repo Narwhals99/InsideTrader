@@ -45,6 +45,10 @@ var _mover_symbol: StringName = &""
 var _mover_dir: int = 0					# +1 or -1
 var _mover_target_daily_drift: float = 0.0	# e.g., 0.02 = +2% over the day
 
+# --- Insider Trading Support ---
+var _forced_next_mover: StringName = &""
+var _forced_next_move_size: float = 0.0
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_rng.randomize()
@@ -271,6 +275,26 @@ func force_market_open(open_now: bool) -> void:
 
 # ---------------- Mover logic ----------------
 func _daily_roll_mover() -> void:
+	"""Modified version that respects forced movers from insider info"""
+	# Check for forced mover first
+	if _forced_next_mover != &"" and _forced_next_move_size > 0.0:
+		_mover_symbol = _forced_next_mover
+		_mover_target_daily_drift = _forced_next_move_size
+		
+		# Random direction unless it's a major insider move
+		if _forced_next_move_size >= 0.04:  # 4%+ moves are always positive for insider trades
+			_mover_dir = 1
+		else:
+			_mover_dir = 1 if _rng.randf() >= 0.5 else -1
+		
+		print("[MarketSim] Using forced mover: ", _mover_symbol, " dir=", _mover_dir, " drift=", _mover_target_daily_drift)
+		
+		# Clear the forced mover
+		_forced_next_mover = &""
+		_forced_next_move_size = 0.0
+		return
+	
+	# Otherwise, use normal random selection
 	_mover_symbol = &""
 	_mover_dir = 0
 	_mover_target_daily_drift = 0.0
@@ -292,6 +316,9 @@ func _daily_roll_mover() -> void:
 	var lo: float = min(mover_target_min_pct, mover_target_max_pct)
 	var hi: float = max(mover_target_min_pct, mover_target_max_pct)
 	_mover_target_daily_drift = _rng.randf_range(lo, hi)
+	
+	print("[MarketSim] Random mover: ", _mover_symbol, " dir=", _mover_dir, " drift=", _mover_target_daily_drift)
+
 
 func _clear_daily_mover() -> void:
 	_mover_symbol = &""
@@ -424,3 +451,26 @@ func _fmt_secs(s: float) -> String:
 
 func _fmt_min(m: float) -> String:
 	return String.num(m, 2) + "m"
+
+
+
+#CLAUDE ADDITION
+
+func force_next_mover(ticker: StringName, move_percent: float) -> void:
+	"""Force a specific ticker to be tomorrow's mover with specified move size"""
+	_forced_next_mover = ticker
+	_forced_next_move_size = abs(move_percent)  # Store as positive, direction chosen randomly
+	print("[MarketSim] Next mover forced: ", ticker, " @ ", move_percent * 100, "%")
+	
+func get_current_mover() -> Dictionary:
+	"""Get info about today's mover (useful for UI/debugging)"""
+	if _mover_symbol == &"":
+		return {"active": false}
+	return {
+		"active": true,
+		"symbol": _mover_symbol,
+		"direction": _mover_dir,
+		"target_drift": _mover_target_daily_drift
+	}
+	
+	

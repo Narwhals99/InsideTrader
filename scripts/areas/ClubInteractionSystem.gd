@@ -1,10 +1,8 @@
-# ClubInteractionSystem.gd
-# Attach to a Node in your club scene to manage NPC interactions
+# ClubInteractionSystem.gd - Fixed version
 extends Node
 
 var bartender: Area3D
 var ceo: Area3D
-var interaction_ui: Control
 
 func _ready() -> void:
 	# Find NPCs in scene
@@ -16,6 +14,13 @@ func _ready() -> void:
 		bartender.beer_purchased.connect(_on_beer_purchased)
 	if ceo and ceo.has_signal("insider_info_given"):
 		ceo.insider_info_given.connect(_on_insider_info_received)
+	
+	# Ensure interact action exists
+	if not InputMap.has_action("interact"):
+		InputMap.add_action("interact")
+		var e := InputEventKey.new()
+		e.physical_keycode = KEY_E
+		InputMap.action_add_event("interact", e)
 	
 	print("[ClubSystem] Initialized. Bartender: ", bartender != null, ", CEO: ", ceo != null)
 
@@ -52,7 +57,6 @@ func _interact_with_bartender() -> void:
 		return
 	
 	var result: Dictionary = bartender.interact()
-	_show_message(result.get("message", ""))
 	
 	if result.get("success", false):
 		print("[Club] Beer purchased!")
@@ -67,38 +71,23 @@ func _interact_with_ceo() -> void:
 		# Give beer to CEO
 		if ceo.has_method("give_beer"):
 			var result: Dictionary = ceo.give_beer()
-			_show_message(result.get("message", ""))
 			
-			if result.get("is_tip", false):
-				_show_insider_tip(result)
-			
-			# Remove beer from player
-			if bartender.has_method("player_gave_beer"):
-				bartender.player_gave_beer()
+			# Only remove beer if CEO actually accepted it
+			if result.get("success", false) or result.get("is_tip", false):
+				# Remove beer from player
+				if bartender.has_method("player_gave_beer"):
+					bartender.player_gave_beer()
 	else:
 		# Try to talk without beer
 		if ceo.has_method("interact"):
 			var result: Dictionary = ceo.interact()
-			_show_message(result.get("message", ""))
 
 func _on_beer_purchased() -> void:
 	"""Handle beer purchase"""
 	print("[Club] Player bought a beer")
-	_show_message("You bought a beer! Find someone who might want it...")
+	DialogueUI.notify("You bought a beer! Find someone who might want it...", "info", 3.0)
 
 func _on_insider_info_received(ticker: StringName) -> void:
 	"""Handle receiving insider information"""
 	print("[Club] INSIDER TIP RECEIVED: ", ticker)
 	# Could trigger achievement, update journal, etc.
-
-func _show_message(text: String) -> void:
-	"""Display message to player (implement your UI here)"""
-	print("[NPC]: ", text)
-	# TODO: Show in actual UI label/popup
-
-func _show_insider_tip(info: Dictionary) -> void:
-	"""Special display for insider tips"""
-	var ticker: String = String(info.get("ticker", "???"))
-	print("🔥 INSIDER TIP: ", ticker, " will move big tomorrow!")
-	# TODO: Add to player's notes/journal
-	# TODO: Show special UI notification

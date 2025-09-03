@@ -1,4 +1,4 @@
-# CEO_NPC.gd - Complete script with DialogueUI integration
+# CEO_NPC.gd - Fixed version without await issues
 extends Area3D
 
 signal drunk_level_changed(level: int)
@@ -21,11 +21,10 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
-	# Reset tip status each day
-	if Game.has_signal("day_advanced"):
+	if typeof(Game) != TYPE_NIL:
 		Game.day_advanced.connect(_on_day_advanced)
-	if Game.has_signal("phase_changed"):
 		Game.phase_changed.connect(_on_phase_changed)
+
 	
 	# Pre-roll today's insider info
 	_roll_insider_info()
@@ -123,14 +122,14 @@ func _give_insider_info() -> Dictionary:
 	
 	emit_signal("insider_info_given", ticker_to_reveal)
 	
-	# Dramatic reveal sequence
-	DialogueUI.show_npc_dialogue("CEO", "Listen... *leans in conspiratorially*")
-	await get_tree().create_timer(2.5).timeout
+	# Use the new sequence helper instead of await
+	var messages := [
+		{"speaker": "CEO", "text": "Listen... *leans in conspiratorially*"},
+		{"speaker": "CEO", "text": "I heard " + String(ticker_to_reveal) + " is gonna make BIG moves tomorrow."},
+		{"speaker": "CEO", "text": "Don't tell anyone I told you!"}
+	]
 	
-	DialogueUI.show_npc_dialogue("CEO", "I heard " + String(ticker_to_reveal) + " is gonna make BIG moves tomorrow.")
-	await get_tree().create_timer(2.5).timeout
-	
-	DialogueUI.show_npc_dialogue("CEO", "Don't tell anyone I told you! *nervous glance*")
+	DialogueUI.show_dialogue_sequence(messages, 2.5)
 	
 	# Show special insider notification
 	DialogueUI.show_insider_tip(String(ticker_to_reveal))

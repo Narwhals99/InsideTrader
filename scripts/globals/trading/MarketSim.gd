@@ -97,7 +97,7 @@ func _record_today_to_history(day: int) -> void:
 			close_px = get_price(sym)
 		_history_append(sym, day, open_px, close_px)
 
-
+ 
 	# Debug UI
 	if debug_overlay:
 		_ensure_debug_ui()

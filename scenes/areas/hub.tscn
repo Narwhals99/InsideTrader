@@ -176,6 +176,7 @@ script = ExtResource("1_gqehd")
 target_scene_key = "office"
 target_spawn = "Spawn_Office_From_Hub"
 required_phase = "Morning"
+min_net_worth = 10000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Office/Door_A_Trigger"]
 shape = SubResource("CapsuleShape3D_7benj")

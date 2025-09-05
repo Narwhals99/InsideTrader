@@ -1,5 +1,4 @@
 # InsiderNPC.gd - FIXED VERSION
-# Replace the ENTIRE InsiderNPC.gd with this
 # Base class for ALL NPCs with schedule, movement, and insider capabilities
 extends CharacterBody3D
 
@@ -20,7 +19,7 @@ extends CharacterBody3D
 @export var tip_move_size: float = 0.05
 
 @export_group("Movement")
-@export var movement_speed: float = 3.0
+@export var movement_speed: float = 2.0  # Reduced from 3.0 for more realistic walking
 
 @export_group("Interaction")
 @export var interaction_range: float = 2.0
@@ -71,7 +70,8 @@ var interaction_area: Area3D
 var _player_near: bool = false
 var _current_location: String = ""
 var _current_segment: Dictionary = {}
-var _last_departure_time: float = -1.0
+var _last_segment_key: String = ""  # Track segment changes
+var _movement_complete: bool = false  # Track if we've reached destination
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
 
 func _ready() -> void:
@@ -114,6 +114,7 @@ func _setup_components() -> void:
 	add_child(movement)
 	movement.setup(self)
 	movement.walk_speed = movement_speed
+	movement.stop_at_destination = false  # Don't stop, let schedule handle it
 	movement.destination_reached.connect(_on_destination_reached)
 	
 	# Drunk System
@@ -154,43 +155,41 @@ func _setup_interaction_area() -> void:
 		e.physical_keycode = KEY_E
 		InputMap.action_add_event("interact", e)
 
-# ============ SCHEDULE SYSTEM (DEPARTURE-BASED) ============
+# ============ SCHEDULE SYSTEM (IMPROVED) ============
 func _update_from_schedule() -> void:
 	if not schedule_resource:
 		return
 	
 	var world_seconds = TimeService.get_world_seconds()
 	
-	# Find which segment we should be in based on departure time
-	var target_segment = _get_segment_by_departure_time(world_seconds)
+	# Get current segment
+	var target_segment = _get_current_segment(world_seconds)
 	
-	# Check if this is a new segment (different departure time)
-	var new_departure = target_segment.get("t0", 0.0)
-	if new_departure != _last_departure_time:
-		_last_departure_time = new_departure
+	# Create a unique key for this segment
+	var segment_key = _get_segment_key(target_segment)
+	
+	# Check if this is a NEW segment (different from last)
+	if segment_key != _last_segment_key:
+		_last_segment_key = segment_key
 		_current_segment = target_segment
+		_movement_complete = false  # Reset movement flag
 		_apply_segment(target_segment)
 
-func _get_segment_by_departure_time(world_seconds: float) -> Dictionary:
-	# Find the most recent segment that should have started
-	var best_segment = {}
-	var best_time = -1.0
-	
+func _get_segment_key(segment: Dictionary) -> String:
+	# Create unique identifier for a segment
+	return str(segment.get("t0", 0)) + "_" + segment.get("scene", "") + "_" + str(segment.get("waypoints", []))
+
+func _get_current_segment(world_seconds: float) -> Dictionary:
+	# Find the active segment based on current time
 	for entry in schedule_resource.schedule_entries:
-		var start_seconds = entry.get_start_seconds()
-		
-		# If this segment has started and is more recent than our best
-		if world_seconds >= start_seconds and start_seconds > best_time:
-			best_segment = entry.to_dictionary()
-			best_time = start_seconds
+		if entry.is_active_at_time(world_seconds):
+			return entry.to_dictionary()
 	
 	# Fallback to first segment
-	if best_segment.is_empty() and schedule_resource.schedule_entries.size() > 0:
-		best_segment = schedule_resource.schedule_entries[0].to_dictionary()
+	if schedule_resource.schedule_entries.size() > 0:
+		return schedule_resource.schedule_entries[0].to_dictionary()
 	
-	return best_segment
-
-# Replace the _apply_segment() function in InsiderNPC.gd with this:
+	return {}
 
 func _apply_segment(segment: Dictionary) -> void:
 	var scene = segment.get("scene", "")
@@ -198,29 +197,39 @@ func _apply_segment(segment: Dictionary) -> void:
 	var activity = segment.get("activity", "idle")
 	
 	# Only apply if we're in the right scene
-	var current_scene_name = get_tree().current_scene.name.to_lower().replace("_", "").replace("-", "")
-	var target_scene = scene.to_lower().replace("_", "")
+	var current_scene_name = get_tree().current_scene.name.to_lower().replace(" ", "").replace("_", "").replace("-", "")
+	var target_scene = scene.to_lower().replace("_", "").replace(" ", "").replace("-", "")
 	
-	# Handle scene name variants - KEEP APARTMENT AND APTLOBBY SEPARATE
+	# Handle scene name variants
 	if target_scene == "aptlobby" or target_scene == "apartmentlobby":
 		target_scene = "aptlobby"
 	elif target_scene == "apartment" or target_scene == "apt":
 		target_scene = "apartment"
 	
-	# Normalize current scene name too
-	if current_scene_name == "apartmentlobby" or current_scene_name == "aptlobby":
+	if current_scene_name == "apartmentlobby":
 		current_scene_name = "aptlobby"
 	elif current_scene_name == "apartment" or current_scene_name == "apt" or current_scene_name == "playerapartment":
 		current_scene_name = "apartment"
 	
 	if current_scene_name != target_scene:
-		# We're not in the right scene
+		# We're not in the right scene - stop movement
+		if movement:
+			movement.stop()
 		return
 	
-	# Apply waypoints - NPC will walk at their own pace
-	if waypoints.size() > 0 and movement:
-		print("[%s] Setting waypoints for %s activity in %s" % [npc_name, activity, current_scene_name])
-		movement.set_waypoints_by_names(waypoints, get_tree().current_scene)
+	# Apply activity based on type
+	if activity == "idle":
+		# For idle, just go to the first waypoint and stop
+		if waypoints.size() > 0 and movement and not _movement_complete:
+			var single_waypoint = PackedStringArray([waypoints[0]])
+			movement.stop_at_destination = true
+			movement.set_waypoints_by_names(single_waypoint, get_tree().current_scene)
+	else:
+		# For moving activities, walk the full path at NPC's own pace
+		if waypoints.size() > 0 and movement and not _movement_complete:
+			movement.stop_at_destination = false
+			movement.loop_waypoints = segment.get("loop", false)
+			movement.set_waypoints_by_names(waypoints, get_tree().current_scene)
 	
 	_current_location = scene
 
@@ -229,10 +238,11 @@ func _apply_current_schedule() -> void:
 		return
 	
 	var world_seconds = TimeService.get_world_seconds()
-	var segment = _get_segment_by_departure_time(world_seconds)
+	var segment = _get_current_segment(world_seconds)
 	
 	_current_segment = segment
-	_last_departure_time = segment.get("t0", 0.0)
+	_last_segment_key = _get_segment_key(segment)
+	_movement_complete = false
 	_apply_segment(segment)
 
 # ============ CALLBACKS ============
@@ -246,11 +256,11 @@ func _on_body_exited(body: Node) -> void:
 		_player_near = false
 
 func _on_destination_reached() -> void:
-	print("[%s] Reached destination" % npc_name)
+	_movement_complete = true  # Mark that we've completed this segment's movement
 	EventBus.emit_signal("npc_arrived", npc_id, _current_location)
 
 func _on_tip_given(ticker: String) -> void:
-	print("[%s] Gave tip about %s" % [npc_name, ticker])
+	pass  # Handled by drunk system
 
 # ============ INTERACTION ============
 func interact() -> Dictionary:
@@ -348,7 +358,8 @@ func _update_state_label() -> void:
 	
 	var drunk = "%d/%d" % [drunk_system.drunk_level, drunk_system.drunk_threshold]
 	var tip = "Tip: " + ("Given" if drunk_system._has_given_tip_today else "Ready")
-	state_label.text = "%s | Drunk: %s | %s" % [npc_title, drunk, tip]
+	var moving = "Moving" if movement and movement.is_moving else "Idle"
+	state_label.text = "%s | %s | Drunk: %s | %s" % [npc_title, moving, drunk, tip]
 
 # ============ SAVE/LOAD ============
 func get_save_data() -> Dictionary:

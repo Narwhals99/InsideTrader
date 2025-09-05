@@ -42,6 +42,13 @@ signal scene_loaded(scene_key: String)
 signal ui_opened(ui_name: String)
 signal ui_closed(ui_name: String)
 
+# Add this signal to EventBus.gd in the NPC EVENTS section (around line 17):
+
+# ============ NPC EVENTS ============
+
+signal npc_arrived(npc_id: String, location: String)  # ADD THIS LINE
+
+
 # ============ HELPER FUNCTIONS ============
 
 func emit_notification(text: String, type: String = "info", duration: float = 3.0) -> void:

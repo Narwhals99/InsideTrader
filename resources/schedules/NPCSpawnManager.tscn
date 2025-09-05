@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmkpy0787qx2n"]
-
-[ext_resource type="Script" uid="uid://bmd0w5hrtefyn" path="res://scripts/services/NPCSpawnManager.gd" id="1_8538v"]
-
-[node name="Node" type="Node"]
-script = ExtResource("1_8538v")

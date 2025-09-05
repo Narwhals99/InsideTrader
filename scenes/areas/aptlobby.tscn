@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://d2s2n4vkyqhre"]
 
-[ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_i8f47"]
-[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_weatt"]
-[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_8vr11"]
+[ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_s44y0"]
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_kdwic"]
+[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_acvyx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vr11"]
 
@@ -18,7 +18,7 @@ agent_max_climb = 10.15
 
 [node name="Apartment Lobby" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_i8f47")]
+[node name="Player" parent="." instance=ExtResource("1_s44y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Lights" type="Node3D" parent="."]
@@ -376,7 +376,7 @@ size = Vector3(1, 1, 0.1)
 
 [node name="To_Apt" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53889, 4.33972, -3.51317)
-script = ExtResource("2_weatt")
+script = ExtResource("2_kdwic")
 target_scene_key = "apartment"
 target_spawn = "Spawn_Apt_From_Lobby"
 
@@ -392,14 +392,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.670674, 0.361728, 7.3461)
 
 [node name="To_Hub" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87318, 0.529969, 9.7978)
-script = ExtResource("2_weatt")
+script = ExtResource("2_kdwic")
 target_spawn = "Spawn_Hub_Apt"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="To_Hub"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243651, 0.51128, 0.172212)
 shape = SubResource("CapsuleShape3D_siuli")
 
-[node name="SunSkyRig" parent="." instance=ExtResource("3_8vr11")]
+[node name="SunSkyRig" parent="." instance=ExtResource("3_acvyx")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_8vr11")

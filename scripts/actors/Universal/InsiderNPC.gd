@@ -190,18 +190,28 @@ func _get_segment_by_departure_time(world_seconds: float) -> Dictionary:
 	
 	return best_segment
 
+# Replace the _apply_segment() function in InsiderNPC.gd with this:
+
 func _apply_segment(segment: Dictionary) -> void:
 	var scene = segment.get("scene", "")
 	var waypoints = segment.get("waypoints", PackedStringArray())
 	var activity = segment.get("activity", "idle")
 	
 	# Only apply if we're in the right scene
-	var current_scene_name = get_tree().current_scene.name.to_lower().replace("_", "")
+	var current_scene_name = get_tree().current_scene.name.to_lower().replace("_", "").replace("-", "")
 	var target_scene = scene.to_lower().replace("_", "")
 	
-	# Handle scene name variants
-	if target_scene == "apartment" or target_scene == "apt":
+	# Handle scene name variants - KEEP APARTMENT AND APTLOBBY SEPARATE
+	if target_scene == "aptlobby" or target_scene == "apartmentlobby":
 		target_scene = "aptlobby"
+	elif target_scene == "apartment" or target_scene == "apt":
+		target_scene = "apartment"
+	
+	# Normalize current scene name too
+	if current_scene_name == "apartmentlobby" or current_scene_name == "aptlobby":
+		current_scene_name = "aptlobby"
+	elif current_scene_name == "apartment" or current_scene_name == "apt" or current_scene_name == "playerapartment":
+		current_scene_name = "apartment"
 	
 	if current_scene_name != target_scene:
 		# We're not in the right scene
@@ -209,7 +219,7 @@ func _apply_segment(segment: Dictionary) -> void:
 	
 	# Apply waypoints - NPC will walk at their own pace
 	if waypoints.size() > 0 and movement:
-		print("[%s] Setting waypoints for %s activity" % [npc_name, activity])
+		print("[%s] Setting waypoints for %s activity in %s" % [npc_name, activity, current_scene_name])
 		movement.set_waypoints_by_names(waypoints, get_tree().current_scene)
 	
 	_current_location = scene

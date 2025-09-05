@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce6oj4wvjffp1"]
+[gd_scene load_steps=6 format=3 uid="uid://b01wvbx7s53tt"]
 
-[ext_resource type="Script" uid="uid://16h8x2mrviyw" path="res://scripts/actors/CEO_Test_Standalone.gd" id="1_d14tt"]
+[ext_resource type="Script" uid="uid://b161om2f63fvb" path="res://scripts/actors/Universal/InsiderNPC.gd" id="1_kkr2j"]
+[ext_resource type="Resource" uid="uid://bc2lak0mhpqyj" path="res://resources/schedules/cfo_schedule.tres" id="2_0p2hc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a43sn"]
 radius = 0.4
@@ -13,8 +14,12 @@ height = 1.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_elunf"]
 radius = 1.0
 
-[node name="CEO_NPC_Test" type="CharacterBody3D" groups=["ceo_npc"]]
-script = ExtResource("1_d14tt")
+[node name="CFO_NPC" type="CharacterBody3D"]
+script = ExtResource("1_kkr2j")
+npc_name = "Mr. Johnson"
+npc_id = "cfo"
+npc_title = "CFO"
+schedule_resource = ExtResource("2_0p2hc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
@@ -24,17 +29,17 @@ shape = SubResource("CapsuleShape3D_a43sn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("CapsuleMesh_k3xy8")
 
-[node name="InteractionArea" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.95, 0)
-shape = SubResource("CapsuleShape3D_elunf")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5
 target_desired_distance = 0.5
 height = 1.9
 radius = 0.4
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_elunf")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -43,4 +48,3 @@ target_position = Vector3(0, -0.6, 0)
 [node name="StateLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 billboard = 1
-text = "CEO: Sched-IDLE | Poly=1 | Here=aptlobby Seg=aptlobby"

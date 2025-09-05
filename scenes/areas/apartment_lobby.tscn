@@ -401,12 +401,6 @@ shape = SubResource("CapsuleShape3D_siuli")
 
 [node name="SunSkyRig" parent="." instance=ExtResource("3_8vr11")]
 
-[node name="CEO_Apt_Lobby" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.405752, 0.740628, 8.31435)
-
-[node name="CEO_Apt_Door" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98904, 5.28096, -4.32874)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_8vr11")
 

@@ -25,9 +25,8 @@ PhoneUi="*res://scenes/globals/trading/phone_ui.tscn"
 MarketSim="*res://scenes/globals/trading/MarketSim.tscn"
 DialogueUI="*res://scripts/actors/DialogueUI.gd"
 InsiderInfo="*res://scripts/globals/trading/InsiderInfo.gd"
-CEOState="*res://scripts/actors/CEOState.gd"
-CEOBrain="*res://scripts/actors/CEOBrain.gd"
 Inventory="*res://scripts/services/InventoryService.gd"
+NpcSpawnManager="*res://scripts/services/NPCSpawnManager.gd"
 
 [input]
 

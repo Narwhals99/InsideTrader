@@ -1,5 +1,5 @@
 # NPCMovementComponent.gd
-# Reusable movement system for all NPCs
+# Reusable movement system for all NPCs - NOW WITH WAYPOINT ALIASES
 class_name NPCMovementComponent
 extends Node
 
@@ -65,6 +65,11 @@ func set_waypoints_by_names(names: PackedStringArray, scene_root: Node = null) -
 			points.append(node.global_position)
 		else:
 			push_warning("[NPCMovement] Waypoint not found: " + name)
+	
+	# IMPORTANT: Snap character to first waypoint if exists
+	if points.size() > 0 and character:
+		character.global_position = points[0]
+		print("[NPCMovement] Snapped to first waypoint at position: ", points[0])
 	
 	set_waypoints(points)
 
@@ -179,14 +184,38 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	if nav_agent and nav_agent.avoidance_enabled:
 		character.velocity = safe_velocity
 
+# UPDATED METHOD: Handle pipe-separated waypoint aliases like CEO system
 func _find_node_by_name(root: Node, name: String) -> Node:
-	# Try direct path first
-	var node = root.get_node_or_null(name)
-	if node:
-		return node
+	# Handle pipe-separated aliases (like "Apt_Door|Apartment_Door|AptDoor")
+	var options = name.split("|", false)
 	
-	# Try recursive search
-	return root.find_child(name, true, false)
+	for option in options:
+		# Try direct path first
+		var node = root.get_node_or_null(option)
+		if node:
+			return node
+		
+		# Try recursive search
+		node = root.find_child(option, true, false)
+		if node:
+			return node
+	
+	# Try normalized matching for all options
+	for option in options:
+		var norm_opt = option.to_lower().replace("_", "").replace("-", "").replace(" ", "")
+		var stack: Array[Node] = [root]
+		while not stack.is_empty():
+			var cur = stack.pop_back()
+			if cur is Node3D:
+				var norm_name = cur.name.to_lower().replace("_", "").replace("-", "").replace(" ", "")
+				if norm_name == norm_opt:
+					return cur
+			for child in cur.get_children():
+				stack.append(child)
+	
+	# If nothing found, report all options tried
+	push_warning("[NPCMovement] No waypoint found for any alias: " + name)
+	return null
 
 # Utility functions
 func get_current_waypoint() -> Vector3:

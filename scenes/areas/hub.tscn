@@ -66,22 +66,13 @@ material = SubResource("StandardMaterial3D_lkas5")
 [node name="SunSkyRig" parent="." instance=ExtResource("3_gqehd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5963, 0, 0)
 
-[node name="CEO_AptLobby_Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.8384, 0.534547, -10.0393)
-
-[node name="CEO_Club_Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5084, 0.534547, -10.0393)
-
-[node name="CEO_HubOffice_Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9572, 0.983343, -9.40485)
-
-[node name="CEO_Hub_Apt" type="Node3D" parent="."]
+[node name="WP_Hub_Apt" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.8441, 0.552606, -10.4244)
 
-[node name="CEO_Hub_Office" type="Node3D" parent="."]
+[node name="WP_Hub_Office" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.77775, 0.485097, -10.6598)
 
-[node name="CEO_Hub_Club" type="Node3D" parent="."]
+[node name="WP_Hub_Club" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3254, 0.656962, -10.1392)
 
 [node name="Environment" type="Node3D" parent="."]

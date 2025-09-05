@@ -482,13 +482,10 @@ size = Vector3(0.02, 0.5, 0.1)
 [node name="ComputerUI" parent="." instance=ExtResource("5_rj5qc")]
 visible = false
 
-[node name="CEO_Office_Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.16833, 0.954413, 0)
-
-[node name="CEO_Office_Door" type="Node3D" parent="."]
+[node name="WP_Office_Door" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32852, 0.674092, 0)
 
-[node name="CEO_Office_Desk" type="Node3D" parent="."]
+[node name="WP_Office_Desk" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76958, 0.787845, -5.97928)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

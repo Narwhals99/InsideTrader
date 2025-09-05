@@ -1,0 +1,231 @@
+[gd_resource type="Resource" script_class="NPCScheduleResource" load_steps=16 format=3 uid="uid://bc2lak0mhpqyj"]
+
+[ext_resource type="Script" uid="uid://pqkgbgbdeh76" path="res://scripts/components/NPCScheduleEntry.gd" id="1_0ntec"]
+[ext_resource type="Script" uid="uid://y4r2glnkx0j2" path="res://scripts/components/NPCScheduleResource.gd" id="2_mbpy6"]
+
+[sub_resource type="Resource" id="Resource_0ntec"]
+script = ExtResource("1_0ntec")
+phase = "Morning"
+scene_key = "aptlobby"
+activity = "idle"
+start_hour = 0
+start_minute = 0
+end_hour = 9
+end_minute = 20
+waypoint_names = ["Apt_Door"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_mbpy6"]
+script = ExtResource("1_0ntec")
+phase = "Morning"
+scene_key = "aptlobby"
+activity = "moving"
+start_hour = 9
+start_minute = 20
+end_hour = 9
+end_minute = 22
+waypoint_names = ["Apt_Door", "Apt_Exit"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_0qbig"]
+script = ExtResource("1_0ntec")
+phase = "Morning"
+scene_key = "hub"
+activity = "moving"
+start_hour = 9
+start_minute = 22
+end_hour = 9
+end_minute = 27
+waypoint_names = ["WP_Hub_Apt", "WP_Hub_Office"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_w7bjc"]
+script = ExtResource("1_0ntec")
+phase = "Market"
+scene_key = "office"
+activity = "working"
+start_hour = 9
+start_minute = 27
+end_hour = 9
+end_minute = 30
+waypoint_names = ["WP_Office_Door", "WP_Office_Desk"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_judr0"]
+script = ExtResource("1_0ntec")
+phase = "Market"
+scene_key = "office"
+activity = "idle"
+start_hour = 9
+start_minute = 30
+end_hour = 16
+end_minute = 0
+waypoint_names = ["WP_Office_Desk"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_kgi5k"]
+script = ExtResource("1_0ntec")
+phase = "Evening"
+scene_key = " office"
+activity = "moving"
+start_hour = 16
+start_minute = 0
+end_hour = 16
+end_minute = 2
+waypoint_names = ["WP_Office_Desk", "WP_Office_Door"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_gtadj"]
+script = ExtResource("1_0ntec")
+phase = "Evening"
+scene_key = "hub"
+activity = "moving"
+start_hour = 16
+start_minute = 2
+end_hour = 16
+end_minute = 7
+waypoint_names = ["WP_Hub_Office", "WP_Hub_Club"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_3gtwc"]
+script = ExtResource("1_0ntec")
+phase = "Evening"
+scene_key = "club"
+activity = "moving"
+start_hour = 16
+start_minute = 7
+end_hour = 16
+end_minute = 8
+waypoint_names = ["WP_Club_Door", "WP_Club_Table"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_obnfx"]
+script = ExtResource("1_0ntec")
+phase = "Evening"
+scene_key = "club"
+activity = "socializing"
+start_hour = 16
+start_minute = 8
+end_hour = 23
+end_minute = 0
+waypoint_names = ["WP_Club_Table"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_3mirb"]
+script = ExtResource("1_0ntec")
+phase = "LateNight"
+scene_key = "club"
+activity = "moving"
+start_hour = 23
+start_minute = 0
+end_hour = 23
+end_minute = 2
+waypoint_names = ["WP_Club_Table", "WP_Club_Door"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_57mly"]
+script = ExtResource("1_0ntec")
+phase = "LateNight"
+scene_key = "hub"
+activity = "moving"
+start_hour = 23
+start_minute = 2
+end_hour = 23
+end_minute = 8
+waypoint_names = ["WP_Hub_Club", "WP_Hub_Apt"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_ch03k"]
+script = ExtResource("1_0ntec")
+phase = "LateNight"
+scene_key = "aptlobby"
+activity = "moving"
+start_hour = 23
+start_minute = 8
+end_hour = 23
+end_minute = 15
+waypoint_names = ["Apt_Exit", "Apt_Door"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[sub_resource type="Resource" id="Resource_2w7cl"]
+script = ExtResource("1_0ntec")
+phase = "LateNight"
+scene_key = "aptlobby"
+activity = "idle"
+start_hour = 23
+start_minute = 115
+end_hour = 23
+end_minute = 59
+waypoint_names = ["Apt_Door"]
+loop_waypoints = false
+movement_speed = 3.0
+interaction_enabled = true
+dialogue_lines = []
+idle_animation = ""
+metadata/_custom_type_script = "uid://pqkgbgbdeh76"
+
+[resource]
+script = ExtResource("2_mbpy6")
+schedule_entries = Array[ExtResource("1_0ntec")]([SubResource("Resource_0ntec"), SubResource("Resource_mbpy6"), SubResource("Resource_0qbig"), SubResource("Resource_w7bjc"), SubResource("Resource_judr0"), SubResource("Resource_kgi5k"), SubResource("Resource_gtadj"), SubResource("Resource_3gtwc"), SubResource("Resource_obnfx"), SubResource("Resource_3mirb"), SubResource("Resource_57mly"), SubResource("Resource_ch03k"), SubResource("Resource_2w7cl")])
+debug_mode = false
+metadata/_custom_type_script = "uid://y4r2glnkx0j2"

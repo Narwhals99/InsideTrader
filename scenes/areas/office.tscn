@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cegvf8n6keci2"]
+[gd_scene load_steps=9 format=3 uid="uid://cegvf8n6keci2"]
 
 [ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="2_jt461"]
 [ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_yyoob"]
@@ -11,14 +11,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6h5e"]
 size = Vector3(1, 2, 1)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_0ptcf"]
+vertices = PackedVector3Array(-7, 0.4, -7, -7, 0.4, 7, 7, 0.4, 7, 7, 0.4, -7)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [node name="office" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_jt461")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, 0)
-
-[node name="floor" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(15, 0.2, 15)
 
 [node name="roof" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -481,3 +481,19 @@ size = Vector3(0.02, 0.5, 0.1)
 
 [node name="ComputerUI" parent="." instance=ExtResource("5_rj5qc")]
 visible = false
+
+[node name="CEO_Office_Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.16833, 0.954413, 0)
+
+[node name="CEO_Office_Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32852, 0.674092, 0)
+
+[node name="CEO_Office_Desk" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76958, 0.787845, -5.97928)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0ptcf")
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(15, 0.2, 15)

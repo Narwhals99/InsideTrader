@@ -8,12 +8,19 @@ var db: Dictionary = {
 	"aptlobby": preload("res://scenes/areas/apartment_lobby.tscn")
 }
 
-func scene_for(key: String) -> PackedScene:
-	return db.get(key, null)
+var current_key: String = ""            # <— update on load
+var _is_changing: bool = false
 
 func change_to(key: String) -> void:
-	var p: PackedScene = scene_for(key)
-	if p:
-		get_tree().call_deferred("change_scene_to_packed", p)	# <- important
-	else:
-		push_error("Unknown scene key: %s" % key)
+	if _is_changing:
+		return
+	if not db.has(key):
+		push_warning("[Scenes] Unknown key: %s" % key)
+		return
+	_is_changing = true
+	call_deferred("_do_change", key)
+
+func _do_change(key: String) -> void:
+	get_tree().change_scene_to_packed(db[key])
+	current_key = key
+	_is_changing = false

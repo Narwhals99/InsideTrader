@@ -18,7 +18,7 @@ const T_MARKET: int = 9 * 60 + 30
 const T_AFTERMARKET: int = 16 * 60
 const T_EVENING_END: int = 22 * 60
 
-@export var minutes_rate: float = 5.0			# in-game minutes per real second
+@export var minutes_rate: float = 0.5			# in-game minutes per real second
 
 var clock_minutes: int = T_MORNING
 var _minute_accum: float = 0.0
@@ -32,6 +32,9 @@ func _ready() -> void:
 	_phase_index = 0
 	phase = PHASE_ORDER[_phase_index]
 	emit_signal("phase_changed", phase, day)
+	__ws_accum = float(clock_minutes) * 60.0
+	__ws_last_us = Time.get_ticks_usec()
+
 
 func _process(delta: float) -> void:
 	if not _clock_running:
@@ -97,7 +100,22 @@ func set_time(h: int, m: int) -> void:
 	var minutes: int = (h % 24) * 60 + (m % 60)
 	minutes = clamp(minutes, 0, MINUTES_PER_DAY - 1)
 	clock_minutes = minutes
+	# keep world-seconds aligned with the visible clock
+	__ws_accum = float(minutes) * 60.0
+	__ws_last_us = Time.get_ticks_usec()  # reset delta so the next step isn't huge
 	_update_phase_if_needed()
+
+func sleep_to_morning() -> void:
+	day += 1
+	_phase_index = 0
+	phase = PHASE_ORDER[_phase_index]
+	clock_minutes = T_MORNING
+	__ws_accum = float(clock_minutes) * 60.0
+	__ws_last_us = Time.get_ticks_usec()
+	_clock_running = true
+	emit_signal("day_advanced", day)
+	emit_signal("phase_changed", phase, day)
+
 
 # -------------------- PHASE API (kept) --------------------
 func set_phase(p: StringName) -> void:
@@ -135,14 +153,6 @@ func previous_phase() -> void:
 		# Morning -> previous LateNight (22:00 for convenience)
 		set_time(20, 0)
 
-func sleep_to_morning() -> void:
-	day += 1
-	_phase_index = 0
-	phase = PHASE_ORDER[_phase_index]
-	clock_minutes = T_MORNING
-	_clock_running = true
-	emit_signal("day_advanced", day)
-	emit_signal("phase_changed", phase, day)
 
 # -------------------- INPUT / DEV HOTKEYS --------------------
 func _unhandled_input(event: InputEvent) -> void:
@@ -176,7 +186,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				minutes_rate = min(minutes_rate * 2.0, 480.0)
 				print("[Clock] rate =", minutes_rate, " min/sec")
 			KEY_MINUS:
-				minutes_rate = max(minutes_rate * 0.5, 0.5)
+				minutes_rate = max(minutes_rate * 0.5, 0.05)
 				print("[Clock] rate =", minutes_rate, " min/sec")
 			KEY_H:
 				_advance_minutes(60)
@@ -226,3 +236,49 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			_:
 				pass
+
+# --- WORLD CLOCK (typed, warnings-as-errors safe) ---
+
+var __ws_last_us: int = -1
+var __ws_accum: float = 0.0
+
+func get_world_seconds() -> float:
+	var now_us: int = Time.get_ticks_usec()
+	if __ws_last_us < 0:
+		__ws_last_us = now_us  # first-call init (no jump)
+	var dt_real: float = float(now_us - __ws_last_us) / 1_000_000.0
+	__ws_last_us = now_us
+
+	# Minutes of game-time per real second (defaults to 24)
+	var minutes_rate_local: float = 0.5  # CHANGED from 24.0 to 0.5
+	if _has_prop("minutes_rate"):
+		var mr_val: Variant = get("minutes_rate")
+		if typeof(mr_val) == TYPE_FLOAT or typeof(mr_val) == TYPE_INT:
+			minutes_rate = float(mr_val)
+	elif _has_prop("base_minutes_rate"):
+		var bmr_val: Variant = get("base_minutes_rate")
+		if typeof(bmr_val) == TYPE_FLOAT or typeof(bmr_val) == TYPE_INT:
+			minutes_rate = float(bmr_val)
+
+	# Optional global time scale (dev speed-up)
+	var time_scale: float = 1.0
+	if _has_prop("dev_time_scale"):
+		var ts_val: Variant = get("dev_time_scale")
+		if typeof(ts_val) == TYPE_FLOAT or typeof(ts_val) == TYPE_INT:
+			time_scale = float(ts_val)
+	elif _has_prop("time_scale"):
+		var ts2_val: Variant = get("time_scale")
+		if typeof(ts2_val) == TYPE_FLOAT or typeof(ts2_val) == TYPE_INT:
+			time_scale = float(ts2_val)
+
+	# Advance world seconds (0..86400)
+	__ws_accum = fposmod(__ws_accum + dt_real * minutes_rate * time_scale * 60.0, 86400.0)
+	return __ws_accum
+
+func _has_prop(name: String) -> bool:
+	var plist: Array = get_property_list()
+	for i in range(plist.size()):
+		var p: Dictionary = plist[i]
+		if String(p.get("name", "")) == name:
+			return true
+	return false

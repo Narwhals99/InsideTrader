@@ -9,8 +9,8 @@ signal prices_changed(prices: Dictionary)
 # --- Volatility / cadence ---
 @export var target_nonmover_abs_move_pct: float = 1.2	# avg |open→close| for non-movers (%). Set 0 to fall back to volatility_pct
 @export var volatility_pct: float = 0.005				# legacy: per-tick stdev as FRACTION (0.005 = 0.5%). Used only if target_nonmover_abs_move_pct <= 0
-@export var tick_interval_sec: float = 0.25				# base real seconds at base rate
-@export var base_minutes_rate: float = 24.0				# your normal minutes_rate at startup (in-game minutes per real second)
+@export var tick_interval_sec: float = 2.0				# CHANGED: base real seconds at base rate (was 0.25, now 2.0)
+@export var base_minutes_rate: float = 0.5				# CHANGED: your normal minutes_rate at startup (was 24.0, now 0.5)
 @export var clamp_tick_sigma_z: float = 3.0				# clamp single-tick noise to ±Zσ (0 disables)
 
 # --- Market schedule / behavior ---
@@ -19,7 +19,7 @@ signal prices_changed(prices: Dictionary)
 @export var clamp_ceiling: float = 1000000.0
 
 # --- Mover knobs ---
-@export var mover_daily_chance: float = 0.5				# 50% chance there’s a mover today
+@export var mover_daily_chance: float = 0.5				# 50% chance there's a mover today
 @export var mover_target_min_pct: float = 0.008			# daily drift floor (0.8%)
 @export var mover_target_max_pct: float = 0.020			# daily drift cap   (2.0%)
 @export var mover_vol_mult: float = 1.20				# extra choppiness while mover
@@ -481,9 +481,7 @@ func _fmt_secs(s: float) -> String:
 func _fmt_min(m: float) -> String:
 	return String.num(m, 2) + "m"
 
-
-
-#CLAUDE ADDITION
+# CLAUDE ADDITION
 
 func force_next_mover(ticker: StringName, move_percent: float) -> void:
 	"""Force a specific ticker to be tomorrow's mover with specified move size"""

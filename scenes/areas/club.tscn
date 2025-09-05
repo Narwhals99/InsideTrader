@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://codipplwd5y0e"]
+[gd_scene load_steps=13 format=3 uid="uid://codipplwd5y0e"]
 
 [ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_7r51h"]
 [ext_resource type="Script" uid="uid://duiihgandplaj" path="res://scripts/areas/ClubStrobeController.gd" id="1_qkptu"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://llhqojnys24e" path="res://assets/environments/020.   Under-the-Gun_FULL_WSR1861501.wav" id="4_6nkdg"]
 [ext_resource type="Script" uid="uid://bnnw7sdoatovm" path="res://scripts/areas/ClubMusic.gd" id="5_6endk"]
 [ext_resource type="Script" uid="uid://beu8kt6csl6i7" path="res://scripts/actors/Bartender_NPC.gd" id="7_omdma"]
-[ext_resource type="Script" uid="uid://cxbili8tnk263" path="res://scripts/actors/CEO_NPC.gd" id="8_p4lku"]
 [ext_resource type="Script" uid="uid://dmv4t4pq04eui" path="res://scripts/areas/ClubInteractionSystem.gd" id="9_dql63"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ucc0o"]
@@ -16,17 +15,13 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_st0xj"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30nmv"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_oysu8"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_omdma"]
+vertices = PackedVector3Array(-7, 0.4, -4.5, -7, 0.4, 4.5, 7, 0.4, 4.5, 7, 0.4, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="club" type="Node3D"]
 
 [node name="building" type="Node3D" parent="."]
-
-[node name="floor" type="CSGBox3D" parent="building"]
-use_collision = true
-size = Vector3(15, 0.2, 10)
 
 [node name="roof" type="CSGBox3D" parent="building"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -199,6 +194,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171927, 0)
 radius = 0.02
 height = 0.114
 
+[node name="CSGBox3D" type="CSGBox3D" parent="building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+size = Vector3(40, 0.2, 20)
+
 [node name="ClubStrobe" type="Node3D" parent="." groups=["ClubStrobe"]]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="ClubStrobe" groups=["ClubStrobe"]]
@@ -321,10 +320,6 @@ target_spawn = "Spawn_Hub_Club"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
 shape = SubResource("CapsuleShape3D_ucc0o")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
-size = Vector3(40, 0.2, 20)
-
 [node name="SunSkyRig" parent="." instance=ExtResource("3_ucc0o")]
 profile = "interior"
 
@@ -343,17 +338,21 @@ shape = SubResource("CapsuleShape3D_wfsgt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16593, 0, 0)
 mesh = SubResource("CapsuleMesh_st0xj")
 
-[node name="CEO_NPC" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.57708, 0.665045, 0)
-script = ExtResource("8_p4lku")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CEO_NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07278, 0.478532, 0)
-shape = SubResource("CapsuleShape3D_30nmv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CEO_NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0630851, 0.448895, 0)
-mesh = SubResource("CapsuleMesh_oysu8")
-
 [node name="ClubInteractionSystem" type="Node" parent="."]
 script = ExtResource("9_dql63")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_omdma")
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(15, 0.2, 10)
+
+[node name="CEO_Club_Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465588, 0.649179, 3.26024)
+
+[node name="CEO_Club_Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513283, 4.40422)
+
+[node name="CEO_Club_Table" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29958, 0.188084, -0.945423)

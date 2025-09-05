@@ -9,9 +9,26 @@ var current_dialogue: Control = null
 var notification_queue: Array[Control] = []
 var max_notifications: int = 3
 
+# In DialogueUI.gd, add to the _ready() function:
 func _ready() -> void:
-	layer = 10  # Always on top
+	layer = 10
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# ADD THESE LINES:
+	if typeof(EventBus) != TYPE_NIL:
+		EventBus.notification_requested.connect(_on_notification_requested)
+		EventBus.dialogue_requested.connect(_on_dialogue_requested)
+		print("[DialogueUI] Connected to EventBus")
+
+# ADD THESE NEW FUNCTIONS:
+func _on_notification_requested(text: String, type: String, duration: float) -> void:
+	notify(text, type, duration)
+
+func _on_dialogue_requested(speaker: String, text: String, options: Array) -> void:
+	if options.is_empty():
+		show_dialogue(speaker, text)
+	else:
+		show_choices(speaker, text, options)
 
 # ============ DIALOGUE SYSTEM ============
 func show_dialogue(speaker: String, text: String, duration: float = 0.0) -> void:

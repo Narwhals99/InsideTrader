@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bugch1mtersd1"]
+[gd_scene load_steps=9 format=3 uid="uid://bugch1mtersd1"]
 
 [ext_resource type="Script" uid="uid://d3cgpb1rjvh6w" path="res://scripts/actors/Player.gd" id="1_15tap"]
 [ext_resource type="PackedScene" uid="uid://bnb3f4enhukjp" path="res://assets/actors/CAUCASIAN MAN.glb" id="2_ru62r"]
+[ext_resource type="Script" uid="uid://b8f2x1sataqeo" path="res://scripts/TestModularSystem.gd" id="3_ktjr4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cacbb"]
 radius = 0.4
@@ -100,5 +101,8 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_ktjr4")
 
 [editable path="ModelPivot/MyModel"]

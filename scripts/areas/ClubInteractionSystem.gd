@@ -85,19 +85,34 @@ func _interact_with_ceo_instance(ceo_node: Node) -> void:
 	if ceo_node == null:
 		return
 
-	# Read beer status from the bartender instance in THIS scene
-	var bartender_node: Node = get_tree().get_first_node_in_group("bartender_npc")
+	# UPDATED: Check inventory first, then fall back to bartender
 	var has_beer: bool = false
-	if bartender_node != null and bartender_node.has_method("has_beer"):
-		var has_beer_var: Variant = bartender_node.call("has_beer")
-		has_beer = bool(has_beer_var)
+	
+	# Check new inventory system first
+	if typeof(Inventory) != TYPE_NIL:
+		has_beer = Inventory.has_beer()
+	else:
+		# Fallback to old bartender check
+		var bartender_node: Node = get_tree().get_first_node_in_group("bartender_npc")
+		if bartender_node != null and bartender_node.has_method("has_beer"):
+			var has_beer_var: Variant = bartender_node.call("has_beer")
+			has_beer = bool(has_beer_var)
 
 	if has_beer and ceo_node.has_method("give_beer"):
 		var give_result_var: Variant = ceo_node.call("give_beer")
 		var result: Dictionary = (give_result_var as Dictionary) if typeof(give_result_var) == TYPE_DICTIONARY else {}
 		var accepted: bool = bool(result.get("success", false)) or bool(result.get("is_tip", false))
-		if accepted and bartender_node != null and bartender_node.has_method("player_gave_beer"):
-			bartender_node.call("player_gave_beer")
+		
+		# UPDATED: Use inventory system if available
+		if accepted:
+			if typeof(Inventory) != TYPE_NIL:
+				Inventory.remove_item("beer", 1)
+				EventBus.emit_signal("beer_given_to_npc", "ceo")
+			else:
+				# Fallback to old method
+				var bartender_node: Node = get_tree().get_first_node_in_group("bartender_npc")
+				if bartender_node != null and bartender_node.has_method("player_gave_beer"):
+					bartender_node.call("player_gave_beer")
 	elif ceo_node.has_method("interact"):
 		var _talk_result_unused: Variant = ceo_node.call("interact")
 
@@ -105,8 +120,8 @@ func _interact_with_ceo_instance(ceo_node: Node) -> void:
 
 func _on_beer_purchased() -> void:
 	print("[Club] Player bought a beer")
-	if has_node("/root/DialogueUI"):
-		get_node("/root/DialogueUI").call("notify", "You bought a beer! Find someone who might want it...", "info", 3.0)
+	# UPDATED: Use EventBus instead of direct DialogueUI call
+	EventBus.emit_notification("You bought a beer! Find someone who might want it...", "info", 3.0)
 
 func _on_insider_info_received(ticker: StringName) -> void:
 	print("[Club] INSIDER TIP RECEIVED: ", ticker)

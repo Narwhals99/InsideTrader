@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce6oj4wvjffp1"]
+
+[ext_resource type="Script" uid="uid://16h8x2mrviyw" path="res://scripts/actors/CEO_Test_Standalone.gd" id="1_d14tt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a43sn"]
+radius = 0.4
+height = 1.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k3xy8"]
+radius = 0.38
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_elunf"]
+radius = 1.0
+
+[node name="CEO_NPC_Test" type="CharacterBody3D" groups=["ceo_npc"]]
+script = ExtResource("1_d14tt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_a43sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_k3xy8")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_elunf")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+height = 1.9
+radius = 0.4
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="StateLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+billboard = 1
+text = "CEO: Sched-IDLE | Poly=1 | Here=aptlobby Seg=aptlobby"

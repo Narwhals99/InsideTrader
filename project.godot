@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+EventBus="*res://scripts/services/EventBus.gd"
 Game="*res://scripts/globals/Game.gd"
 Portfolio="*res://scripts/globals/trading/Portfolio.gd"
 Scenes="*res://scripts/globals/Scenes.gd"
@@ -26,6 +27,7 @@ DialogueUI="*res://scripts/actors/DialogueUI.gd"
 InsiderInfo="*res://scripts/globals/trading/InsiderInfo.gd"
 CEOState="*res://scripts/actors/CEOState.gd"
 CEOBrain="*res://scripts/actors/CEOBrain.gd"
+Inventory="*res://scripts/services/InventoryService.gd"
 
 [input]
 

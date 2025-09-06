@@ -175,7 +175,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0.563772, -11.5)
 script = ExtResource("1_gqehd")
 target_scene_key = "office"
 target_spawn = "Spawn_Office_From_Hub"
-required_phase = "Morning"
+required_phase = "Market"
 min_net_worth = 10000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Office/Door_A_Trigger"]

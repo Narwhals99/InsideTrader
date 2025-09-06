@@ -1,5 +1,5 @@
-# InsiderNPC.gd - FIXED VERSION
-# Base class for ALL NPCs with schedule, movement, and insider capabilities
+# InsiderNPC.gd - SEQUENTIAL SCHEDULE VERSION
+# NPCs complete activities in order, only waiting for time when specified
 extends CharacterBody3D
 
 @export_group("NPC Identity")
@@ -19,7 +19,7 @@ extends CharacterBody3D
 @export var tip_move_size: float = 0.05
 
 @export_group("Movement")
-@export var movement_speed: float = 2.0  # Reduced from 3.0 for more realistic walking
+@export var movement_speed: float = 2.0
 
 @export_group("Interaction")
 @export var interaction_range: float = 2.0
@@ -68,10 +68,8 @@ var interaction_area: Area3D
 
 # State
 var _player_near: bool = false
+var _current_entry_index: int = 0
 var _current_location: String = ""
-var _current_segment: Dictionary = {}
-var _last_segment_key: String = ""  # Track segment changes
-var _movement_complete: bool = false  # Track if we've reached destination
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
 
 func _ready() -> void:
@@ -92,7 +90,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 	
 	if use_schedule and schedule_resource:
-		_update_from_schedule()
+		_update_schedule()
 	
 	if movement:
 		movement.process_movement(delta)
@@ -106,6 +104,145 @@ func _input(event: InputEvent) -> void:
 	if _player_near and event.is_action_pressed("interact"):
 		interact()
 
+# ============ SEQUENTIAL SCHEDULE SYSTEM ============
+
+func _update_schedule() -> void:
+	if not schedule_resource or schedule_resource.schedule_entries.is_empty():
+		return
+	
+	var world_seconds = TimeService.get_world_seconds()
+	var current_entry = _get_current_entry()
+	
+	if not current_entry:
+		print("[%s] ERROR: No current entry!" % npc_name)
+		return
+	
+	# DEBUG: Print what's happening
+	print("[%s] Entry %d: wait_for_time=%s, departure=%d:%02d, current_time=%s, can_start=%s" % [
+		npc_name, 
+		_current_entry_index,
+		current_entry.wait_for_time,
+		current_entry.departure_hour,
+		current_entry.departure_minute,
+		TimeService.format_current_time(),
+		current_entry.can_start(world_seconds, _is_previous_entry_completed())
+	])
+	
+	# Rest of the function...
+	
+	# Compatibility check
+	var first_entry = schedule_resource.schedule_entries[0]
+	if not first_entry.has_method("can_start"):
+		push_error("[%s] Schedule resource has old format! Please recreate it." % npc_name)
+		use_schedule = false
+		return
+	
+	# Rest of the function...
+	"""Process schedule entries sequentially"""
+	if not schedule_resource or schedule_resource.schedule_entries.is_empty():
+		return
+	
+	if not current_entry:
+		return
+	
+	# Check if current entry should complete
+	if current_entry.should_complete(world_seconds):
+		_complete_current_entry()
+		return
+	
+	# Check if we can start the current entry
+	var previous_completed = _is_previous_entry_completed()
+	if not current_entry.is_completed and current_entry.can_start(world_seconds, previous_completed):
+		_start_current_entry()
+
+func _start_current_entry() -> void:
+	"""Begin executing the current schedule entry"""
+	var entry = _get_current_entry()
+	if not entry:
+		return
+	
+	entry.start()
+	_current_location = entry.scene_key
+	
+	# Only process if we're in the right scene
+	if not _is_in_current_scene():
+		print("[%s] Not in scene %s, waiting..." % [npc_name, entry.scene_key])
+		return
+	
+	print("[%s] Starting entry %d: %s in %s" % [npc_name, _current_entry_index, entry.activity, entry.scene_key])
+	
+	if entry.activity == "moving":
+		if entry.waypoint_names.size() > 0 and movement:
+			movement.stop_at_destination = true
+			movement.loop_waypoints = entry.loop_waypoints
+			movement.walk_speed = entry.movement_speed
+			movement.set_waypoints_by_names(entry.waypoint_names, get_tree().current_scene)
+	elif entry.activity == "idle":
+		entry.arrival_time = TimeService.get_world_seconds()
+		if entry.waypoint_names.size() > 0 and movement:
+			# Go to idle position
+			var single_waypoint = PackedStringArray([entry.waypoint_names[0]])
+			movement.stop_at_destination = true
+			movement.set_waypoints_by_names(single_waypoint, get_tree().current_scene)
+		else:
+			# Just stop where we are
+			movement.stop()
+
+func _complete_current_entry() -> void:
+	"""Mark current entry as complete and advance"""
+	var entry = _get_current_entry()
+	if entry:
+		entry.complete()
+	
+	_advance_to_next_entry()
+
+func _advance_to_next_entry() -> void:
+	"""Move to the next schedule entry"""
+	_current_entry_index += 1
+	
+	# Check if we've completed the whole schedule
+	if _current_entry_index >= schedule_resource.schedule_entries.size():
+		print("[%s] Schedule complete, restarting" % npc_name)
+		_current_entry_index = 0
+		# Reset all entries for new day
+		for entry in schedule_resource.schedule_entries:
+			entry.reset_for_new_day()
+
+func _get_current_entry() -> NPCScheduleEntry:
+	"""Get the current schedule entry"""
+	if _current_entry_index >= 0 and _current_entry_index < schedule_resource.schedule_entries.size():
+		return schedule_resource.schedule_entries[_current_entry_index]
+	return null
+
+func _is_previous_entry_completed() -> bool:
+	"""Check if the previous entry is done (or if we're at the start)"""
+	if _current_entry_index == 0:
+		return true  # No previous entry
+	
+	var prev_index = _current_entry_index - 1
+	if prev_index >= 0 and prev_index < schedule_resource.schedule_entries.size():
+		return schedule_resource.schedule_entries[prev_index].is_completed
+	
+	return true
+
+func _is_in_current_scene() -> bool:
+	"""Check if NPC is in the currently loaded scene"""
+	var current_scene_name = get_tree().current_scene.name.to_lower().replace(" ", "").replace("_", "").replace("-", "")
+	var npc_scene = _current_location.to_lower().replace("_", "").replace(" ", "").replace("-", "")
+	
+	# Handle scene name variants
+	if npc_scene == "aptlobby" or npc_scene == "apartmentlobby":
+		npc_scene = "aptlobby"
+	elif npc_scene == "apartment" or npc_scene == "apt":
+		npc_scene = "apartment"
+	
+	if current_scene_name == "apartmentlobby":
+		current_scene_name = "aptlobby"
+	elif current_scene_name == "apartment" or current_scene_name == "apt" or current_scene_name == "playerapartment":
+		current_scene_name = "apartment"
+	
+	return current_scene_name == npc_scene
+
 # ============ COMPONENT SETUP ============
 func _setup_components() -> void:
 	# Movement
@@ -114,7 +251,7 @@ func _setup_components() -> void:
 	add_child(movement)
 	movement.setup(self)
 	movement.walk_speed = movement_speed
-	movement.stop_at_destination = false  # Don't stop, let schedule handle it
+	movement.stop_at_destination = true
 	movement.destination_reached.connect(_on_destination_reached)
 	
 	# Drunk System
@@ -130,10 +267,6 @@ func _setup_components() -> void:
 	
 	# Interaction Area
 	_setup_interaction_area()
-	
-	# Schedule - apply initial if we have one
-	if schedule_resource and use_schedule:
-		_apply_current_schedule()
 
 func _setup_interaction_area() -> void:
 	interaction_area = Area3D.new()
@@ -155,96 +288,6 @@ func _setup_interaction_area() -> void:
 		e.physical_keycode = KEY_E
 		InputMap.action_add_event("interact", e)
 
-# ============ SCHEDULE SYSTEM (IMPROVED) ============
-func _update_from_schedule() -> void:
-	if not schedule_resource:
-		return
-	
-	var world_seconds = TimeService.get_world_seconds()
-	
-	# Get current segment
-	var target_segment = _get_current_segment(world_seconds)
-	
-	# Create a unique key for this segment
-	var segment_key = _get_segment_key(target_segment)
-	
-	# Check if this is a NEW segment (different from last)
-	if segment_key != _last_segment_key:
-		_last_segment_key = segment_key
-		_current_segment = target_segment
-		_movement_complete = false  # Reset movement flag
-		_apply_segment(target_segment)
-
-func _get_segment_key(segment: Dictionary) -> String:
-	# Create unique identifier for a segment
-	return str(segment.get("t0", 0)) + "_" + segment.get("scene", "") + "_" + str(segment.get("waypoints", []))
-
-func _get_current_segment(world_seconds: float) -> Dictionary:
-	# Find the active segment based on current time
-	for entry in schedule_resource.schedule_entries:
-		if entry.is_active_at_time(world_seconds):
-			return entry.to_dictionary()
-	
-	# Fallback to first segment
-	if schedule_resource.schedule_entries.size() > 0:
-		return schedule_resource.schedule_entries[0].to_dictionary()
-	
-	return {}
-
-func _apply_segment(segment: Dictionary) -> void:
-	var scene = segment.get("scene", "")
-	var waypoints = segment.get("waypoints", PackedStringArray())
-	var activity = segment.get("activity", "idle")
-	
-	# Only apply if we're in the right scene
-	var current_scene_name = get_tree().current_scene.name.to_lower().replace(" ", "").replace("_", "").replace("-", "")
-	var target_scene = scene.to_lower().replace("_", "").replace(" ", "").replace("-", "")
-	
-	# Handle scene name variants
-	if target_scene == "aptlobby" or target_scene == "apartmentlobby":
-		target_scene = "aptlobby"
-	elif target_scene == "apartment" or target_scene == "apt":
-		target_scene = "apartment"
-	
-	if current_scene_name == "apartmentlobby":
-		current_scene_name = "aptlobby"
-	elif current_scene_name == "apartment" or current_scene_name == "apt" or current_scene_name == "playerapartment":
-		current_scene_name = "apartment"
-	
-	if current_scene_name != target_scene:
-		# We're not in the right scene - stop movement
-		if movement:
-			movement.stop()
-		return
-	
-	# Apply activity based on type
-	if activity == "idle":
-		# For idle, just go to the first waypoint and stop
-		if waypoints.size() > 0 and movement and not _movement_complete:
-			var single_waypoint = PackedStringArray([waypoints[0]])
-			movement.stop_at_destination = true
-			movement.set_waypoints_by_names(single_waypoint, get_tree().current_scene)
-	else:
-		# For moving activities, walk the full path at NPC's own pace
-		if waypoints.size() > 0 and movement and not _movement_complete:
-			movement.stop_at_destination = false
-			movement.loop_waypoints = segment.get("loop", false)
-			movement.set_waypoints_by_names(waypoints, get_tree().current_scene)
-	
-	_current_location = scene
-
-func _apply_current_schedule() -> void:
-	if not schedule_resource:
-		return
-	
-	var world_seconds = TimeService.get_world_seconds()
-	var segment = _get_current_segment(world_seconds)
-	
-	_current_segment = segment
-	_last_segment_key = _get_segment_key(segment)
-	_movement_complete = false
-	_apply_segment(segment)
-
 # ============ CALLBACKS ============
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
@@ -256,7 +299,18 @@ func _on_body_exited(body: Node) -> void:
 		_player_near = false
 
 func _on_destination_reached() -> void:
-	_movement_complete = true  # Mark that we've completed this segment's movement
+	"""Called when NPC reaches their destination"""
+	var current_entry = _get_current_entry()
+	if current_entry:
+		if current_entry.activity == "moving":
+			# Movement complete, mark entry as done
+			current_entry.complete()
+			print("[%s] Reached destination, completing entry" % npc_name)
+		elif current_entry.activity == "idle":
+			# Started idling, record arrival time
+			current_entry.arrival_time = TimeService.get_world_seconds()
+			print("[%s] Started idling for %d minutes" % [npc_name, current_entry.idle_duration_minutes])
+	
 	EventBus.emit_signal("npc_arrived", npc_id, _current_location)
 
 func _on_tip_given(ticker: String) -> void:
@@ -358,18 +412,30 @@ func _update_state_label() -> void:
 	
 	var drunk = "%d/%d" % [drunk_system.drunk_level, drunk_system.drunk_threshold]
 	var tip = "Tip: " + ("Given" if drunk_system._has_given_tip_today else "Ready")
-	var moving = "Moving" if movement and movement.is_moving else "Idle"
-	state_label.text = "%s | %s | Drunk: %s | %s" % [npc_title, moving, drunk, tip]
+	var status = "Idle"
+	
+	if movement and movement.is_moving:
+		status = "Moving"
+	
+	var location = _current_location if _current_location != "" else "Unknown"
+	var entry = _get_current_entry()
+	var entry_info = ""
+	if entry:
+		entry_info = "E%d: %s" % [_current_entry_index, entry.activity]
+	
+	state_label.text = "%s | %s | %s | %s | Drunk: %s | %s" % [npc_title, location, status, entry_info, drunk, tip]
 
 # ============ SAVE/LOAD ============
 func get_save_data() -> Dictionary:
 	return {
 		"npc_id": npc_id,
 		"drunk": drunk_system.get_save_data() if drunk_system else {},
-		"location": _current_location
+		"location": _current_location,
+		"entry_index": _current_entry_index
 	}
 
 func load_save_data(data: Dictionary) -> void:
 	if drunk_system and data.has("drunk"):
 		drunk_system.load_save_data(data["drunk"])
 	_current_location = data.get("location", "")
+	_current_entry_index = data.get("entry_index", 0)

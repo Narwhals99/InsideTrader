@@ -1,6 +1,5 @@
 # NPCScheduleResource.gd
-# This replaces the hardcoded schedule in CEOBrain.gd
-# NOTE: NPCScheduleEntry must be in a separate file (NPCScheduleEntry.gd)
+# Container for NPC schedule entries
 class_name NPCScheduleResource
 extends Resource
 
@@ -8,10 +7,14 @@ extends Resource
 @export var debug_mode: bool = false
 
 func get_active_segment(world_seconds: float) -> Dictionary:
-	# Find which schedule entry matches current time
+	# For sequential system, just return current incomplete entry
 	for entry in schedule_entries:
-		if entry.is_active_at_time(world_seconds):
+		if not entry.is_completed:
 			return entry.to_dictionary()
+	
+	# If all complete, return first one (for next day)
+	if schedule_entries.size() > 0:
+		return schedule_entries[0].to_dictionary()
 	
 	# Fallback
 	return {
@@ -28,3 +31,13 @@ func get_schedule_for_phase(phase: String) -> Array[Dictionary]:
 		if entry.phase == phase:
 			results.append(entry.to_dictionary())
 	return results
+
+func reset_all_entries() -> void:
+	"""Reset all entries for a new day"""
+	for entry in schedule_entries:
+		if entry.has_method("reset_for_new_day"):
+			entry.reset_for_new_day()
+		else:
+			# Old entries might not have this method
+			if "is_completed" in entry:
+				entry.is_completed = false

@@ -1,5 +1,5 @@
 # NPCMovementComponent.gd
-# Reusable movement system for all NPCs - NOW WITH WAYPOINT ALIASES
+# Movement system that doesn't snap to waypoints
 class_name NPCMovementComponent
 extends Node
 
@@ -54,7 +54,7 @@ func set_waypoints(points: Array) -> void:
 		_set_next_target()
 		movement_started.emit()
 
-func set_waypoints_by_names(names: PackedStringArray, scene_root: Node = null) -> void:
+func set_waypoints_by_names(names: PackedStringArray, scene_root: Node = null, snap_to_first: bool = false) -> void:
 	if scene_root == null:
 		scene_root = character.get_tree().current_scene
 	
@@ -66,8 +66,8 @@ func set_waypoints_by_names(names: PackedStringArray, scene_root: Node = null) -
 		else:
 			push_warning("[NPCMovement] Waypoint not found: " + name)
 	
-	# IMPORTANT: Snap character to first waypoint if exists
-	if points.size() > 0 and character:
+	# ONLY snap on initial spawn, not during schedule changes
+	if snap_to_first and points.size() > 0 and character:
 		character.global_position = points[0]
 		print("[NPCMovement] Snapped to first waypoint at position: ", points[0])
 	
@@ -155,7 +155,6 @@ func _set_next_target() -> void:
 	
 	if nav_agent and use_navigation:
 		nav_agent.target_position = waypoints[current_waypoint_index]
-	# For non-navigation movement, we just use the waypoint directly
 
 func _on_waypoint_reached() -> void:
 	waypoint_reached.emit(current_waypoint_index)
@@ -177,30 +176,26 @@ func _on_destination_reached() -> void:
 	movement_stopped.emit()
 
 func _on_navigation_finished() -> void:
-	# Navigation agent reached its target
 	pass
 
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	if nav_agent and nav_agent.avoidance_enabled:
 		character.velocity = safe_velocity
 
-# UPDATED METHOD: Handle pipe-separated waypoint aliases like CEO system
 func _find_node_by_name(root: Node, name: String) -> Node:
-	# Handle pipe-separated aliases (like "Apt_Door|Apartment_Door|AptDoor")
+	# Handle pipe-separated aliases
 	var options = name.split("|", false)
 	
 	for option in options:
-		# Try direct path first
 		var node = root.get_node_or_null(option)
 		if node:
 			return node
 		
-		# Try recursive search
 		node = root.find_child(option, true, false)
 		if node:
 			return node
 	
-	# Try normalized matching for all options
+	# Try normalized matching
 	for option in options:
 		var norm_opt = option.to_lower().replace("_", "").replace("-", "").replace(" ", "")
 		var stack: Array[Node] = [root]
@@ -213,7 +208,6 @@ func _find_node_by_name(root: Node, name: String) -> Node:
 			for child in cur.get_children():
 				stack.append(child)
 	
-	# If nothing found, report all options tried
 	push_warning("[NPCMovement] No waypoint found for any alias: " + name)
 	return null
 

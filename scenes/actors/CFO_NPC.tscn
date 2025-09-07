@@ -29,6 +29,7 @@ mesh = SubResource("CapsuleMesh_k3xy8")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5
 target_desired_distance = 0.5
+avoidance_enabled = true
 height = 2.0
 
 [node name="InteractionArea" type="Area3D" parent="."]

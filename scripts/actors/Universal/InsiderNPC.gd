@@ -66,6 +66,8 @@ var movement: NPCMovementComponent
 var drunk_system: InsiderDrunkComponent
 var interaction_area: Area3D
 
+var _debug_timer: float = 0.0  # Add this as a class member variable
+
 # State
 var _player_near: bool = false
 var _current_entry_index: int = 0
@@ -84,21 +86,39 @@ func _ready() -> void:
 	print("[InsiderNPC] %s (%s) initialized with tickers: %s" % [npc_name, npc_title, associated_tickers])
 
 func _physics_process(delta: float) -> void:
+	# Handle gravity first
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0.0
 	
+	# Update schedule (this might set waypoints)
 	if use_schedule and schedule_resource:
 		_update_schedule()
 	
+	# Process movement (this sets velocity.x and velocity.z)
 	if movement:
 		movement.process_movement(delta)
 	
+	# Update display
 	if state_label:
 		_update_state_label()
 	
+	# Apply the movement ONCE
 	move_and_slide()
+	
+	# Debug position
+	_debug_timer += delta
+	if _debug_timer > 1.0:  # Print every second
+		_debug_timer = 0.0
+		if movement and movement.is_moving:
+			print("[%s] Position: %s, Velocity: %s, Moving: %s" % [
+				npc_name, 
+				global_position, 
+				velocity, 
+				movement.is_moving
+			])
+
 
 func _input(event: InputEvent) -> void:
 	if _player_near and event.is_action_pressed("interact"):
@@ -110,49 +130,22 @@ func _update_schedule() -> void:
 	if not schedule_resource or schedule_resource.schedule_entries.is_empty():
 		return
 	
-	var world_seconds = TimeService.get_world_seconds()
 	var current_entry = _get_current_entry()
-	
-	if not current_entry:
-		print("[%s] ERROR: No current entry!" % npc_name)
-		return
-	
-	# DEBUG: Print what's happening
-	print("[%s] Entry %d: wait_for_time=%s, departure=%d:%02d, current_time=%s, can_start=%s" % [
-		npc_name, 
-		_current_entry_index,
-		current_entry.wait_for_time,
-		current_entry.departure_hour,
-		current_entry.departure_minute,
-		TimeService.format_current_time(),
-		current_entry.can_start(world_seconds, _is_previous_entry_completed())
-	])
-	
-	# Rest of the function...
-	
-	# Compatibility check
-	var first_entry = schedule_resource.schedule_entries[0]
-	if not first_entry.has_method("can_start"):
-		push_error("[%s] Schedule resource has old format! Please recreate it." % npc_name)
-		use_schedule = false
-		return
-	
-	# Rest of the function...
-	"""Process schedule entries sequentially"""
-	if not schedule_resource or schedule_resource.schedule_entries.is_empty():
-		return
-	
 	if not current_entry:
 		return
 	
-	# Check if current entry should complete
+	# Use Game.clock_minutes directly for time comparison
+	var current_minutes = Game.clock_minutes if typeof(Game) != TYPE_NIL else 0
+	var world_seconds = current_minutes * 60.0
+	
+	# Check if current entry should complete (for idle activities)
 	if current_entry.should_complete(world_seconds):
 		_complete_current_entry()
 		return
 	
-	# Check if we can start the current entry
+	# Check if we can start the current entry (will return false if already started)
 	var previous_completed = _is_previous_entry_completed()
-	if not current_entry.is_completed and current_entry.can_start(world_seconds, previous_completed):
+	if current_entry.can_start(world_seconds, previous_completed):
 		_start_current_entry()
 
 func _start_current_entry() -> void:
@@ -161,7 +154,11 @@ func _start_current_entry() -> void:
 	if not entry:
 		return
 	
-	entry.start()
+	# Check if already started to prevent double-start
+	if "is_started" in entry and entry.is_started:
+		return
+	
+	entry.start()  # This now sets is_started = true internally
 	_current_location = entry.scene_key
 	
 	# Only process if we're in the right scene
@@ -177,8 +174,11 @@ func _start_current_entry() -> void:
 			movement.loop_waypoints = entry.loop_waypoints
 			movement.walk_speed = entry.movement_speed
 			movement.set_waypoints_by_names(entry.waypoint_names, get_tree().current_scene)
+			print("[%s] Set waypoints: %s" % [npc_name, entry.waypoint_names])
 	elif entry.activity == "idle":
-		entry.arrival_time = TimeService.get_world_seconds()
+		# Calculate world_seconds for arrival time
+		var current_minutes = Game.clock_minutes if typeof(Game) != TYPE_NIL else 0
+		entry.arrival_time = current_minutes * 60.0
 		if entry.waypoint_names.size() > 0 and movement:
 			# Go to idle position
 			var single_waypoint = PackedStringArray([entry.waypoint_names[0]])
@@ -186,23 +186,28 @@ func _start_current_entry() -> void:
 			movement.set_waypoints_by_names(single_waypoint, get_tree().current_scene)
 		else:
 			# Just stop where we are
-			movement.stop()
+			if movement:
+				movement.stop()
 
+
+# Also update the should_complete method to use clock time:
 func _complete_current_entry() -> void:
 	"""Mark current entry as complete and advance"""
 	var entry = _get_current_entry()
 	if entry:
 		entry.complete()
+		print("[%s] Entry %d completed" % [npc_name, _current_entry_index])
 	
 	_advance_to_next_entry()
 
 func _advance_to_next_entry() -> void:
 	"""Move to the next schedule entry"""
 	_current_entry_index += 1
+	print("[%s] Advancing to entry %d" % [npc_name, _current_entry_index])
 	
 	# Check if we've completed the whole schedule
 	if _current_entry_index >= schedule_resource.schedule_entries.size():
-		print("[%s] Schedule complete, restarting" % npc_name)
+		print("[%s] Schedule complete, restarting from entry 0" % npc_name)
 		_current_entry_index = 0
 		# Reset all entries for new day
 		for entry in schedule_resource.schedule_entries:
@@ -244,15 +249,19 @@ func _is_in_current_scene() -> bool:
 	return current_scene_name == npc_scene
 
 # ============ COMPONENT SETUP ============
+# Also update _setup_components to ensure movement is properly initialized:
 func _setup_components() -> void:
 	# Movement
 	movement = NPCMovementComponent.new()
 	movement.name = "Movement"
 	add_child(movement)
-	movement.setup(self)
+	movement.setup(self)  # Make sure character is set
 	movement.walk_speed = movement_speed
 	movement.stop_at_destination = true
+	movement.use_navigation = false  # Try without navigation first
 	movement.destination_reached.connect(_on_destination_reached)
+	
+	print("[%s] Movement component setup complete. Character: %s" % [npc_name, movement.character])
 	
 	# Drunk System
 	drunk_system = preload("res://scripts/components/InsiderDrunkComponent.gd").new()
@@ -300,16 +309,25 @@ func _on_body_exited(body: Node) -> void:
 
 func _on_destination_reached() -> void:
 	"""Called when NPC reaches their destination"""
+	print("[%s] Destination reached callback triggered" % npc_name)
+	
 	var current_entry = _get_current_entry()
-	if current_entry:
-		if current_entry.activity == "moving":
-			# Movement complete, mark entry as done
-			current_entry.complete()
-			print("[%s] Reached destination, completing entry" % npc_name)
-		elif current_entry.activity == "idle":
-			# Started idling, record arrival time
-			current_entry.arrival_time = TimeService.get_world_seconds()
-			print("[%s] Started idling for %d minutes" % [npc_name, current_entry.idle_duration_minutes])
+	if not current_entry:
+		print("[%s] ERROR: No current entry when destination reached!" % npc_name)
+		return
+	
+	print("[%s] Current entry activity: %s" % [npc_name, current_entry.activity])
+	
+	if current_entry.activity == "moving":
+		# Movement complete, mark entry as done
+		print("[%s] Completing movement entry %d" % [npc_name, _current_entry_index])
+		_complete_current_entry()
+		# Don't call _advance_to_next_entry here, _complete_current_entry does it
+	elif current_entry.activity == "idle":
+		# Started idling, record arrival time
+		var current_minutes = Game.clock_minutes if typeof(Game) != TYPE_NIL else 0
+		current_entry.arrival_time = current_minutes * 60.0
+		print("[%s] Started idling for %d minutes" % [npc_name, current_entry.idle_duration_minutes])
 	
 	EventBus.emit_signal("npc_arrived", npc_id, _current_location)
 

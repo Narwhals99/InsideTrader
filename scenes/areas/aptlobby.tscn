@@ -676,6 +676,10 @@ transform = Transform3D(-1.49026e-08, 0, -1.61244, 0, 0.5, 0, 0.340931, 0, -7.04
 use_collision = true
 size = Vector3(1, 0.3, 1)
 
+[node name="StairsLink" type="NavigationLink3D" parent="."]
+start_position = Vector3(1.54967, 4.41445, -4.5008)
+end_position = Vector3(-0.531735, 0.741105, 8.61442)
+
 [node name="Apt_Door" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54967, 4.41445, -4.5008)
 

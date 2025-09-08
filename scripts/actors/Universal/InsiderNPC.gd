@@ -258,7 +258,7 @@ func _setup_components() -> void:
 	movement.setup(self)  # Make sure character is set
 	movement.walk_speed = movement_speed
 	movement.stop_at_destination = true
-	movement.use_navigation = false  # Try without navigation first
+	movement.use_navigation = true  # Try without navigation first
 	movement.destination_reached.connect(_on_destination_reached)
 	
 	print("[%s] Movement component setup complete. Character: %s" % [npc_name, movement.character])

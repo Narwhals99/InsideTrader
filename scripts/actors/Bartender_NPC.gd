@@ -54,7 +54,7 @@ func _try_interact() -> void:
 func interact() -> Dictionary:
 	# Check if player already has beer (using shared Inventory)
 	if Inventory.has_beer():
-		EventBus.emit_dialogue("Bartender", "You already have a beer. Give it to someone first!")
+		EventBus.emit_dialogue("Bartender", "You already have a beer. Give it to someone first!", 3.0)
 		return {
 			"success": false,
 			"message": "You already have a beer. Give it to someone first!"
@@ -82,7 +82,7 @@ func interact() -> Dictionary:
 	EventBus.emit_signal("beer_purchased")
 	
 	# Show feedback
-	EventBus.emit_dialogue("Bartender", "Here's your beer! Someone might appreciate it...")
+	EventBus.emit_dialogue("Bartender", "Here's your beer! Someone might appreciate it...", 3.0)
 	EventBus.emit_notification("Beer purchased! -$%.0f" % beer_price, "success", 2.0)
 	EventBus.emit_notification("Cash remaining: $%.0f" % (cash - beer_price), "info", 2.0)
 	
@@ -96,9 +96,9 @@ func interact() -> Dictionary:
 
 func _on_beer_given_away(npc_id: String) -> void:
 	# Inventory handles this now
-	if npc_id == "ceo":
-		EventBus.emit_notification("Beer given to CEO", "info", 1.0)
-		print("[Bartender_NEW] Player gave beer to CEO")
+	var target := npc_id.capitalize()
+	EventBus.emit_notification("Beer given to %s" % target, "info", 1.0)
+	print("[Bartender] Player gave beer to", npc_id)
 
 func has_beer() -> bool:
 	"""For compatibility with old CEO code"""

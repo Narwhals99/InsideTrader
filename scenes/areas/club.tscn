@@ -308,6 +308,9 @@ per_light_step_offset = 1
 [node name="Player" parent="." instance=ExtResource("1_7r51h")]
 transform = Transform3D(1, 0, 1.17225e-07, 0, 1, 0, -1.17225e-07, 0, 1, 0, 1.5, 0)
 
+[node name="CFO_Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34476, 1.06041, 0)
+
 [node name="Spawn_Club_From_Hub" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
 

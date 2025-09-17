@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b01wvbx7s53tt"]
+[gd_scene load_steps=5 format=3 uid="uid://b01wvbx7s53tt"]
 
-[ext_resource type="Script" uid="uid://b161om2f63fvb" path="res://scripts/actors/Universal/InsiderNPC.gd" id="1_kkr2j"]
-[ext_resource type="Resource" uid="uid://bc2lak0mhpqyj" path="res://resources/schedules/cfo_schedule.tres" id="2_kkr2j"]
+[ext_resource type="Script" uid="uid://pj34yrcpqqup" path="res://scripts/actors/ClubInsider.gd" id="1_4gpqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a43sn"]
 radius = 0.4
@@ -15,8 +14,11 @@ height = 1.8
 radius = 1.0
 
 [node name="CFO_NPC" type="CharacterBody3D"]
-script = ExtResource("1_kkr2j")
-schedule_resource = ExtResource("2_kkr2j")
+script = ExtResource("1_4gpqw")
+response_duration = 2.0
+dialogue_tip_refusal = "Fuck off, weirdo. "
+dialogue_locked_out = "Try again tomorrow"
+dialogue_locked_out_give = "Would you leave me alone? "
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)

@@ -1,5 +1,3 @@
-# DialogueUI.gd
-# Save as Autoload (Project Settings > Autoload > Add this script as "DialogueUI")
 extends CanvasLayer
 
 var dialogue_scene: PackedScene = preload("res://scenes/globals/UI/dialogue_box.tscn")
@@ -9,46 +7,50 @@ var current_dialogue: Control = null
 var notification_queue: Array[Control] = []
 var max_notifications: int = 3
 
-# In DialogueUI.gd, add to the _ready() function:
+var _pending_choices: Array = []
+var _choice_buttons: Array[Button] = []
+
+@export var enable_choice_hotkeys: bool = false
+
 func _ready() -> void:
 	layer = 10
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	# ADD THESE LINES:
 	if typeof(EventBus) != TYPE_NIL:
 		EventBus.notification_requested.connect(_on_notification_requested)
 		EventBus.dialogue_requested.connect(_on_dialogue_requested)
-		print("[DialogueUI] Connected to EventBus")
 
-# ADD THESE NEW FUNCTIONS:
 func _on_notification_requested(text: String, type: String, duration: float) -> void:
 	notify(text, type, duration)
 
-func _on_dialogue_requested(speaker: String, text: String, options: Array) -> void:
+func _on_dialogue_requested(speaker: String, text: String, duration: float, options: Array) -> void:
 	if options.is_empty():
-		show_dialogue(speaker, text)
+		show_dialogue(speaker, text, duration)
 	else:
 		show_choices(speaker, text, options)
 
-# ============ DIALOGUE SYSTEM ============
 func show_dialogue(speaker: String, text: String, duration: float = 0.0) -> void:
-	"""Show dialogue box with speaker name. Duration 0 = manual dismiss"""
 	if current_dialogue:
 		current_dialogue.queue_free()
-	
+
 	current_dialogue = dialogue_scene.instantiate()
 	add_child(current_dialogue)
-	
+
+	_pending_choices.clear()
+	_choice_buttons.clear()
+
 	var speaker_label: Label = current_dialogue.get_node("Panel/VBox/SpeakerName")
 	var text_label: RichTextLabel = current_dialogue.get_node("Panel/VBox/DialogueText")
-	
+	var vbox: VBoxContainer = current_dialogue.get_node("Panel/VBox")
+	var existing_choice := vbox.get_node_or_null("ChoiceContainer")
+	if existing_choice:
+		existing_choice.queue_free()
+
 	if speaker_label:
 		speaker_label.text = speaker
 	if text_label:
 		text_label.text = text
-	
-	if duration > 0:
-		# Create timer without await
+
+	if duration > 0.0:
 		var timer := Timer.new()
 		timer.wait_time = duration
 		timer.one_shot = true
@@ -60,78 +62,80 @@ func _on_dialogue_timeout() -> void:
 	hide_dialogue()
 
 func hide_dialogue() -> void:
-	"""Hide current dialogue"""
+	_pending_choices.clear()
+	_choice_buttons.clear()
 	if current_dialogue:
-		var tween = create_tween()
+		var tween := create_tween()
 		tween.tween_property(current_dialogue, "modulate:a", 0.0, 0.3)
 		tween.tween_callback(current_dialogue.queue_free)
 		current_dialogue = null
 
-func show_choices(speaker: String, text: String, choices: Array[String]) -> int:
-	"""Show dialogue with choices, returns index of selected choice"""
-	# TODO: Implementation for choice-based dialogue
-	show_dialogue(speaker, text)
-	# This is a placeholder for future choice system
-	# For now, just return 0
-	return 0
-
-# ============ NOTIFICATION SYSTEM ============
-func notify(text: String, type: String = "info", duration: float = 5.0) -> void:
-	if notification_scene == null:
-		print("[Notification]: ", text)
+func show_choices(speaker: String, text: String, options: Array) -> void:
+	show_dialogue(speaker, text, 0.0)
+	_pending_choices = options.duplicate(true)
+	_choice_buttons.clear()
+	if current_dialogue == null:
 		return
 
-	var notif = notification_scene.instantiate()
+	var vbox: VBoxContainer = current_dialogue.get_node("Panel/VBox")
+	var choice_container := VBoxContainer.new()
+	choice_container.name = "ChoiceContainer"
+	choice_container.add_theme_constant_override("separation", 8)
+	vbox.add_child(choice_container)
+
+	for i in range(options.size()):
+		var entry: Variant = options[i]
+		var label: String = "Option %d" % (i + 1)
+		if entry is Dictionary:
+			label = String(entry.get("text", label))
+		else:
+			label = String(entry)
+		var button: Button = Button.new()
+		button.text = "%d) %s" % [i + 1, label]
+		button.focus_mode = Control.FOCUS_ALL
+		button.pressed.connect(Callable(self, "_on_choice_selected").bind(i))
+		choice_container.add_child(button)
+		_choice_buttons.append(button)
+
+	call_deferred("_focus_choice_button", 0)
+
+func _focus_choice_button(index: int) -> void:
+	if index >= 0 and index < _choice_buttons.size():
+		var btn := _choice_buttons[index]
+		if is_instance_valid(btn):
+			btn.grab_focus()
+
+func notify(text: String, type: String = "info", duration: float = 5.0) -> void:
+	if notification_scene == null:
+		print("[Notification]", text)
+		return
+
+	var notif := notification_scene.instantiate()
 	add_child(notif)
 
-	var label = notif.get_node_or_null("Panel/Label")
-	var panel = notif.get_node_or_null("Panel")
+	var label := notif.get_node_or_null("Panel/Label")
+	var panel := notif.get_node_or_null("Panel")
 
-	# text
-	if label and label is Label:
-		(label as Label).text = text
+	if label:
+		label.text = text
 
-	# bg color (unchanged logic)
-	if panel and panel is Panel:
-		var color = Color(0.2, 0.2, 0.2, 0.9)
+	if panel:
+		var color := Color(0.2, 0.2, 0.2, 0.9)
 		match type:
 			"success": color = Color(0.2, 0.8, 0.2, 0.9)
 			"warning": color = Color(0.8, 0.6, 0.2, 0.9)
-			"danger":  color = Color(0.8, 0.2, 0.2, 0.9)
-			_: pass
+			"danger": color = Color(0.8, 0.2, 0.2, 0.9)
 		(panel as Panel).self_modulate = color
 
-	# ensure no inherited tint
 	notif.modulate = Color(1, 1, 1, 1)
-
-	# force white after theme/_ready
 	call_deferred("_force_notif_label_white", notif)
 
-	# stack & fade (unchanged)
-	notif.modulate.a = 1.0
 	notification_queue.append(notif)
 	_arrange_notifications()
-	var t = get_tree().create_tween()
-	t.tween_interval(duration)
-	t.tween_property(notif, "modulate:a", 0.0, 0.5)
-	t.tween_callback(Callable(self, "_remove_notification").bind(notif))
-
-
-func _force_notif_label_white(notif: Node) -> void:
-	var lbl = notif.get_node_or_null("Panel/Label")
-	if lbl and lbl is Label:
-		lbl.modulate = Color(1, 1, 1, 1)  # clear any tint
-		lbl.add_theme_color_override("font_color", Color.WHITE)
-
-
-func _force_notif_text_white(root: Node) -> void:
-	# Ensure all Labels (and RichTextLabels) render white, even if a Theme tries to override
-	if root is Label:
-		root.add_theme_color_override("font_color", Color.WHITE)
-	elif root is RichTextLabel:
-		root.add_theme_color_override("default_color", Color.WHITE)
-	for child in root.get_children():
-		_force_notif_text_white(child)
+	var tween := get_tree().create_tween()
+	tween.tween_interval(duration)
+	tween.tween_property(notif, "modulate:a", 0.0, 0.5)
+	tween.tween_callback(Callable(self, "_remove_notification").bind(notif))
 
 func _remove_notification(notif: Control) -> void:
 	notification_queue.erase(notif)
@@ -140,59 +144,42 @@ func _remove_notification(notif: Control) -> void:
 	_arrange_notifications()
 
 func _arrange_notifications() -> void:
-	"""Stack notifications vertically"""
-	var y_offset: float = 100
+	var base_y := 100.0
 	for i in range(notification_queue.size()):
-		var notif = notification_queue[i]
+		var notif := notification_queue[i]
 		if notif:
-			var target_y = y_offset + (i * 80)
-			var tween = create_tween()
+			var target := base_y + float(i) * 80.0
+			var tween := create_tween()
 			tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-			tween.tween_property(notif, "position:y", target_y, 0.3)
+			tween.tween_property(notif, "position:y", target, 0.3)
 
-# ============ SEQUENCE HELPERS ============
-func show_dialogue_sequence(messages: Array, delay_between: float = 2.5) -> void:
-	"""Show a sequence of dialogue messages"""
-	if messages.is_empty():
-		return
-	
-	var current_index := 0
-	_show_next_in_sequence(messages, current_index, delay_between)
+func _force_notif_label_white(notif: Node) -> void:
+	var lbl := notif.get_node_or_null("Panel/Label")
+	if lbl is Label:
+		lbl.modulate = Color(1, 1, 1, 1)
+		lbl.add_theme_color_override("font_color", Color.WHITE)
 
-func _show_next_in_sequence(messages: Array, index: int, delay: float) -> void:
-	if index >= messages.size():
-		return
-	
-	var msg = messages[index]
-	if msg is Dictionary:
-		show_npc_dialogue(msg.get("speaker", ""), msg.get("text", ""))
-	elif msg is String:
-		show_npc_dialogue("", msg)
-	
-	if index < messages.size() - 1:
-		var timer := Timer.new()
-		timer.wait_time = delay
-		timer.one_shot = true
-		timer.timeout.connect(func(): _show_next_in_sequence(messages, index + 1, delay))
-		add_child(timer)
-		timer.start()
-
-# ============ QUICK HELPERS ============
-func show_npc_dialogue(npc_name: String, text: String) -> void:
-	"""Convenience for NPC dialogue"""
-	show_dialogue(npc_name, text, 4.0)
-
-func show_insider_tip(ticker: String) -> void:
-	"""Special notification for insider tips"""
-	notify("🔥 INSIDER TIP: " + ticker + " will move tomorrow!", "warning", 5.0)
-
-func show_trade_result(success: bool, message: String) -> void:
-	"""Show trade success/failure"""
-	notify(message, "success" if success else "danger", 3.0)
-
-# ============ INPUT HANDLING ============
 func _input(event: InputEvent) -> void:
-	# Dismiss dialogue on click/enter
-	if current_dialogue and event.is_action_pressed("ui_accept"):
+	if enable_choice_hotkeys and current_dialogue and not _pending_choices.is_empty():
+		if event is InputEventKey and event.pressed and not event.echo:
+			var idx := _choice_index_from_key(event)
+			if idx >= 0 and idx < _pending_choices.size():
+				_on_choice_selected(idx)
+				get_viewport().set_input_as_handled()
+				return
+	if current_dialogue and _pending_choices.is_empty() and event.is_action_pressed("ui_accept"):
 		hide_dialogue()
 		get_viewport().set_input_as_handled()
+
+func _choice_index_from_key(event: InputEventKey) -> int:
+	match event.physical_keycode:
+		KEY_1, KEY_KP_1: return 0
+		KEY_2, KEY_KP_2: return 1
+		KEY_3, KEY_KP_3: return 2
+		KEY_4, KEY_KP_4: return 3
+		KEY_5, KEY_KP_5: return 4
+		_: return -1
+
+func _on_choice_selected(index: int) -> void:
+	EventBus.emit_signal("dialogue_completed", index)
+	hide_dialogue()

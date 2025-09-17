@@ -121,7 +121,7 @@ func set_interaction_enabled(enabled: bool) -> void:
 	monitoring = enabled
 
 func show_dialogue(text: String, duration: float = 4.0) -> void:
-	EventBus.emit_dialogue(npc_display_name, text)
+	EventBus.emit_dialogue(npc_display_name, text, duration)
 
 func give_item_to_player(item_id: String, quantity: int = 1) -> void:
 	# This would connect to an inventory system

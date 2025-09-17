@@ -1,127 +1,76 @@
-# ClubInteractionSystem.gd — DROP-IN (no Variant inference warnings)
 extends Node
 
 var bartender: Area3D
-var ceo: CharacterBody3D
+var insider: CharacterBody3D
 
 func _ready() -> void:
-	# Find NPCs present (for signals/diagnostics; targeting is resolved per press)
 	bartender = get_tree().get_first_node_in_group("bartender_npc") as Area3D
-	ceo = get_tree().get_first_node_in_group("ceo_npc") as CharacterBody3D
+	insider = get_tree().get_first_node_in_group("ceo_npc") as CharacterBody3D
 
-	# Connect signals if NPCs exist
 	if bartender != null and bartender.has_signal("beer_purchased"):
 		bartender.beer_purchased.connect(_on_beer_purchased)
-	if ceo != null and ceo.has_signal("insider_info_given"):
-		ceo.insider_info_given.connect(_on_insider_info_received)
 
-	# Ensure interact action exists
+	if insider != null and insider.has_signal("insider_info_given"):
+		insider.insider_info_given.connect(_on_insider_info_received)
+
 	if not InputMap.has_action("interact"):
 		InputMap.add_action("interact")
-		var e: InputEventKey = InputEventKey.new()
+		var e := InputEventKey.new()
 		e.physical_keycode = KEY_E
 		InputMap.action_add_event("interact", e)
 
-	print("[ClubSystem] Initialized. Bartender: ", bartender != null, ", CEO: ", ceo != null)
+	print("[ClubSystem] bartender=", bartender != null, " insider=", insider != null)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		_try_interact()
 
 func _try_interact() -> void:
-	var player: Node3D = get_tree().get_first_node_in_group("player")
+	var player := get_tree().get_first_node_in_group("player") as Node3D
 	if player == null:
 		return
 
-	# -------- Nearest bartender (<= 3m) --------
-	var nearest_bartender: Node3D = null
-	var nearest_bartender_dist: float = 3.0
-	for bartender_node in get_tree().get_nodes_in_group("bartender_npc"):
-		if bartender_node is Node3D:
-			var d: float = player.global_position.distance_to((bartender_node as Node3D).global_position)
-			if d < nearest_bartender_dist:
-				nearest_bartender_dist = d
-				nearest_bartender = bartender_node as Node3D
-
-	# -------- Pick CEO: prefer one whose InteractionArea contains player --------
-	var picked_ceo: Node3D = null
-	for ceo_node in get_tree().get_nodes_in_group("ceo_npc"):
-		if ceo_node is Node3D:
-			var ia: Area3D = (ceo_node as Node3D).get_node_or_null("InteractionArea") as Area3D
-			var inside: bool = false
-			if ia != null:
-				var bodies: Array = ia.get_overlapping_bodies()
-				inside = bodies.has(player)
-			if inside:
-				picked_ceo = ceo_node as Node3D
-				break
-
-	# Fallback: nearest CEO (<= 3m)
-	if picked_ceo == null:
-		var nearest_ceo_dist: float = 3.0
-		for ceo_node in get_tree().get_nodes_in_group("ceo_npc"):
-			if ceo_node is Node3D:
-				var d2: float = player.global_position.distance_to((ceo_node as Node3D).global_position)
-				if d2 < nearest_ceo_dist:
-					nearest_ceo_dist = d2
-					picked_ceo = ceo_node as Node3D
-
-	# -------- Decide target --------
-	if picked_ceo != null:
-		_interact_with_ceo_instance(picked_ceo)
-	elif nearest_bartender != null:
-		_interact_with_bartender_instance(nearest_bartender)
-	# else: nothing in range
-
-func _interact_with_bartender_instance(bartender_node: Node) -> void:
-	if bartender_node == null or not bartender_node.has_method("interact"):
-		return
-	var result_variant: Variant = bartender_node.call("interact")
-	var result: Dictionary = (result_variant as Dictionary) if typeof(result_variant) == TYPE_DICTIONARY else {}
-	if bool(result.get("success", false)):
-		print("[Club] Beer purchased!")
-
-func _interact_with_ceo_instance(ceo_node: Node) -> void:
-	if ceo_node == null:
+	var target := _find_insider(player)
+	if target != null:
+		if target.has_method("show_interaction_menu"):
+			target.call("show_interaction_menu")
+		elif target.has_method("interact"):
+			target.call("interact")
 		return
 
-	# UPDATED: Check inventory first, then fall back to bartender
-	var has_beer: bool = false
-	
-	# Check new inventory system first
-	if typeof(Inventory) != TYPE_NIL:
-		has_beer = Inventory.has_beer()
-	else:
-		# Fallback to old bartender check
-		var bartender_node: Node = get_tree().get_first_node_in_group("bartender_npc")
-		if bartender_node != null and bartender_node.has_method("has_beer"):
-			var has_beer_var: Variant = bartender_node.call("has_beer")
-			has_beer = bool(has_beer_var)
+	var bar := _find_bartender(player)
+	if bar != null and bar.has_method("interact"):
+		bar.call("interact")
 
-	if has_beer and ceo_node.has_method("give_beer"):
-		var give_result_var: Variant = ceo_node.call("give_beer")
-		var result: Dictionary = (give_result_var as Dictionary) if typeof(give_result_var) == TYPE_DICTIONARY else {}
-		var accepted: bool = bool(result.get("success", false)) or bool(result.get("is_tip", false))
-		
-		# UPDATED: Use inventory system if available
-		if accepted:
-			if typeof(Inventory) != TYPE_NIL:
-				Inventory.remove_item("beer", 1)
-				EventBus.emit_signal("beer_given_to_npc", "ceo")
-			else:
-				# Fallback to old method
-				var bartender_node: Node = get_tree().get_first_node_in_group("bartender_npc")
-				if bartender_node != null and bartender_node.has_method("player_gave_beer"):
-					bartender_node.call("player_gave_beer")
-	elif ceo_node.has_method("interact"):
-		var _talk_result_unused: Variant = ceo_node.call("interact")
+func _find_insider(player: Node3D) -> Node:
+	var best: Node = null
+	var best_dist := 3.0
+	for node in get_tree().get_nodes_in_group("ceo_npc"):
+		if node is Node3D:
+			var actor := node as Node3D
+			var area := actor.get_node_or_null("InteractionArea") as Area3D
+			if area and area.get_overlapping_bodies().has(player):
+				return actor
+			var dist := player.global_position.distance_to(actor.global_position)
+			if dist < best_dist:
+				best_dist = dist
+				best = actor
+	return best
 
-# ----- Signals -----
+func _find_bartender(player: Node3D) -> Node:
+	var best: Node = null
+	var best_dist := 3.0
+	for node in get_tree().get_nodes_in_group("bartender_npc"):
+		if node is Node3D:
+			var actor := node as Node3D
+			var dist := player.global_position.distance_to(actor.global_position)
+			if dist < best_dist:
+				best = actor
+	return best
 
 func _on_beer_purchased() -> void:
-	print("[Club] Player bought a beer")
-	# UPDATED: Use EventBus instead of direct DialogueUI call
-	EventBus.emit_notification("You bought a beer! Find someone who might want it...", "info", 3.0)
+	print("[Club] beer purchased")
+	EventBus.emit_notification("You bought a beer!", "info", 2.0)
 
 func _on_insider_info_received(ticker: StringName) -> void:
-	print("[Club] INSIDER TIP RECEIVED: ", ticker)
+	print("[Club] tip signaled for", ticker)

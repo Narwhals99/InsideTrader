@@ -7,7 +7,8 @@ const InsiderClasses := preload("res://scripts/globals/trading/InsiderClasses.gd
 const FLOOR_SNAP_UP: float = 2.5
 const FLOOR_SNAP_DOWN: float = 6.0
 const FLOOR_OFFSET_DEFAULT: float = 0.9
-const DEFAULT_DIALOGUE_TIP_REFUSAL := "Come back after %d more drink(s)."
+const DEFAULT_DIALOGUE_TIP_REFUSAL := "Not yet. Come back later."
+const DEFAULT_DIALOGUE_LOCKED_OUT_PASSED := "They're out cold. Try again tomorrow."
 const DEFAULT_DIALOGUE_LOCKED_OUT := "Come back tomorrow."
 const DEFAULT_DIALOGUE_LOCKED_OUT_GIVE := "No more drinks tonight."
 
@@ -46,6 +47,7 @@ const DEFAULT_DIALOGUE_LOCKED_OUT_GIVE := "No more drinks tonight."
 @export var ready_for_tip_dialogue: String = "Alright, alright... you've loosened me up."
 @export var dialogue_locked_out: String = DEFAULT_DIALOGUE_LOCKED_OUT
 @export var dialogue_locked_out_give: String = DEFAULT_DIALOGUE_LOCKED_OUT_GIVE
+@export var dialogue_locked_out_passed_out: String = DEFAULT_DIALOGUE_LOCKED_OUT_PASSED
 
 var _drunk: InsiderDrunkComponent = null
 var _label: Label3D = null
@@ -58,6 +60,8 @@ var _awaiting_choice: bool = false
 var _active_options: Array = []
 var _prompt_timer: Timer = null
 var _locked_until_next_day: bool = false
+var _lockout_reason: String = ""
+var _player_contact_count: int = 0
 
 func _ready() -> void:
 	add_to_group("npc")
@@ -83,6 +87,10 @@ func _ready() -> void:
 		_interaction_area.monitorable = true
 		if _interaction_area.collision_mask == 0:
 			_interaction_area.collision_mask = 1
+		if not _interaction_area.body_entered.is_connected(_on_interaction_body_entered):
+			_interaction_area.body_entered.connect(_on_interaction_body_entered)
+		if not _interaction_area.body_exited.is_connected(_on_interaction_body_exited):
+			_interaction_area.body_exited.connect(_on_interaction_body_exited)
 
 	_drunk = _ensure_drunk_component()
 	if _drunk:
@@ -126,6 +134,11 @@ func _exit_tree() -> void:
 		var day_cb := Callable(self, "_on_day_advanced")
 		if EventBus.day_advanced.is_connected(day_cb):
 			EventBus.day_advanced.disconnect(day_cb)
+	if _interaction_area and is_instance_valid(_interaction_area):
+		if _interaction_area.body_entered.is_connected(_on_interaction_body_entered):
+			_interaction_area.body_entered.disconnect(_on_interaction_body_entered)
+		if _interaction_area.body_exited.is_connected(_on_interaction_body_exited):
+			_interaction_area.body_exited.disconnect(_on_interaction_body_exited)
 	if _drunk and is_instance_valid(_drunk):
 		if _drunk.tip_given.is_connected(_on_tip_given):
 			_drunk.tip_given.disconnect(_on_tip_given)
@@ -173,6 +186,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _open_interaction_menu(prompt_override: String = "") -> void:
+	if _locked_until_next_day:
+		_awaiting_choice = false
+		_cancel_prompt_timer()
+		var locked_message := dialogue_locked_out
+		if _lockout_reason == "passed_out":
+			locked_message = dialogue_locked_out_passed_out
+		_show_response(locked_message, false)
+		return
+
 	if _active_options.is_empty():
 		_active_options = [
 			{"id": "give_beer", "text": option_text_give_beer},
@@ -182,7 +204,7 @@ func _open_interaction_menu(prompt_override: String = "") -> void:
 			_active_options.append({"id": "cancel", "text": option_text_nevermind})
 	_awaiting_choice = true
 	_cancel_prompt_timer()
-	var prompt: String = interaction_prompt
+	var prompt = interaction_prompt
 	if prompt_override.strip_edges() != "":
 		prompt = prompt_override
 	_emit_menu(prompt)
@@ -234,7 +256,10 @@ func _handle_choice_give_beer(from_direct_call: bool = false) -> Dictionary:
 	if _locked_until_next_day:
 		if resume_menu:
 			_awaiting_choice = true
-			_show_response(dialogue_locked_out_give, false)
+			var locked_message := dialogue_locked_out_give
+			if _lockout_reason == "passed_out":
+				locked_message = dialogue_passed_out_give
+			_show_response(locked_message, false)
 		return result
 	if _drunk == null:
 		if resume_menu:
@@ -298,7 +323,10 @@ func _handle_choice_ask_tip() -> void:
 	_cancel_prompt_timer()
 	if _locked_until_next_day:
 		_awaiting_choice = true
-		_show_response(dialogue_locked_out, false)
+		var locked_message := dialogue_locked_out
+		if _lockout_reason == "passed_out":
+			locked_message = dialogue_locked_out_passed_out
+		_show_response(locked_message, false)
 		return
 	if _drunk == null:
 		_awaiting_choice = true
@@ -310,10 +338,7 @@ func _handle_choice_ask_tip() -> void:
 		_lock_out_for_day("passed_out")
 		return
 	if not _drunk.is_drunk_enough():
-		var beers_needed: int = max(1, _drunk.drunk_threshold - _drunk.drunk_level)
 		var refuse_msg := dialogue_tip_refusal
-		if refuse_msg.find("%d") != -1:
-			refuse_msg = refuse_msg % beers_needed
 		_awaiting_choice = true
 		_show_response(refuse_msg, false)
 		_lock_out_for_day("not_ready")
@@ -330,7 +355,7 @@ func _cancel_interaction() -> void:
 	_awaiting_choice = false
 	_active_options.clear()
 	if typeof(EventBus) != TYPE_NIL:
-		EventBus.emit_signal("dialogue_requested", display_name, "", 0.0, [])
+		EventBus.emit_signal("dialogue_requested", "", "", 0.0, [])
 
 func _on_dialogue_choice(choice_index: int) -> void:
 	if not _awaiting_choice:
@@ -349,6 +374,16 @@ func _process_choice(action_id: String) -> void:
 		"ask_tip":
 			_handle_choice_ask_tip()
 		"cancel":
+			_cancel_interaction()
+
+func _on_interaction_body_entered(body: Node) -> void:
+	if body.is_in_group("player"):
+		_player_contact_count += 1
+
+func _on_interaction_body_exited(body: Node) -> void:
+	if body.is_in_group("player"):
+		_player_contact_count = max(0, _player_contact_count - 1)
+		if _player_contact_count == 0:
 			_cancel_interaction()
 
 func _apply_class_config() -> void:
@@ -432,6 +467,7 @@ func _lock_out_for_day(reason: String = "") -> void:
 	if _locked_until_next_day:
 		return
 	_locked_until_next_day = true
+	_lockout_reason = reason
 	_ready_hint_shown = false
 	_cancel_prompt_timer()
 	if typeof(EventBus) != TYPE_NIL:
@@ -446,6 +482,7 @@ func _lock_out_for_day(reason: String = "") -> void:
 
 func _on_day_advanced(_day: int) -> void:
 	_locked_until_next_day = false
+	_lockout_reason = ""
 	_ready_hint_shown = false
 	if show_debug_label:
 		_update_state_label()

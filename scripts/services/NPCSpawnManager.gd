@@ -6,7 +6,7 @@ signal npc_despawned(npc_id: StringName)
 @export var managed_npcs: Array[Dictionary] = [
 	{
 		"id": "acme_exec_asst",
-		"scene_path": "res://scenes/actors/CFO_NPC.tscn",
+		"scene_path": "res://scenes/actors/TimmyInsider.tscn",
 		"scene_key": "club",
 		"phase": "Evening",
 		"spawn_marker": "CFO_Spawn"

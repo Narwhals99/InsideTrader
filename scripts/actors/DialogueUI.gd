@@ -9,6 +9,9 @@ var max_notifications: int = 3
 
 var _pending_choices: Array = []
 var _choice_buttons: Array[Button] = []
+var _hovered_choice: int = -1
+var _mouse_mode_restore: int = Input.MOUSE_MODE_VISIBLE
+var _mouse_mode_changed: bool = false
 
 @export var enable_choice_hotkeys: bool = false
 
@@ -23,12 +26,21 @@ func _on_notification_requested(text: String, type: String, duration: float) -> 
 	notify(text, type, duration)
 
 func _on_dialogue_requested(speaker: String, text: String, duration: float, options: Array) -> void:
+	if speaker.strip_edges() == "" and text.strip_edges() == "" and options.is_empty():
+		hide_dialogue()
+		return
 	if options.is_empty():
 		show_dialogue(speaker, text, duration)
 	else:
 		show_choices(speaker, text, options)
 
 func show_dialogue(speaker: String, text: String, duration: float = 0.0) -> void:
+	var current_mouse_mode := Input.get_mouse_mode()
+	if not _mouse_mode_changed and current_mouse_mode != Input.MOUSE_MODE_VISIBLE:
+		_mouse_mode_restore = current_mouse_mode
+		_mouse_mode_changed = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	if current_dialogue:
 		current_dialogue.queue_free()
 
@@ -37,6 +49,7 @@ func show_dialogue(speaker: String, text: String, duration: float = 0.0) -> void
 
 	_pending_choices.clear()
 	_choice_buttons.clear()
+	_hovered_choice = -1
 
 	var speaker_label: Label = current_dialogue.get_node("Panel/VBox/SpeakerName")
 	var text_label: RichTextLabel = current_dialogue.get_node("Panel/VBox/DialogueText")
@@ -64,6 +77,7 @@ func _on_dialogue_timeout() -> void:
 func hide_dialogue() -> void:
 	_pending_choices.clear()
 	_choice_buttons.clear()
+	_hovered_choice = -1
 	if current_dialogue:
 		var tween := create_tween()
 		tween.tween_property(current_dialogue, "modulate:a", 0.0, 0.3)
@@ -74,6 +88,7 @@ func show_choices(speaker: String, text: String, options: Array) -> void:
 	show_dialogue(speaker, text, 0.0)
 	_pending_choices = options.duplicate(true)
 	_choice_buttons.clear()
+	_hovered_choice = -1
 	if current_dialogue == null:
 		return
 
@@ -93,6 +108,7 @@ func show_choices(speaker: String, text: String, options: Array) -> void:
 		var button: Button = Button.new()
 		button.text = "%d) %s" % [i + 1, label]
 		button.focus_mode = Control.FOCUS_ALL
+		button.mouse_entered.connect(Callable(self, "_on_choice_mouse_entered").bind(i))
 		button.pressed.connect(Callable(self, "_on_choice_selected").bind(i))
 		choice_container.add_child(button)
 		_choice_buttons.append(button)
@@ -104,6 +120,34 @@ func _focus_choice_button(index: int) -> void:
 		var btn := _choice_buttons[index]
 		if is_instance_valid(btn):
 			btn.grab_focus()
+			_hovered_choice = index
+
+func _focus_next_choice(step: int) -> void:
+	if _choice_buttons.is_empty():
+		return
+	var current := -1
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused and _choice_buttons.has(focused):
+		current = _choice_buttons.find(focused)
+	var next := current
+	if current == -1:
+		next = 0 if step >= 0 else _choice_buttons.size() - 1
+	else:
+		next = (current + step) % _choice_buttons.size()
+		if next < 0:
+			next += _choice_buttons.size()
+	_focus_choice_button(next)
+
+func _activate_hovered_choice() -> bool:
+	var idx := _hovered_choice
+	if idx < 0:
+		var focus := get_viewport().gui_get_focus_owner()
+		if focus and _choice_buttons.has(focus):
+			idx = _choice_buttons.find(focus)
+	if idx >= 0 and idx < _choice_buttons.size():
+		_on_choice_selected(idx)
+		return true
+	return false
 
 func notify(text: String, type: String = "info", duration: float = 5.0) -> void:
 	if notification_scene == null:
@@ -160,6 +204,15 @@ func _force_notif_label_white(notif: Node) -> void:
 		lbl.add_theme_color_override("font_color", Color.WHITE)
 
 func _input(event: InputEvent) -> void:
+	if current_dialogue and not _pending_choices.is_empty():
+		if event is InputEventMouseButton and event.pressed:
+			match event.button_index:
+				MOUSE_BUTTON_WHEEL_UP:
+					_focus_next_choice(-1)
+					return
+				MOUSE_BUTTON_WHEEL_DOWN:
+					_focus_next_choice(1)
+					return
 	if enable_choice_hotkeys and current_dialogue and not _pending_choices.is_empty():
 		if event is InputEventKey and event.pressed and not event.echo:
 			var idx := _choice_index_from_key(event)
@@ -183,3 +236,6 @@ func _choice_index_from_key(event: InputEventKey) -> int:
 func _on_choice_selected(index: int) -> void:
 	EventBus.emit_signal("dialogue_completed", index)
 	hide_dialogue()
+
+func _on_choice_mouse_entered(index: int) -> void:
+	_focus_choice_button(index)

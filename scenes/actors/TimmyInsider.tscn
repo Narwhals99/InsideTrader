@@ -13,12 +13,13 @@ height = 1.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_elunf"]
 radius = 1.0
 
-[node name="CFO_NPC" type="CharacterBody3D"]
+[node name="TimmyInsider" type="CharacterBody3D"]
 script = ExtResource("1_4gpqw")
 response_duration = 2.0
 dialogue_tip_refusal = "Fuck off, weirdo. "
-dialogue_locked_out = "Try again tomorrow"
+dialogue_locked_out = "Are you deaf?"
 dialogue_locked_out_give = "Would you leave me alone? "
+dialogue_locked_out_passed_out = "*ZZZ-Zzzz-ZZzzz-hngGGggh-Ppbhww- zZZzzzZZ *"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)

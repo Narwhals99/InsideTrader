@@ -1,6 +1,7 @@
 extends Node
 
 const MoverEngine = preload("res://scripts/globals/trading/MoverEngine.gd")
+const MoverTriggerEngine = preload("res://scripts/globals/trading/MoverTriggerEngine.gd")
 
 signal price_updated(symbol: StringName, price: float)
 signal prices_changed(prices: Dictionary)
@@ -47,6 +48,12 @@ signal prices_changed(prices: Dictionary)
 @export var mover_target_min_pct: float = 0.008
 @export var mover_target_max_pct: float = 0.020
 @export var mover_vol_mult: float = 1.20
+@export var mover_streak_length: int = 3
+@export var mover_streak_min_avg_pct: float = 0.004
+@export var mover_positive_lead_days: int = 1
+@export var mover_positive_duration_days: int = 2
+@export var mover_negative_lead_days: int = 0
+@export var mover_negative_duration_days: int = 1
 
 # --- Debug overlay ---
 @export var debug_overlay: bool = true
@@ -66,6 +73,7 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _is_market_open: bool = false
 var _last_minutes_rate: float = -1.0
 var _movers: MoverEngine = MoverEngine.new()
+var _mover_triggers: MoverTriggerEngine = null
 
 # --- Insider Trading Support ---
 var _forced_next_mover: StringName = &""
@@ -101,6 +109,7 @@ func _ready() -> void:
 		_on_phase_changed(Game.phase, Game.day)
 
 	_apply_rate_to_timer(true)
+	_setup_mover_triggers()
 
 func _on_game_phase_changed(new_phase: StringName, day: int) -> void:
 	var ph := String(new_phase).to_lower()
@@ -185,7 +194,7 @@ func _on_phase_changed(phase: StringName, day: int) -> void:
 	_is_market_open = (phase == &"Market")
 	if only_when_market_open:
 		if _is_market_open:
-			_daily_roll_mover()
+			_daily_roll_mover(int(day), phase)
 			_restart_timer()
 			_snapshot_opens()
 		else:
@@ -194,7 +203,7 @@ func _on_phase_changed(phase: StringName, day: int) -> void:
 			_stop_timer()
 	else:
 		if _is_market_open:
-			_daily_roll_mover()
+			_daily_roll_mover(int(day), phase)
 			_snapshot_opens()
 		else:
 			_snapshot_closes()
@@ -308,7 +317,7 @@ func force_market_open(open_now: bool) -> void:
 		_stop_timer()
 
 # ---------------- Mover logic ----------------
-func _daily_roll_mover() -> void:
+func _daily_roll_mover(day: int, phase: StringName) -> void:
 	if _forced_next_mover != StringName() and _forced_next_move_size > 0.0:
 		var forced_symbol: StringName = _forced_next_mover
 		var forced_drift: float = _forced_next_move_size
@@ -321,31 +330,82 @@ func _daily_roll_mover() -> void:
 		state.target_daily_drift = abs(forced_drift)
 		state.start_mode = MoverEngine.StartMode.NEXT_SESSION
 		_movers.activate_from_state(state)
-		print("[MarketSim] Using forced mover: ", String(_movers.get_current_symbol()), " dir=", _movers.get_direction(), " drift=", _movers.get_target_daily_drift())
+		print("[MarketSim] Using forced mover: ", String(state.symbol), " dir=", state.direction, " drift=", String.num(state.target_daily_drift * 100.0, 2), "%")
 		_forced_next_mover = StringName()
 		_forced_next_move_size = 0.0
 		return
 
-	_movers.clear_active()
-
-	var roll: float = _rng.randf()
-	if roll > mover_daily_chance:
-		return
-	if symbols.is_empty():
+	_setup_mover_triggers()
+	var context := _build_mover_context(int(day), phase)
+	var states: Array = _mover_triggers.evaluate(context)
+	if states.is_empty():
 		return
 
-	var idx: int = _rng.randi_range(0, symbols.size() - 1)
-	var pick: StringName = symbols[idx]
-	var direction: int = 1 if _rng.randf() >= 0.5 else -1
-	var lo: float = min(mover_target_min_pct, mover_target_max_pct)
-	var hi: float = max(mover_target_min_pct, mover_target_max_pct)
-	var drift: float = _rng.randf_range(lo, hi)
+	for state in states:
+		_movers.activate_from_state(state)
+		var factor_label: String = String(state.metadata.get("factor", "unknown"))
+		var drift_pct: String = String.num(state.target_daily_drift * 100.0, 2)
+		var horizon_label: String = "swing" if state.horizon == MoverEngine.HorizonType.SWING else "day"
+		print("[MarketSim] Trigger mover: ", String(state.symbol), " factor=", factor_label, " dir=", state.direction, " drift=", drift_pct, "% horizon=", horizon_label, " start_mode=", state.start_mode)
 
-	_movers.activate_simple(pick, direction, drift)
-	print("[MarketSim] Random mover: ", String(_movers.get_current_symbol()), " dir=", _movers.get_direction(), " drift=", _movers.get_target_daily_drift())
+
+func _setup_mover_triggers() -> void:
+	if _mover_triggers == null:
+		_mover_triggers = MoverTriggerEngine.new()
+	else:
+		_mover_triggers.clear_factors()
+
+	var random_factor := MoverTriggerEngine.RandomDailyFactor.new()
+	_mover_triggers.add_factor(random_factor)
+
+	var positive_settings: Dictionary = {
+		"priority": 20,
+		"length": mover_streak_length,
+		"direction": 1,
+		"start_mode": MoverEngine.StartMode.NEXT_SESSION,
+		"horizon": MoverEngine.HorizonType.SWING,
+		"duration_days": max(1, mover_positive_duration_days),
+		"min_average": mover_streak_min_avg_pct,
+		"lead_days": max(0, mover_positive_lead_days),
+		"label": "streak_positive"
+	}
+	_mover_triggers.add_factor(MoverTriggerEngine.StreakFactor.new(positive_settings))
+
+	var negative_settings: Dictionary = {
+		"priority": 15,
+		"length": mover_streak_length,
+		"direction": -1,
+		"start_mode": MoverEngine.StartMode.IMMEDIATE,
+		"horizon": MoverEngine.HorizonType.INTRADAY,
+		"duration_days": max(1, mover_negative_duration_days),
+		"min_average": mover_streak_min_avg_pct,
+		"lead_days": max(0, mover_negative_lead_days),
+		"label": "streak_negative"
+	}
+	_mover_triggers.add_factor(MoverTriggerEngine.StreakFactor.new(negative_settings))
+
+
+func _build_mover_context(day: int, phase: StringName) -> MoverTriggerEngine.Context:
+	var ctx := MoverTriggerEngine.Context.new()
+	ctx.day = day
+	ctx.phase = phase
+	ctx.symbols = symbols.duplicate()
+	ctx.prices = _prices.duplicate(true)
+	ctx.history = history.duplicate(true)
+	ctx.today_open = _today_open.duplicate(true)
+	ctx.today_close = _today_close.duplicate(true)
+	ctx.rng = _rng
+	ctx.get_last_days = Callable(self, "get_last_n_days")
+	ctx.config = {
+		"mover_daily_chance": mover_daily_chance,
+		"mover_target_min_pct": mover_target_min_pct,
+		"mover_target_max_pct": mover_target_max_pct
+	}
+	return ctx
+
 
 func _clear_daily_mover() -> void:
-	_movers.clear_active()
+	_movers.clear_intraday_states()
 
 func _mover_drift_per_tick(state: MoverEngine.MoverState) -> float:
 	if state == null or not state.is_active():
@@ -447,13 +507,25 @@ func _update_debug_ui() -> void:
 	lines.append("[knobs] symbols=" + str(symbols.size()) + "  tick=" + String.num(eff_wait, 2) + "s  base_mpt=" + String.num(mins_per_tick, 2) + "m  min_rate=" + String.num(mr, 2))
 	lines.append("[chart] N=" + str(n_ticks) + "  sigma_tick approx " + String.num(sig_tick_pct, 3) + "%  sigma_day approx " + String.num(sig_day_pct, 2) + "%  E|delta| approx " + String.num(exp_abs_move, 2) + "%")
 
-	var mover_state := _movers.get_active_state()
 	var mover_line: String = "none"
-	if _is_market_open and mover_state.is_active():
-		var dir_str: String = "+" if mover_state.direction >= 0 else "-"
-		var tgt_pct: float = mover_state.target_daily_drift * 100.0
-		var drift_tick_pct: float = _mover_drift_per_tick(mover_state) * 100.0
-		mover_line = String(mover_state.symbol) + "  " + dir_str + String.num(tgt_pct, 2) + "%  vol x" + String.num(mover_vol_mult, 2) + "  drift/tick=" + String.num(drift_tick_pct, 3) + "%"
+	var active_states := _movers.get_active_states()
+	if _is_market_open and not active_states.is_empty():
+		var parts: Array[String] = []
+		for state_obj in active_states:
+			var state: MoverEngine.MoverState = state_obj
+			if state == null or not state.is_active():
+				continue
+			var dir_str: String = "+" if state.direction >= 0 else "-"
+			var tgt_pct: float = state.target_daily_drift * 100.0
+			var horizon_label: String = "swing" if state.horizon == MoverEngine.HorizonType.SWING else "day"
+			var tick_pct: float = _mover_drift_per_tick(state) * 100.0
+			parts.append(String(state.symbol) + "  " + dir_str + String.num(tgt_pct, 2) + "% " + horizon_label + " drift/tick=" + String.num(tick_pct, 3) + "%")
+		if not parts.is_empty():
+			mover_line = "; ".join(parts)
+	else:
+		var summary := _movers.debug_summary()
+		if summary != "none":
+			mover_line = summary
 
 	lines.append("[fire] mover: " + mover_line)
 

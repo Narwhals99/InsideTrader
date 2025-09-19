@@ -1,6 +1,6 @@
 extends Area3D
 
-@export_enum("hub","apartment","office","club","aptlobby","UptownApartment") var target_scene_key: String = "hub"
+@export_enum("hub","apartment","office","club","aptlobby","UpTownApartment","GroceryHood","RestaurantHood") var target_scene_key: String = "hub"
 @export var target_spawn: String = ""	# Marker3D name in target scene
 
 # Keep but set to "None" now that the clock drives phases (using it may desync the clock)

@@ -1,0 +1,563 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1wu353vwuwqp"]
+
+[ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="1_a0ndb"]
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_yy5y5"]
+[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="3_gv5wu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y2lcj"]
+
+[node name="GroceryHood" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_a0ndb")]
+transform = Transform3D(0.0107859, 0, 0.999942, 0, 1, 0, -0.999942, 0, 0.0107859, 4.06246, 2, 0)
+
+[node name="Architecture" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(12.6789, 0, 0, 0, 0.0422381, 0, 0, 0, 17.6695, -0.0370978, 0.60999, -0.00577805)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-2.0376e-07, 0.0287211, 0, -4.66148, -1.25544e-09, 0, 0, 0, 17.6695, 6.30234, 2.8475, -0.00577805)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-2.0376e-07, 0.0287211, 0, -4.66148, -1.25544e-09, 0, 0, 0, 17.6695, -6.37653, 2.8475, -0.00577805)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(2.54675e-14, -1.458e-09, 13.2501, -4.66148, -1.458e-09, 0, 2.0376e-07, -0.0333552, -5.7918e-07, -0.132535, 2.8475, -8.84833)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(2.54675e-14, -1.458e-09, 12.8088, -4.66148, -1.458e-09, 0, 2.0376e-07, -0.0333552, -5.59891e-07, -0.132535, 2.8475, 8.79537)
+use_collision = true
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(0.5, 0, 0, 0, 0.894489, 0, 0, 0, 4, -4.5, 0.859962, 0)
+use_collision = true
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-2.18557e-08, 0, 1.74093, 0, 0.894489, 0, -0.5, 0, -7.60985e-08, -5.13172, 0.859962, -2.24588)
+use_collision = true
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-2.18557e-08, 0, 1.74093, 0, 0.894489, 0, -0.5, 0, -7.60985e-08, -5.13172, 0.859962, 2.24684)
+use_collision = true
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, -1.2678, 1.75887, 6.58194)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D9"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, -1.2678, 1.75887, 4.68093)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D10"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, -1.2678, 1.75887, 2.79724)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D11"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, 1.43093, 1.75887, 6.58194)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D12"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, 1.43093, 1.75887, 4.68093)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D13"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, 1.43093, 1.75887, 2.79724)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D14"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, 1.43093, 1.75887, -2.71908)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D15"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, 1.43093, 1.75887, -4.62009)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D16"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, 1.43093, 1.75887, -6.50378)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D17"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, -1.32521, 1.75887, -2.71908)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D18"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, -1.32521, 1.75887, -4.62009)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D19"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Architecture"]
+transform = Transform3D(-0.5, 0, -1.52197e-07, 0, 2.20786, 0, 4.37114e-08, 0, -1.74093, -1.32521, 1.75887, -6.50378)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, 0.33012, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.5, 0, 0, 0, 0.917818, 0, 3.55271e-15, 0, 0.826994, -0.263847, 0, 2.38419e-07)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.352619, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, 0.186556, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.192165, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, 0.263709, -0.364178, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0, 0)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.352619, 0)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, 0.186556, 0)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.192165, 0)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Architecture/CSGBox3D20"]
+transform = Transform3D(0.518558, 0, 2.84217e-14, 0, 0.0359375, 0, 3.55271e-15, 0, 0.856872, -0.231571, -0.364178, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40144, 1.66113, 0)
+script = ExtResource("2_yy5y5")
+target_spawn = "GroceryHood"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_y2lcj")
+
+[node name="GroceryHub" type="Marker3D" parent="."]
+transform = Transform3D(0.0185345, 0, 0.999828, 0, 1, 0, -0.999828, 0, 0.0185345, 4.33219, 1.07858, 0)
+
+[node name="SunSkyRig" parent="." instance=ExtResource("3_gv5wu")]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct8idty8yji40"]
+
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="1_1bp7q"]
+[ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="2_1xlcc"]
+[ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="3_e283v"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1xlcc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e283v"]
+
+[node name="Architecture" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(11.3665, 0, 0, 0, 0.0422381, 0, 0, 0, 13.8715, -0.0410493, 0.60999, -0.0075578)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-2.0376e-07, 0.0257482, 0, -4.66148, -1.12549e-09, 0, 0, 0, 13.8715, 5.64219, 2.8475, -0.0075578)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-2.0376e-07, 0.0257482, 0, -4.66148, -1.12549e-09, 0, 0, 0, 13.8715, -5.72429, 2.8475, -0.0075578)
+use_collision = true
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(-1.02677e-07, 0.0257482, 0, -2.34897, -1.12549e-09, 0, 0, 0, 10.4045, -5.66029, 3.52721, -0.0075578)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(2.54675e-14, -1.14461e-09, 11.8786, -4.66148, -1.14461e-09, 0, 2.0376e-07, -0.0261856, -5.19229e-07, -0.126608, 2.8475, -6.94945)
+use_collision = true
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(2.54675e-14, -1.14461e-09, 11.483, -4.66148, -1.14461e-09, 0, 2.0376e-07, -0.0261856, -5.01937e-07, -0.126608, 2.8475, 6.90183)
+use_collision = true
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.894489, 0, 0, 0, 13.8329, -4.5, 0.859962, 0)
+use_collision = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2309, 1.30044, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_1xlcc")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01805, 0.569095, 0.0972683)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15293, 0.620132, 0)
+shape = SubResource("CapsuleShape3D_e283v")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80439, 0.820429, 0.0972683)
+script = ExtResource("1_1bp7q")
+target_spawn = "RestaurantHood"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15293, 0.620132, 0)
+shape = SubResource("CapsuleShape3D_e283v")
+
+[node name="RestaurantHood" type="Marker3D" parent="."]
+transform = Transform3D(-0.890769, 0, 0.454457, 0, 1, 0, -0.454457, 0, -0.890769, 3.91356, 1.3693, 0)
+
+[node name="SunSkyRig" parent="." instance=ExtResource("2_1xlcc")]
+
+[node name="Player" parent="." instance=ExtResource("3_e283v")]
+transform = Transform3D(0.0289684, 0, 0.99958, 0, 1, 0, -0.99958, 0, 0.0289684, 2.88123, 1.87974, 1.18113)

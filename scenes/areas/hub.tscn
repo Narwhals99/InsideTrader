@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://pht8qtd5ogxf"]
+[gd_scene load_steps=14 format=3 uid="uid://pht8qtd5ogxf"]
 
 [ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="1_gqehd"]
 [ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="2_gqehd"]
 [ext_resource type="AudioStream" uid="uid://llhqojnys24e" path="res://assets/environments/020.   Under-the-Gun_FULL_WSR1861501.wav" id="2_m06ck"]
 [ext_resource type="Script" uid="uid://bnnw7sdoatovm" path="res://scripts/areas/ClubMusic.gd" id="3_cdqhx"]
-[ext_resource type="PackedScene" uid="uid://caj45st133ack" path="res://scenes/areas/HUBPROTO.tscn" id="6_spdrs"]
+[ext_resource type="PackedScene" uid="uid://caj45st133ack" path="res://scenes/areas/DropInCity.tscn" id="6_spdrs"]
 [ext_resource type="Script" uid="uid://duiihgandplaj" path="res://scripts/areas/ClubStrobeController.gd" id="6_triwh"]
 [ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="7_spdrs"]
 
@@ -22,7 +22,11 @@ height = 2.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spdrs"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_triwh"]
+
 [node name="hub" type="Node3D"]
+
+[node name="HUBPROTO" parent="." instance=ExtResource("6_spdrs")]
 
 [node name="WP_Hub_Apt" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 60)
@@ -114,25 +118,44 @@ shape = SubResource("CapsuleShape3D_wo5t3")
 [node name="Spawn_Hub_Apt" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 247.993, 0.34131, -67.5108)
 
+[node name="RestaurantHood" type="Marker3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 265.493, 0.84131, -49.0108)
+
 [node name="To_Restaurant_Neighborhood" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 268.096, 1, -48.9296)
+script = ExtResource("1_gqehd")
+target_scene_key = "RestaurantHood"
+target_spawn = "RestaurantHood"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="To_Restaurant_Neighborhood"]
 shape = SubResource("CylinderShape3D_triwh")
 
-[node name="HUBPROTO" parent="." instance=ExtResource("6_spdrs")]
-
 [node name="Player" parent="." instance=ExtResource("2_gqehd")]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 261.5, 1, -65)
-
-[node name="SunSkyRig" parent="." instance=ExtResource("7_spdrs")]
 
 [node name="To_Uptown" type="Area3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 63, 1, 75.5)
 script = ExtResource("1_gqehd")
-target_scene_key = "UptownApartment"
+target_scene_key = "UpTownApartment"
 target_spawn = "Spawn_Uptown_From_Hub"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="To_Uptown"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707108, 0, -0.707108)
 shape = SubResource("CapsuleShape3D_spdrs")
+
+[node name="To_Grocery_Hood" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.5, 1, -38)
+script = ExtResource("1_gqehd")
+target_scene_key = "GroceryHood"
+target_spawn = "GroceryHub"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="To_Grocery_Hood"]
+shape = SubResource("CapsuleShape3D_triwh")
+
+[node name="GroceryHood" type="Marker3D" parent="."]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 92, 0.5, -36.5)
+
+[node name="SunSkyRig" parent="." instance=ExtResource("7_spdrs")]
+
+[node name="Hub_Uptown" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, 75.5)

@@ -49,6 +49,14 @@ var _details_title: Label = null
 var _details_sector: Label = null
 var _details_list: VBoxContainer = null
 
+# === ADD THESE MEMBER VARIABLES AT THE TOP ===
+var _banking_tab_index: int = -1
+@onready var banking_scroll: ScrollContainer = null  # Will be created dynamically
+@onready var banking_container: VBoxContainer = null  # Will be created dynamically
+var _bank_balance_label: Label = null
+var _portfolio_cash_label: Label = null
+var _transfer_amount_spin: SpinBox = null
+var _transaction_list: VBoxContainer = null
 
 func _refresh_insider_info() -> void:
 	if insider_list == null:
@@ -134,9 +142,21 @@ func _ready() -> void:
 		_insider_tab_index = _tabs.get_tab_count()
 		_tabs.add_tab("Insider Info (0)")
 
+		# NEW: Banking tab
+		_banking_tab_index = _tabs.get_tab_count()
+		_tabs.add_tab("Banking")
+
 		_tabs.current_tab = 0
 		if not _tabs.tab_selected.is_connected(_on_tab_selected):
 			_tabs.tab_selected.connect(_on_tab_selected)
+			
+	# Add banking UI creation
+	_create_banking_ui()
+
+	# Connect to bank service
+	if typeof(BankService) != TYPE_NIL:
+		if not BankService.bank_balance_changed.is_connected(_on_bank_balance_changed):
+			BankService.bank_balance_changed.connect(_on_bank_balance_changed)
 
 	# Build initial market rows and wire signals
 	_build_market_rows()
@@ -289,12 +309,14 @@ func _process(dt: float) -> void:
 			_refresh_day_values_only()
 
 # ---------------- Tabs ----------------
+# === UPDATE _on_tab_selected FUNCTION ===
 func _on_tab_selected(idx: int) -> void:
 	var show_market: bool = (idx == 0)
 	var show_positions: bool = (idx == 1)
 	var show_today: bool = (idx == 2)
 	var show_insider: bool = (_insider_tab_index >= 0 and idx == _insider_tab_index)
-
+	var show_banking: bool = (_banking_tab_index >= 0 and idx == _banking_tab_index)
+	
 	# hide all
 	if _market_scroll: _market_scroll.visible = false
 	if _footer: _footer.visible = false
@@ -303,7 +325,8 @@ func _on_tab_selected(idx: int) -> void:
 	if _day_scroll: _day_scroll.visible = false
 	if _day_header: _day_header.visible = false
 	if insider_scroll: insider_scroll.visible = false
-
+	if banking_scroll: banking_scroll.visible = false
+	
 	# show the chosen one
 	if show_market:
 		if _market_scroll: _market_scroll.visible = true
@@ -317,6 +340,9 @@ func _on_tab_selected(idx: int) -> void:
 	elif show_insider:
 		if insider_scroll: insider_scroll.visible = true
 		_refresh_insider_info()
+	elif show_banking:
+		if banking_scroll: banking_scroll.visible = true
+		_refresh_banking_tab()
 
 
 # ------------- Signals wiring -------------
@@ -682,10 +708,18 @@ func _refresh_day_values_only() -> void:
 
 # ------------- Totals / Footer -------------
 func _refresh_totals() -> void:
-	var cash: float = float(Portfolio.cash)
-	var port_val: float = Portfolio.holdings_value()
-	var tot: float = cash + port_val
-	_qty_label.text = "Cash: $" + String.num(cash, 2) + "  |  Port: $" + String.num(port_val, 2) + "  |  Total: $" + String.num(tot, 2)
+	var portfolio_cash: float = float(Portfolio.cash)
+	var holdings_val: float = Portfolio.holdings_value()
+	var wallet: float = 0.0
+	
+	if typeof(BankService) != TYPE_NIL:
+		wallet = BankService.get_balance()
+	
+	var portfolio_total: float = portfolio_cash + holdings_val
+	var net_worth: float = portfolio_total + wallet
+	
+	# Show wallet separately from portfolio
+	_qty_label.text = "[W] $" + String.num(wallet, 2) + " | [P] $" + String.num(portfolio_cash, 2) + " + $" + String.num(holdings_val, 2) + " | Net: $" + String.num(net_worth, 2)
 
 # ------------- React to external changes -------------
 func _on_prices_changed(_prices: Dictionary = {}) -> void:
@@ -982,3 +1016,291 @@ func _get_last5_rows(sym: String) -> Array:
 		return out
 
 	return out
+
+func _create_banking_ui() -> void:
+	# Create ScrollContainer if it doesn't exist
+	if banking_scroll == null:
+		banking_scroll = ScrollContainer.new()
+		banking_scroll.name = "BankingScroll"
+		banking_scroll.visible = false
+		banking_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		banking_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		$Root/Panel/VBox.add_child(banking_scroll)
+	
+	# Create container
+	if banking_container == null:
+		banking_container = VBoxContainer.new()
+		banking_container.name = "BankingContainer"
+		banking_container.add_theme_constant_override("separation", 16)
+		banking_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		banking_scroll.add_child(banking_container)
+	
+	# Clear existing content
+	for child in banking_container.get_children():
+		child.queue_free()
+	
+	# === Title Section ===
+	var title = Label.new()
+	title.text = "Bank Account"
+	title.add_theme_font_size_override("font_size", 18)
+	title.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
+	banking_container.add_child(title)
+	
+	# === Balance Display ===
+	var balance_panel = PanelContainer.new()
+	var balance_vbox = VBoxContainer.new()
+	balance_vbox.add_theme_constant_override("separation", 8)
+	balance_panel.add_child(balance_vbox)
+	banking_container.add_child(balance_panel)
+	
+	# Wallet Balance (for spending)
+	var wallet_row = HBoxContainer.new()
+	var wallet_icon = Label.new()
+	wallet_icon.text = "[W]"
+	wallet_icon.add_theme_font_size_override("font_size", 16)
+	var wallet_label = Label.new()
+	wallet_label.text = "Wallet (Spending):"
+	wallet_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_bank_balance_label = Label.new()
+	_bank_balance_label.text = "$0.00"
+	_bank_balance_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_bank_balance_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_bank_balance_label.add_theme_font_size_override("font_size", 20)
+	_bank_balance_label.add_theme_color_override("font_color", Color(0.2, 0.8, 0.2))
+	wallet_row.add_child(wallet_icon)
+	wallet_row.add_child(wallet_label)
+	wallet_row.add_child(_bank_balance_label)
+	balance_vbox.add_child(wallet_row)
+	
+	# Portfolio Balance (for trading)
+	var portfolio_row = HBoxContainer.new()
+	var portfolio_icon = Label.new()
+	portfolio_icon.text = "[P]"
+	portfolio_icon.add_theme_font_size_override("font_size", 16)
+	var portfolio_label = Label.new()
+	portfolio_label.text = "Portfolio (Trading):"
+	portfolio_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_portfolio_cash_label = Label.new()
+	_portfolio_cash_label.text = "$0.00"
+	_portfolio_cash_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_portfolio_cash_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_portfolio_cash_label.add_theme_font_size_override("font_size", 20)
+	portfolio_row.add_child(portfolio_icon)
+	portfolio_row.add_child(portfolio_label)
+	portfolio_row.add_child(_portfolio_cash_label)
+	balance_vbox.add_child(portfolio_row)
+	
+	# Divider
+	banking_container.add_child(HSeparator.new())
+	
+	# === Transfer Section ===
+	var transfer_label = Label.new()
+	transfer_label.text = "Transfer Funds"
+	transfer_label.add_theme_font_size_override("font_size", 14)
+	banking_container.add_child(transfer_label)
+	
+	# Amount input
+	var amount_row = HBoxContainer.new()
+	amount_row.add_theme_constant_override("separation", 8)
+	var amount_label = Label.new()
+	amount_label.text = "Amount: $"
+	amount_label.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_transfer_amount_spin = SpinBox.new()
+	_transfer_amount_spin.min_value = 0
+	_transfer_amount_spin.max_value = 10000
+	_transfer_amount_spin.step = 50
+	_transfer_amount_spin.value = 100
+	_transfer_amount_spin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	amount_row.add_child(amount_label)
+	amount_row.add_child(_transfer_amount_spin)
+	banking_container.add_child(amount_row)
+	
+	# Transfer buttons
+	var button_row = HBoxContainer.new()
+	button_row.add_theme_constant_override("separation", 8)
+	
+	var withdraw_btn = Button.new()
+	withdraw_btn.text = "<- To Wallet"
+	withdraw_btn.tooltip_text = "Transfer from Portfolio to Wallet for spending"
+	withdraw_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	withdraw_btn.add_theme_font_size_override("font_size", 14)
+	withdraw_btn.pressed.connect(_on_withdraw_pressed)
+	button_row.add_child(withdraw_btn)
+	
+	var deposit_btn = Button.new()
+	deposit_btn.text = "To Portfolio ->"
+	deposit_btn.tooltip_text = "Transfer from Wallet to Portfolio for trading"
+	deposit_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	deposit_btn.add_theme_font_size_override("font_size", 14)
+	deposit_btn.pressed.connect(_on_deposit_pressed)
+	button_row.add_child(deposit_btn)
+	
+	banking_container.add_child(button_row)
+	
+	# Quick transfer buttons
+	var quick_label = Label.new()
+	quick_label.text = "Quick Transfer:"
+	quick_label.add_theme_font_size_override("font_size", 11)
+	quick_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	banking_container.add_child(quick_label)
+	
+	var quick_row = HBoxContainer.new()
+	quick_row.add_theme_constant_override("separation", 4)
+	for amount in [100, 500, 1000, 2500]:
+		var quick_btn = Button.new()
+		quick_btn.text = "$" + str(amount)
+		quick_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		quick_btn.add_theme_font_size_override("font_size", 11)
+		quick_btn.pressed.connect(func(): _transfer_amount_spin.value = amount)
+		quick_row.add_child(quick_btn)
+	banking_container.add_child(quick_row)
+	
+	# Daily limits info
+	var limits_label = Label.new()
+	limits_label.name = "LimitsLabel"
+	limits_label.text = "Daily Limits: $5000 each way"
+	limits_label.add_theme_font_size_override("font_size", 10)
+	limits_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	banking_container.add_child(limits_label)
+	
+	banking_container.add_child(HSeparator.new())
+	
+	# === Recent Activity ===
+	var activity_label = Label.new()
+	activity_label.text = "Recent Activity"
+	activity_label.add_theme_font_size_override("font_size", 14)
+	banking_container.add_child(activity_label)
+	
+	_transaction_list = VBoxContainer.new()
+	_transaction_list.add_theme_constant_override("separation", 4)
+	banking_container.add_child(_transaction_list)
+	
+	# Help text
+	var help_label = RichTextLabel.new()
+	help_label.bbcode_enabled = true
+	help_label.fit_content = true
+	help_label.text = "[color=#888888][i]Tip: Keep funds in your Wallet for purchases (beer, items)\nKeep funds in Portfolio for trading stocks[/i][/color]"
+	help_label.add_theme_font_size_override("normal_font_size", 11)
+	banking_container.add_child(help_label)
+	
+	# Initial refresh
+	_refresh_banking_tab()
+
+# === ADD THESE NEW FUNCTIONS ===
+func _on_withdraw_pressed() -> void:
+	"""Move money from Portfolio to Wallet"""
+	var amount = float(_transfer_amount_spin.value)
+	if amount <= 0:
+		return
+	
+	if typeof(BankService) != TYPE_NIL:
+		var result = BankService.withdraw_from_portfolio(amount)
+		if result.success:
+			_transfer_amount_spin.value = 100  # Reset to default
+		_refresh_banking_tab()
+		_refresh_totals()
+
+func _on_deposit_pressed() -> void:
+	"""Move money from Wallet to Portfolio"""
+	var amount = float(_transfer_amount_spin.value)
+	if amount <= 0:
+		return
+	
+	if typeof(BankService) != TYPE_NIL:
+		var result = BankService.deposit_to_portfolio(amount)
+		if result.success:
+			_transfer_amount_spin.value = 100  # Reset to default
+		_refresh_banking_tab()
+		_refresh_totals()
+
+func _refresh_banking_tab() -> void:
+	if typeof(BankService) == TYPE_NIL:
+		return
+	
+	# Update balances
+	if _bank_balance_label:
+		var bank_bal = BankService.get_balance()
+		_bank_balance_label.text = "$" + String.num(bank_bal, 2)
+		# Color code based on balance
+		if bank_bal < 50:
+			_bank_balance_label.add_theme_color_override("font_color", Color(0.85, 0.3, 0.3))
+		elif bank_bal < 200:
+			_bank_balance_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.2))
+		else:
+			_bank_balance_label.add_theme_color_override("font_color", Color(0.2, 0.8, 0.2))
+	
+	if _portfolio_cash_label and typeof(Portfolio) != TYPE_NIL:
+		_portfolio_cash_label.text = "$" + String.num(Portfolio.cash, 2)
+	
+	# Update spinbox limits
+	if _transfer_amount_spin:
+		_transfer_amount_spin.max_value = max(
+			BankService.get_available_to_withdraw(),
+			BankService.get_available_to_deposit()
+		)
+	
+	# Update daily limits display
+	var limits = BankService.get_daily_limits_status()
+	var limits_label = banking_container.get_node_or_null("LimitsLabel")
+	if limits_label:
+		limits_label.text = "Remaining today: <- $%.0f | $%.0f ->" % [
+			limits.withdraw_remaining,
+			limits.deposit_remaining
+		]
+	
+	# Update transaction history
+	if _transaction_list:
+		for child in _transaction_list.get_children():
+			child.queue_free()
+		
+		var history = BankService.get_transaction_history(5)
+		for trans in history:
+			var trans_row = HBoxContainer.new()
+			
+			# Icon based on type
+			var icon = Label.new()
+			match trans.type:
+				"withdraw": icon.text = "<"
+				"deposit": icon.text = ">"
+				"purchase": icon.text = "[B]"
+				"income": icon.text = "[$]"
+				_: icon.text = "*"
+			
+			var desc_label = Label.new()
+			var desc_text = trans.type.capitalize()
+			if trans.has("description") and trans.description != "":
+				desc_text = trans.description
+			desc_label.text = desc_text
+			desc_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			
+			var amount_label = Label.new()
+			var amount_text = "$" + String.num(trans.amount, 2)
+			if trans.type in ["deposit", "purchase"]:
+				amount_text = "-" + amount_text
+				amount_label.add_theme_color_override("font_color", Color(0.85, 0.3, 0.3))
+			elif trans.type in ["withdraw", "income"]:
+				amount_text = "+" + amount_text
+				amount_label.add_theme_color_override("font_color", Color(0.2, 0.8, 0.2))
+			amount_label.text = amount_text
+			amount_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			
+			var time_label = Label.new()
+			time_label.text = trans.get("time_string", "")
+			time_label.add_theme_font_size_override("font_size", 9)
+			time_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+			
+			trans_row.add_child(icon)
+			trans_row.add_child(desc_label)
+			trans_row.add_child(amount_label)
+			trans_row.add_child(time_label)
+			_transaction_list.add_child(trans_row)
+		
+		if history.is_empty():
+			var empty_label = Label.new()
+			empty_label.text = "No recent transactions"
+			empty_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+			_transaction_list.add_child(empty_label)
+
+func _on_bank_balance_changed(_new_balance: float) -> void:
+	if _tabs and _tabs.current_tab == _banking_tab_index:
+		_refresh_banking_tab()

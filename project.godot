@@ -27,6 +27,7 @@ DialogueUI="*res://scripts/actors/DialogueUI.gd"
 InsiderInfo="*res://scripts/globals/trading/InsiderInfo.gd"
 Inventory="*res://scripts/services/InventoryService.gd"
 NpcSpawnManager="*res://scripts/services/NPCSpawnManager.gd"
+BankService="*res://scripts/services/BankService.gd"
 
 [input]
 

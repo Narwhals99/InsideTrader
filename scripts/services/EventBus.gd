@@ -42,6 +42,16 @@ signal scene_loaded(scene_key: String)
 signal ui_opened(ui_name: String)
 signal ui_closed(ui_name: String)
 
+# ============ BANKING EVENTS ============
+signal bank_withdrawal_requested(amount: float)
+signal bank_deposit_requested(amount: float)
+signal bank_withdrawal_completed(result: Dictionary)
+signal bank_deposit_completed(result: Dictionary)
+signal bank_transaction_completed(result: Dictionary)
+signal bank_balance_updated(new_balance: float)
+signal wallet_purchase_made(item: String, cost: float)
+signal wallet_income_received(amount: float, reason: String)
+
 signal npc_arrived(npc_id: String, location: String)
 
 func emit_notification(text: String, type: String = "info", duration: float = 3.0) -> void:

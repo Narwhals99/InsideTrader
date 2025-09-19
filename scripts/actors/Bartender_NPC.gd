@@ -60,33 +60,56 @@ func interact() -> Dictionary:
 			"message": "You already have a beer. Give it to someone first!"
 		}
 	
-	# Check if player can afford it
-	var cash = TradingService.get_cash()
-	if cash < beer_price:
+	# NEW: Check BANK balance instead of Portfolio
+	var bank_balance = 0.0
+	if typeof(BankService) != TYPE_NIL:
+		bank_balance = BankService.get_balance()
+	else:
+		# Fallback to old system if BankService not found
+		bank_balance = TradingService.get_cash()
+	
+	if bank_balance < beer_price:
 		EventBus.emit_dialogue("Bartender", 
 			"You need $%.0f for a beer. Come back when you have the cash." % beer_price)
-		EventBus.emit_notification("Not enough cash! Need $%.0f" % beer_price, "danger", 3.0)
+		EventBus.emit_notification("Not enough cash! Need $%.0f (Have: $%.0f)" % [beer_price, bank_balance], "danger", 3.0)
 		return {
 			"success": false,
 			"message": "You need $%.0f for a beer." % beer_price
 		}
 	
-	# Purchase beer (still using Portfolio directly for now - will migrate later)
-	if typeof(Portfolio) != TYPE_NIL:
-		Portfolio.cash -= beer_price
+	# NEW: Use BankService.purchase() instead of direct Portfolio manipulation
+	var purchase_success = false
+	if typeof(BankService) != TYPE_NIL:
+		purchase_success = BankService.purchase("Beer", beer_price)
+	else:
+		# Fallback to old system
+		if typeof(Portfolio) != TYPE_NIL and Portfolio.cash >= beer_price:
+			Portfolio.cash -= beer_price
+			purchase_success = true
+	
+	if not purchase_success:
+		EventBus.emit_dialogue("Bartender", "Transaction failed. Try again.")
+		return {
+			"success": false,
+			"message": "Transaction failed"
+		}
 	
 	# Add beer to shared inventory
 	Inventory.add_item("beer", 1)
 	
 	# Emit events
 	EventBus.emit_signal("beer_purchased")
+	EventBus.emit_signal("wallet_purchase_made", "Beer", beer_price)
 	
 	# Show feedback
 	EventBus.emit_dialogue("Bartender", "Here's your beer! Someone might appreciate it...", 3.0)
 	EventBus.emit_notification("Beer purchased! -$%.0f" % beer_price, "success", 2.0)
-	EventBus.emit_notification("Cash remaining: $%.0f" % (cash - beer_price), "info", 2.0)
 	
-	print("[Bartender_NEW] Sold beer for $", beer_price)
+	# Show new bank balance
+	if typeof(BankService) != TYPE_NIL:
+		EventBus.emit_notification("Wallet balance: $%.0f" % BankService.get_balance(), "info", 2.0)
+	
+	print("[Bartender] Sold beer for $", beer_price, " from bank account")
 	
 	return {
 		"success": true,
@@ -111,4 +134,15 @@ func player_gave_beer() -> void:
 
 func _show_prompt() -> void:
 	if not Inventory.has_beer():
-		EventBus.emit_notification("Press E to buy beer ($%.0f)" % beer_price, "info", 2.0)
+		# Check bank balance for the prompt
+		var can_afford = false
+		if typeof(BankService) != TYPE_NIL:
+			can_afford = BankService.can_afford(beer_price)
+		else:
+			# Fallback to portfolio check
+			can_afford = (TradingService.get_cash() >= beer_price)
+		
+		if can_afford:
+			EventBus.emit_notification("Press E to buy beer ($%.0f)" % beer_price, "info", 2.0)
+		else:
+			EventBus.emit_notification("Beer costs $%.0f (insufficient wallet funds)" % beer_price, "warning", 2.0)

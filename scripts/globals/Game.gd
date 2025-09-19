@@ -208,8 +208,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				var ok_sell: bool = Portfolio.sell(&"ACME", 1, p_sell)
 				print("[SELL ACME @", p_sell, "] ok=", ok_sell, " cash=", Portfolio.cash, " pos=", Portfolio.get_position(&"ACME"))
 
-			# Phone toggle (supports Autoload "Phone" OR scene-local group "phone_ui")
-			KEY_P:
+			# Phone toggle (Tab) supports Autoload "Phone" OR scene-local group "phone_ui"
+			KEY_TAB:
 				# 1) Autoload case
 				if has_node("/root/Phone"):
 					var phone: CanvasLayer = get_node("/root/Phone") as CanvasLayer

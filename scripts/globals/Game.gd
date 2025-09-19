@@ -4,6 +4,21 @@ signal phase_changed(phase: StringName, day: int)
 signal day_advanced(day: int)
 
 var next_spawn: String = ""	# used by your portals/doors
+var _purchased_portals: Dictionary = {}
+
+# -------------------- PORTAL PURCHASES --------------------
+func has_portal_purchase(key: String) -> bool:
+	var cleaned: String = key.strip_edges()
+	if cleaned == "":
+		return false
+	return _purchased_portals.get(cleaned, false)
+
+func unlock_portal_purchase(key: String) -> void:
+	var cleaned: String = key.strip_edges()
+	if cleaned == "":
+		return
+	_purchased_portals[cleaned] = true
+
 
 const PHASE_ORDER: Array[StringName] = [&"Morning", &"Market", &"Evening", &"LateNight"]
 

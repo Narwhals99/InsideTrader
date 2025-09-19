@@ -138,6 +138,13 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 script = ExtResource("1_gqehd")
 target_scene_key = "UpTownApartment"
 target_spawn = "Spawn_Uptown_From_Hub"
+require_interact = true
+locked_hint = ""
+requires_purchase = true
+purchase_price = 100000.0
+purchase_item_name = "Uptown Apartment"
+purchase_prompt_text = "Purchase the Uptown apartment for $100,000?"
+insufficient_funds_message = "You don't have enough money to buy this apartment (100k)."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="To_Uptown"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707108, 0, -0.707108)

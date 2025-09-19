@@ -94,18 +94,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky"]
@@ -118,18 +122,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky"]
@@ -142,18 +150,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
@@ -166,18 +178,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
@@ -190,18 +206,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
@@ -214,18 +234,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
@@ -238,18 +262,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
@@ -262,18 +290,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Coolblocky3" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -288,18 +320,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
 transform = Transform3D(3.55271e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794601, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
@@ -525,18 +561,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2"]
@@ -549,18 +589,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2"]
@@ -573,18 +617,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
@@ -597,18 +645,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
@@ -621,18 +673,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
@@ -645,18 +701,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
@@ -669,18 +729,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
@@ -693,18 +757,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -717,18 +785,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain3" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -741,18 +813,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain4" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -765,18 +841,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain5" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -789,18 +869,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain6" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -813,18 +897,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain7" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -837,18 +925,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain8" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -861,18 +953,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain9" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -885,18 +981,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain10" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -909,18 +1009,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain11" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -933,18 +1037,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="plain12" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -957,18 +1065,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="BIG" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -981,18 +1093,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
@@ -1005,18 +1121,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA5" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
@@ -1029,22 +1149,27 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
 transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 7.10543e-15, -4.37114e-08, 0.365227, 0.966629, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
@@ -1057,22 +1182,27 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
 transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 3.55271e-15, -4.37114e-08, -0.134773, -0.033371, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
@@ -1085,22 +1215,27 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
 transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 3.55271e-15, -4.37114e-08, -0.134773, -0.033371, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingA7" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1113,18 +1248,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Long" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1137,18 +1276,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Long2" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1161,18 +1304,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Long4" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1185,18 +1332,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Long3" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1209,18 +1360,22 @@ size = Vector3(12, 5, 0.5)
 
 [node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
 transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+use_collision = true
 size = Vector3(8, 11, 0.5)
 
 [node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+use_collision = true
 size = Vector3(11, 5, 0.5)
 
 [node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+use_collision = true
 size = Vector3(8, 5, 0.5)
 
 [node name="NewBuildingB" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1233,14 +1388,17 @@ size = Vector3(12, 30, 0.5)
 
 [node name="Officewall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+use_collision = true
 size = Vector3(8, 30, 0.5)
 
 [node name="Officewall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+use_collision = true
 size = Vector3(11, 30, 0.5)
 
 [node name="Officewall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+use_collision = true
 size = Vector3(8, 30, 0.5)
 
 [node name="NewBuildingB2" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1253,14 +1411,17 @@ size = Vector3(12, 30, 0.5)
 
 [node name="Officewall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+use_collision = true
 size = Vector3(8, 30, 0.5)
 
 [node name="Officewall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+use_collision = true
 size = Vector3(11, 30, 0.5)
 
 [node name="Officewall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+use_collision = true
 size = Vector3(8, 30, 0.5)
 
 [node name="NewBuildingB3" type="Node3D" parent="UNUSED BUILDINGS"]
@@ -1273,14 +1434,17 @@ size = Vector3(12, 30, 0.5)
 
 [node name="Officewall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+use_collision = true
 size = Vector3(8, 30, 0.5)
 
 [node name="Officewall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+use_collision = true
 size = Vector3(11, 30, 0.5)
 
 [node name="Officewall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+use_collision = true
 size = Vector3(8, 30, 0.5)
 
 [node name="Environment" type="Node3D" parent="."]

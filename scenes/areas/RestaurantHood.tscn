@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct8idty8yji40"]
+[gd_scene load_steps=8 format=3 uid="uid://ct8idty8yji40"]
 
 [ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="1_1bp7q"]
+[ext_resource type="Script" uid="uid://d0p0r020leeww" path="res://scripts/actors/RestaurantWorker.gd" id="1_stbf6"]
 [ext_resource type="PackedScene" uid="uid://cn5rkhekjrqo3" path="res://scenes/areas/sunskyrig.tscn" id="2_1xlcc"]
 [ext_resource type="PackedScene" uid="uid://bugch1mtersd1" path="res://scenes/actors/player.tscn" id="3_e283v"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1xlcc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_stbf6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e283v"]
 
@@ -38,18 +41,19 @@ use_collision = true
 transform = Transform3D(0.5, 0, 0, 0, 0.894489, 0, 0, 0, 13.8329, -4.5, 0.859962, 0)
 use_collision = true
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="RestaurantWorker" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2309, 1.30044, 0)
+script = ExtResource("1_stbf6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RestaurantWorker"]
 mesh = SubResource("CapsuleMesh_1xlcc")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01805, 0.569095, 0.0972683)
+[node name="Area3D" type="Area3D" parent="RestaurantWorker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72427, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15293, 0.620132, 0)
-shape = SubResource("CapsuleShape3D_e283v")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RestaurantWorker/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.522409, 0, 0)
+shape = SubResource("CapsuleShape3D_stbf6")
 
 [node name="Area3D2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80439, 0.820429, 0.0972683)

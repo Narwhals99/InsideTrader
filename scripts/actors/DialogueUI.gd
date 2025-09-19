@@ -162,8 +162,14 @@ func notify(text: String, type: String = "info", duration: float = 5.0) -> void:
 
 	if label:
 		label.text = text
+		# Reduce font size for notifications
+		label.add_theme_font_size_override("font_size", 12)  # Reduced from default
 
 	if panel:
+		# Make the panel smaller
+		panel.custom_minimum_size = Vector2(250, 40)  # Reduced width and height
+		panel.size = Vector2(250, 40)
+		
 		var color := Color(0.2, 0.2, 0.2, 0.9)
 		match type:
 			"success": color = Color(0.2, 0.8, 0.2, 0.9)

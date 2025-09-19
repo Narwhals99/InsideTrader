@@ -2,6 +2,9 @@
 # Attach to a CanvasLayer node in your InventoryUI scene
 extends CanvasLayer
 
+# Preload FoodData class
+const FoodData = preload("res://scripts/resources/FoodData.gd")
+
 @export var pause_game_on_open: bool = false
 @export var grid_columns: int = 5
 @export var slot_size: Vector2 = Vector2(80, 80)
@@ -20,11 +23,15 @@ var is_open: bool = false
 var item_slots: Dictionary = {}  # item_id -> slot UI reference
 var selected_item: String = ""
 
+# For food consumption
+var _current_food_item: String = ""
+var _current_food_data: FoodData = null
+
 # Item display data (expand this as you add more items)
 var item_data: Dictionary = {
 	"beer": {
 		"name": "Beer",
-		"icon": "",  # Can replace with actual texture path
+		"icon": "🍺",
 		"description": "A cold beer. Someone might appreciate this.",
 		"stackable": true,
 		"max_stack": 99
@@ -38,9 +45,52 @@ var item_data: Dictionary = {
 	},
 	"key_card": {
 		"name": "Key Card",
-		"icon": "",
+		"icon": "🔑",
 		"description": "Access card for restricted areas",
 		"stackable": false
+	},
+	# Food items
+	"burger": {
+		"name": "Classic Burger",
+		"icon": "🍔",
+		"description": "A juicy burger that restores hunger",
+		"stackable": true,
+		"max_stack": 10
+	},
+	"fries": {
+		"name": "French Fries",
+		"icon": "🍟",
+		"description": "Crispy fries",
+		"stackable": true,
+		"max_stack": 10
+	},
+	"coffee": {
+		"name": "Coffee",
+		"icon": "☕",
+		"description": "Gives you an energy boost",
+		"stackable": true,
+		"max_stack": 5
+	},
+	"salad": {
+		"name": "Garden Salad",
+		"icon": "🥗",
+		"description": "A healthy salad",
+		"stackable": true,
+		"max_stack": 10
+	},
+	"soda": {
+		"name": "Soda",
+		"icon": "🥤",
+		"description": "Refreshing soda",
+		"stackable": true,
+		"max_stack": 10
+	},
+	"pizza": {
+		"name": "Pizza Slice",
+		"icon": "🍕",
+		"description": "Late night pizza",
+		"stackable": true,
+		"max_stack": 10
 	}
 }
 
@@ -285,8 +335,165 @@ func _on_slot_input(event: InputEvent, item_id: String) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_select_item(item_id)
+			# Check if it's a food item and show consume option
+			_check_food_consumption(item_id)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_use_item(item_id)
+
+func _check_food_consumption(item_id: String) -> void:
+	# Check if this is a food item by trying to load its data
+	var food_data = _get_food_data(item_id)
+	if food_data:
+		_show_food_options(item_id, food_data)
+
+func _get_food_data(item_id: String) -> FoodData:
+	# Try to load food data for this item
+	# First check if we have a registry of food items
+	var food_data_path = "res://data/food/%s.tres" % item_id
+	if ResourceLoader.exists(food_data_path):
+		return load(food_data_path) as FoodData
+	
+	# Or create a temporary FoodData based on known items
+	var temp_food = _create_temp_food_data(item_id)
+	return temp_food
+
+func _create_temp_food_data(item_id: String) -> FoodData:
+	# Create FoodData for known food items that were purchased
+	var food = FoodData.new()
+	match item_id:
+		"burger", "classic_burger":
+			food.item_id = item_id
+			food.display_name = "Classic Burger"
+			food.hunger_restore = 40.0
+			food.consume_message = "That burger really hit the spot!"
+			return food
+		"fries", "french_fries":
+			food.item_id = item_id
+			food.display_name = "French Fries"
+			food.hunger_restore = 15.0
+			food.consume_message = "The fries were perfectly crispy!"
+			return food
+		"coffee":
+			food.item_id = item_id
+			food.display_name = "Coffee"
+			food.energy_restore = 30.0
+			food.buff_duration = 60.0
+			food.speed_multiplier = 1.15
+			food.consume_message = "The coffee gives you a nice energy boost!"
+			return food
+		"salad", "garden_salad":
+			food.item_id = item_id
+			food.display_name = "Garden Salad"
+			food.hunger_restore = 25.0
+			food.consume_message = "You feel healthier after that salad!"
+			return food
+		"soda":
+			food.item_id = item_id
+			food.display_name = "Soda"
+			food.hunger_restore = 5.0
+			food.energy_restore = 10.0
+			food.consume_message = "The cold soda is refreshing!"
+			return food
+		"pizza", "pizza_slice":
+			food.item_id = item_id
+			food.display_name = "Pizza Slice"
+			food.hunger_restore = 30.0
+			food.consume_message = "Nothing beats late night pizza!"
+			return food
+		_:
+			return null
+
+func _show_food_options(item_id: String, food_data: FoodData) -> void:
+	# Create a simple context menu for food items
+	var options = []
+	
+	# Build consume option with details
+	var consume_text = "Eat %s" % food_data.display_name
+	if food_data.hunger_restore > 0:
+		consume_text += " (+%.0f hunger)" % food_data.hunger_restore
+	if food_data.energy_restore > 0:
+		consume_text += " (+%.0f energy)" % food_data.energy_restore
+	
+	options.append({"id": "consume", "text": consume_text})
+	options.append({"id": "cancel", "text": "Cancel"})
+	
+	# Store the current food item being interacted with
+	_current_food_item = item_id
+	_current_food_data = food_data
+	
+	# Show dialogue menu for the food
+	EventBus.emit_signal("dialogue_requested", "Inventory", "What do you want to do?", 0.0, options)
+	
+	# Connect to response if not already
+	if not EventBus.dialogue_completed.is_connected(_on_food_choice):
+		EventBus.dialogue_completed.connect(_on_food_choice)
+
+func _on_food_choice(choice_index: int) -> void:
+	if _current_food_item == "" or not _current_food_data:
+		return
+	
+	if choice_index == 0:  # Consume
+		_consume_food_item(_current_food_item, _current_food_data)
+	
+	# Clear current food
+	_current_food_item = ""
+	_current_food_data = null
+
+func _consume_food_item(item_id: String, food_data: FoodData) -> void:
+	# Check if player is too full
+	if food_data.hunger_restore > 0 and typeof(NeedsSystem) != TYPE_NIL:
+		var current_hunger = NeedsSystem.get_need_value("hunger")
+		if current_hunger >= 95.0:
+			EventBus.emit_notification("You're too full to eat this right now.", "warning", 2.0)
+			return
+	
+	# Remove from inventory
+	if not Inventory.remove_item(item_id, 1):
+		EventBus.emit_notification("Failed to consume item", "danger", 2.0)
+		return
+	
+	# Apply food effects
+	if food_data.hunger_restore > 0 and typeof(NeedsSystem) != TYPE_NIL:
+		NeedsSystem.eat_food(food_data.hunger_restore)
+	
+	if food_data.energy_restore > 0 and typeof(NeedsSystem) != TYPE_NIL:
+		if NeedsSystem.energy_enabled:
+			NeedsSystem.drink_coffee()  # Reuse existing method
+	
+	# Apply speed buff if any
+	if food_data.buff_duration > 0 and food_data.speed_multiplier != 1.0:
+		_apply_speed_buff(food_data.speed_multiplier, food_data.buff_duration)
+	
+	# Show consume message
+	EventBus.emit_notification(food_data.get_consume_message(), "success", 3.0)
+	
+	# Refresh inventory display
+	_refresh_inventory_display()
+
+func _apply_speed_buff(multiplier: float, duration: float) -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	if not player:
+		return
+	
+	if "walk_speed" in player and "run_speed" in player:
+		var original_walk = player.walk_speed
+		var original_run = player.run_speed
+		
+		player.walk_speed *= multiplier
+		player.run_speed *= multiplier
+		
+		EventBus.emit_notification(
+			"Speed boost active for %.0f seconds!" % duration,
+			"info",
+			2.0
+		)
+		
+		# Reset after duration
+		await get_tree().create_timer(duration).timeout
+		
+		player.walk_speed = original_walk
+		player.run_speed = original_run
+		EventBus.emit_notification("Speed boost expired", "info", 2.0)
 
 func _on_slot_hover(item_id: String, hovering: bool) -> void:
 	if not item_info_panel:

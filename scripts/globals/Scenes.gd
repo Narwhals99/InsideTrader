@@ -5,7 +5,8 @@ var db: Dictionary = {
 	"apartment": preload("res://scenes/areas/apartment.tscn"),
 	"office": preload("res://scenes/areas/office.tscn"),
 	"club": preload("res://scenes/areas/club.tscn"),
-	"aptlobby": preload("res://scenes/areas/aptlobby.tscn")
+	"aptlobby": preload("res://scenes/areas/aptlobby.tscn"),
+	"UpTownApartment": preload("res://scenes/areas/UpTownApartment.tscn")
 }
 
 var current_key: String = ""            # <— update on load

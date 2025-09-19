@@ -1,0 +1,2691 @@
+[gd_scene load_steps=3 format=3 uid="uid://caj45st133ack"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wmsi8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxafq"]
+
+[node name="HUBPROTO" type="Node3D"]
+
+[node name="Grocery Store" type="Node3D" parent="."]
+transform = Transform3D(1.41421, 0, 0.707107, 0, 1, 0, -1.41421, 0, 0.707107, 98.763, 0, -29.9296)
+
+[node name="Architecture" type="Node3D" parent="Grocery Store"]
+
+[node name="Clubwall" type="CSGBox3D" parent="Grocery Store/Architecture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="Grocery Store/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="Grocery Store/Architecture"]
+transform = Transform3D(1.77636e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="Grocery Store/Architecture"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794601, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="Grocery Store/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Restaurant_Door_Hood" type="Area3D" parent="Grocery Store"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grocery Store/Restaurant_Door_Hood"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_wmsi8")
+
+[node name="UNUSED BUILDINGS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 60)
+
+[node name="NewBuildingA" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 40.0963, 0, 0.570381)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain2" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 40.0963, 0, 44.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain2"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Coolblocky" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 6.5963, 0, 44.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.19525, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Coolblocky3" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-9.83507e-08, 0, -2, 0, 1, 0, 2.25, 0, -8.74228e-08, 51.0963, 0, 15.0704)
+
+[node name="Architecutre" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3"]
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(3.55271e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794601, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.19525, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, -3.8147e-06, 2.5, -19.5226)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-1.94144e-08, 1, 4.37114e-08, -9.70721e-09, -4.37114e-08, 1, 0.222075, 8.74227e-08, 4.37114e-08, 0.0079422, 0.217041, -10.6298)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1, 0, 2.4869e-14, 0, 1, 0, -3.90799e-14, 0, 1, -0.134792, 2.5, -11.6225)
+size = Vector3(11, 5, 0.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8/Clubwall4"]
+transform = Transform3D(8.30232, 0, 2.4869e-14, 0, 1.93484, 0, 2.84217e-14, 0, 1, -0.971691, 0.48642, 0)
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8/Clubwall4"]
+transform = Transform3D(1.51447, 0, 1.13687e-13, 0, 3.75717, 0, 1.42109e-14, 0, 2.64015, 4.33982, -0.158226, -0.198406)
+operation = 2
+size = Vector3(1, 1, 0.442871)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky3/Architecutre/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Coolblocky2" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(1.5, 0, -2.13163e-14, 0, 1.5, 0, 3.19745e-14, 0, 1, 2.596, 0, -45.4296)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.19525, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA9/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10"]
+transform = Transform3D(0.836653, 0, 0, 0, 1, 0, 1.69407e-21, 0, 1, 0, 5, 0)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Coolblocky2/NewBuildingA9/NewBuildingA10/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 23.5963, 0, 44.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain3" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.596, 0, 44.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain4" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.596, 0, 28.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain5" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.596, 0, 13.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain6" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.596, 0, -1.9296)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain6"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain7" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.596, 0, 59.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain7"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain8" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 164.596, 0, 59.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain9" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 164.596, 0, 44.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain10" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 164.596, 0, 27.5704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain11" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 164.596, 0, 13.0704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain11"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="plain12" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 164.596, 0, -2.4296)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/plain12"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="BIG" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(2, 0, -5.09501e-07, 0, 14.728, 0, 3.49691e-07, 0, 2.91401, 40.505, 0, 22.9588)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA8" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(1, 0, 0, 0, 1.00206, 0, 0, 0, 1, -16.3027, 0.00529804, 1.90735e-06)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA5" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(-0.5, 0, -6.55671e-08, 0, 0.0678978, 0, 3.00009e-08, 0, -0.514755, -8.37103, 3.42884, -23.812)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
+transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 7.10543e-15, -4.37114e-08, 0.365227, 0.966629, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA9" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(-0.5, 0, -6.55671e-08, 0, 0.0678978, 0, 3.00009e-08, 0, -0.514755, -8.12103, 2.30853, -23.812)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
+transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 3.55271e-15, -4.37114e-08, -0.134773, -0.033371, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA9"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA10" type="Node3D" parent="UNUSED BUILDINGS/BIG"]
+transform = Transform3D(-0.5, 0, -6.55671e-08, 0, 0.0678978, 0, 3.00009e-08, 0, -0.514755, -8.37103, 1.01847, -23.812)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall6" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
+transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 3.55271e-15, -4.37114e-08, -0.134773, -0.033371, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/BIG/NewBuildingA10"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingA7" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 40.263, 0, -77.9296)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingA7"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Long" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-8.74228e-08, 0, -1, 0, 1, 0, 2, 0, -4.37114e-08, 62.763, 0, -29.4296)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Long2" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-8.74228e-08, 0, -1, 0, 1, 0, 2, 0, -4.37114e-08, 22.763, 0, -82.9296)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Long4" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(2, 0, -4.47035e-08, 0, 1, 0, 5.96046e-08, 0, 1, 23.263, 0, -144.93)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Long3" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-2, 0, -8.74227e-08, 0, 1, 0, 1.74846e-07, 0, -1, 1.763, 0, 44.5704)
+
+[node name="Clubwall" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="UNUSED BUILDINGS/Long3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingB" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.0963, 0, 0.5)
+
+[node name="Officewall" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 12.4978, -12)
+use_collision = true
+size = Vector3(12, 30, 0.5)
+
+[node name="Officewall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+size = Vector3(8, 30, 0.5)
+
+[node name="Officewall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+size = Vector3(11, 30, 0.5)
+
+[node name="Officewall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+size = Vector3(8, 30, 0.5)
+
+[node name="NewBuildingB2" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-1, 0, 1.31134e-07, 0, 1, 0, -8.74228e-08, 0, -1.5, 64.0963, 0, -31.5)
+
+[node name="Officewall" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 12.4978, -12)
+use_collision = true
+size = Vector3(12, 30, 0.5)
+
+[node name="Officewall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+size = Vector3(8, 30, 0.5)
+
+[node name="Officewall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+size = Vector3(11, 30, 0.5)
+
+[node name="Officewall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+size = Vector3(8, 30, 0.5)
+
+[node name="NewBuildingB3" type="Node3D" parent="UNUSED BUILDINGS"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 64.0963, 0, 21)
+
+[node name="Officewall" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 12.4978, -12)
+use_collision = true
+size = Vector3(12, 30, 0.5)
+
+[node name="Officewall2" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+size = Vector3(8, 30, 0.5)
+
+[node name="Officewall3" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+size = Vector3(11, 30, 0.5)
+
+[node name="Officewall4" type="CSGBox3D" parent="UNUSED BUILDINGS/NewBuildingB3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+size = Vector3(8, 30, 0.5)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground2" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground4" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, -25)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground7" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 50)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground8" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(10.5, 0, 0, 0, 1, 0, 0, 0, 22.5, 24.5, 0, 50)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground" type="CSGBox3D" parent="Environment"]
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground5" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground6" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 25)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="Ground3" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0)
+use_collision = true
+size = Vector3(48, 0.2, 25)
+
+[node name="street2" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 0, 59.5)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street" type="CSGBox3D" parent="Environment/street2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street3" type="CSGBox3D" parent="Environment/street2"]
+transform = Transform3D(-6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, -63, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street5" type="CSGBox3D" parent="Environment/street2"]
+transform = Transform3D(-6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, 15, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street4" type="CSGBox3D" parent="Environment/street2"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 45)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street6" type="CSGBox3D" parent="Environment/street2"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -45)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street3" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, 60)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street3" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, -63, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street7" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.06066, 0, 0.707107, 0, 1, 0, -1.06066, 0, -0.707107, -90.5, 0, -73)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street8" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.06066, 0, 0.707107, 0, 1, 0, -1.06066, 0, -0.707107, -141.25, 0, -123.764)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street9" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(1.06066, 0, 0.707107, 0, 1, 0, -1.06066, 0, 0.707107, 42.7431, 0, -73.0066)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street10" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(1.06066, 0, 0.707107, 0, 1, 0, -1.06066, 0, 0.707107, 93.5066, 0, -123.757)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street11" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(1.06066, 0, -0.707107, 0, 1, 0, 1.06066, 0, 0.707107, 42.7497, 0, 72.7364)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street12" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(1.06066, 0, -0.707107, 0, 1, 0, 1.06066, 0, 0.707107, 93.5, 0, 123.5)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street13" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.06066, 0, -0.707107, 0, 1, 0, 1.06066, 0, -0.707107, -90.9934, 0, 72.7431)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street14" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.06066, 0, -0.707107, 0, 1, 0, 1.06066, 0, -0.707107, -141.757, 0, 123.493)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street15" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.04544e-07, 0, -1, 0, 1, 0, 0.876976, 0, -1.19209e-07, -24.3705, 0, 74.2142)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street16" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.04544e-07, 0, -1, 0, 1, 0, 0.876976, 0, -1.19209e-07, -24.3799, 0, 116.181)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street19" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.04544e-07, 0, -1, 0, 1, 0, 0.876976, 0, -1.19209e-07, -24.3705, 0, -116.956)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street20" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-1.04544e-07, 0, -1, 0, 1, 0, 0.876976, 0, -1.19209e-07, -24.3799, 0, -74.9891)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street17" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2.86065, 0, -7.54979e-08, 0, 1, 0, 2.15973e-07, 0, 1, -92.1081, 0, 146.36)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street18" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2.86065, 0, -7.54979e-08, 0, 1, 0, 2.15973e-07, 0, 1, 44.7855, 0, 146.369)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street21" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2.86065, 0, -7.54979e-08, 0, 1, 0, 2.15973e-07, 0, 1, -92.1081, 0, -146.607)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street22" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2.86065, 0, -7.54979e-08, 0, 1, 0, 2.15973e-07, 0, 1, 44.7855, 0, -146.597)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street25" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2.41228, 0, -7.54979e-08, 0, 1, 0, 1.82122e-07, 0, 1, 170.378, 0, -146.597)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street26" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(7.66779e-08, 0, 1, 0, 1, 0, -2.41228, 0, 3.17865e-08, 219.378, 0, -80.597)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street5" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, 15, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street23" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-2.60862e-07, 0, 1, 0, 1, 0, -5.96782, 0, -4.37114e-08, 115.912, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street24" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(-2.60862e-07, 0, 1, 0, 1, 0, -5.96782, 0, -4.37114e-08, -163.9, 0, 0)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street4" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 45)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street6" type="CSGBox3D" parent="Environment/street3"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -45)
+use_collision = true
+size = Vector3(48, 0.3, 18)
+material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="Newsstand_Hood" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.831183, 0, 3.83372, 0, 2.4522, 0, -0.808008, 0, -3.94368, 127.301, 1.33628, -74.81)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Newsstand_Hood"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -7.45058e-09, 0, 0.894501, -0.16703, -0.00585943, 3.8147e-06)
+operation = 2
+size = Vector3(1, 0.988281, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Newsstand_Hood"]
+transform = Transform3D(0.431332, 0, 0, 0, 0.208621, 0, 0, 0, 1, -0.431335, 0.392056, 0)
+
+[node name="Neighborhood" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.5, 0, -22.5)
+
+[node name="Club" type="Node3D" parent="Neighborhood"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 153.993, 0, 10.9892)
+
+[node name="Architecture" type="Node3D" parent="Neighborhood/Club"]
+
+[node name="Clubwall" type="CSGBox3D" parent="Neighborhood/Club/Architecture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="Neighborhood/Club/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="Neighborhood/Club/Architecture"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="Neighborhood/Club/Architecture"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="Neighborhood/Club/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="Office" type="Node3D" parent="Neighborhood"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 153.993, 0, -27.5108)
+
+[node name="Architecture" type="Node3D" parent="Neighborhood/Office"]
+
+[node name="Officewall" type="CSGBox3D" parent="Neighborhood/Office/Architecture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 12.4978, -12)
+use_collision = true
+size = Vector3(12, 30, 0.5)
+
+[node name="Officewall2" type="CSGBox3D" parent="Neighborhood/Office/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7985, 12.5751, -15.78)
+size = Vector3(8, 30, 0.5)
+
+[node name="Officewall3" type="CSGBox3D" parent="Neighborhood/Office/Architecture"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.5175, 12.5751, -19.5231)
+size = Vector3(11, 30, 0.5)
+
+[node name="Officewall4" type="CSGBox3D" parent="Neighborhood/Office/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.2352, 12.5751, -15.7635)
+size = Vector3(8, 30, 0.5)
+
+[node name="Apt" type="Node3D" parent="Neighborhood"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 153.993, 0, -28.0108)
+
+[node name="Architecture" type="Node3D" parent="Neighborhood/Apt"]
+
+[node name="Walls" type="Node3D" parent="Neighborhood/Apt/Architecture"]
+
+[node name="Aptwall" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2.5, -12)
+use_collision = true
+size = Vector3(12, 25, 0.5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, -1.10457, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, -1.10457, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 0, -1.10457, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -2, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 2, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -2, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 2, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -2, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 2, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="Aptwall2" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.7071, 2.5, -15.78)
+size = Vector3(8, 25, 0.5)
+
+[node name="Aptwall3" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.9881, 2.5, -19.5231)
+size = Vector3(11, 25, 0.5)
+
+[node name="Aptwall4" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.2704, 2.5, -15.7635)
+size = Vector3(8, 25, 0.5)
+
+[node name="Railings" type="Node3D" parent="Neighborhood/Apt/Architecture"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 0.0562663, -11.4916)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 4.05627, -11.4916)
+size = Vector3(12, 0.25, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 5.60287, -11.49)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 8.5954, -11.4995)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 11.6561, -11.5)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4687, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0247, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5909, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2905, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7455, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4355, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 12.0287, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 11.4255, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 12.5924, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4307, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9867, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.553, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2525, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7075, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3975, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 14.9908, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.3875, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 15.5545, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4531, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0091, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5753, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2748, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7298, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4199, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 19.0131, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 18.4099, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 19.5768, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.422, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.978, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5443, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2438, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6988, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3888, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 21.982, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 21.3788, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 22.5458, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4687, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0247, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5909, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2905, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7455, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4355, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 12.0287, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 11.4255, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 12.5924, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4307, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9867, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.553, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2525, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7075, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3975, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 14.9908, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.3875, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 15.5545, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4531, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0091, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5753, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2748, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7298, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4199, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 19.0131, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 18.4099, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 19.5768, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D70" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.422, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D71" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.978, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D72" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5443, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D73" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2438, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D74" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6988, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D75" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3888, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 21.982, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D77" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 21.3788, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D78" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 22.5458, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4687, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0247, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5909, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D82" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2905, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7455, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4355, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 12.0287, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 11.4255, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 12.5924, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4307, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9867, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.553, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2525, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7075, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3975, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 14.9908, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.3875, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 15.5545, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4531, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0091, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D99" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5753, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D100" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2748, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D101" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7298, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D102" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4199, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D103" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 19.0131, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D104" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 18.4099, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D105" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 19.5768, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.422, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.978, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5443, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2438, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D110" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6988, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D111" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3888, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D112" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 21.982, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D113" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 21.3788, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D114" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 22.5458, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Neighborhood/Apt/Architecture/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.585, 6.33288, -11.5003)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="Restaurant" type="Node3D" parent="Neighborhood"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 152.596, 0, -26.4296)
+
+[node name="Architecture" type="Node3D" parent="Neighborhood/Restaurant"]
+
+[node name="Clubwall" type="CSGBox3D" parent="Neighborhood/Restaurant/Architecture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -12)
+use_collision = true
+size = Vector3(12, 5, 0.5)
+
+[node name="Clubwall2" type="CSGBox3D" parent="Neighborhood/Restaurant/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.72699, 2.5, -15.78)
+size = Vector3(8, 5, 0.5)
+
+[node name="Clubwall3" type="CSGBox3D" parent="Neighborhood/Restaurant/Architecture"]
+transform = Transform3D(3.55271e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -0.134773, 4.96663, -15.78)
+size = Vector3(8, 11, 0.5)
+
+[node name="Clubwall4" type="CSGBox3D" parent="Neighborhood/Restaurant/Architecture"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00794411, 2.5, -19.5231)
+size = Vector3(11, 5, 0.5)
+
+[node name="Clubwall5" type="CSGBox3D" parent="Neighborhood/Restaurant/Architecture"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.70969, 2.5, -15.7635)
+size = Vector3(8, 5, 0.5)
+
+[node name="NewBuildingC" type="Node3D" parent="Neighborhood"]
+transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, 154.096, 0, -11.5)
+
+[node name="Walls" type="Node3D" parent="Neighborhood/NewBuildingC"]
+
+[node name="Aptwall" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2.5, -12)
+use_collision = true
+size = Vector3(12, 25, 0.5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, -1.10457, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, -1.10457, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 0, -1.10457, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -2, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 2, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, 4.44973, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -2, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 2, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, 7.42377, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -5, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, -2, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 2, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls/Aptwall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.44109, 5, 10.5, 0.256137)
+operation = 2
+size = Vector3(1, 2.2, 1)
+
+[node name="Aptwall2" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.7071, 2.5, -15.78)
+size = Vector3(8, 25, 0.5)
+
+[node name="Aptwall3" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.9881, 2.5, -19.5231)
+size = Vector3(11, 25, 0.5)
+
+[node name="Aptwall4" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.2704, 2.5, -15.7635)
+size = Vector3(8, 25, 0.5)
+
+[node name="Railings" type="Node3D" parent="Neighborhood/NewBuildingC"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 0.0562663, -11.4916)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 4.05627, -11.4916)
+size = Vector3(12, 0.25, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 5.60287, -11.49)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 8.5954, -11.4995)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0033, 11.6561, -11.5)
+size = Vector3(12, 0.5, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4687, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0247, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5909, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2905, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7455, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4355, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 12.0287, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 11.4255, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 12.5924, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4307, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9867, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.553, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2525, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7075, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3975, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 14.9908, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.3875, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 15.5545, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4531, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0091, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5753, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2748, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7298, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4199, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 19.0131, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 18.4099, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 19.5768, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.422, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.978, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5443, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2438, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6988, 6.33288, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3888, 6.33288, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 21.982, 6.83288, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 21.3788, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 22.5458, 6.83288, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4687, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0247, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5909, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2905, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7455, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4355, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 12.0287, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 11.4255, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 12.5924, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4307, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9867, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.553, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2525, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7075, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3975, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 14.9908, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.3875, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 15.5545, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4531, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0091, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5753, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2748, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7298, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4199, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 19.0131, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 18.4099, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 19.5768, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D70" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.422, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D71" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.978, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D72" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5443, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D73" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2438, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D74" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6988, 9.34775, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D75" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3888, 9.34775, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 21.982, 9.84775, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D77" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 21.3788, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D78" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 22.5458, 9.84775, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4687, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0247, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5909, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D82" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2905, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7455, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4355, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 12.0287, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 11.4255, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 12.5924, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4307, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9867, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.553, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2525, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7075, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3975, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 14.9908, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.3875, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 15.5545, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4531, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0091, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D99" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5753, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D100" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2748, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D101" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7298, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D102" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4199, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D103" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 19.0131, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D104" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 18.4099, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D105" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 19.5768, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.422, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.978, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5443, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2438, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D110" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6988, 12.4146, -11.2646)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D111" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3888, 12.4146, -11.5331)
+size = Vector3(0.05, 1, 0.05)
+
+[node name="CSGBox3D112" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 21.982, 12.9146, -11.2649)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="CSGBox3D113" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 21.3788, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D114" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 22.5458, 12.9146, -11.4935)
+size = Vector3(0.05, 0.5, 0.05)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Neighborhood/NewBuildingC/Railings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.585, 6.33288, -11.5003)
+size = Vector3(0.05, 1, 0.05)

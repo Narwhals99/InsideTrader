@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://15m2txi23ul8"]
+
+[ext_resource type="Script" uid="uid://h4vd28vt18a7" path="res://scripts/globals/NeedsSystem.gd" id="1_vmf2p"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_vmf2p")
+debug_mode = true
+hunger_decay_per_hour = 0.0

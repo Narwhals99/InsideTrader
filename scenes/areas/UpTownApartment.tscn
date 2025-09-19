@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5oq14v2aaoei"]
+
+[ext_resource type="PackedScene" uid="uid://caj45st133ack" path="res://scenes/areas/HUBPROTO.tscn" id="1_mohk3"]
+[ext_resource type="Script" uid="uid://c28y5x312kd48" path="res://scripts/globals/Portals.gd" id="2_to0oa"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ctag7"]
+
+[node name="Uptown_Apartment" type="Node3D"]
+
+[node name="HUBPROTO" parent="." instance=ExtResource("1_mohk3")]
+
+[node name="Uptown_Door" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.58055, 0, 0, 0, 1.5228, 79.4662, 35.2127, 67.6722)
+script = ExtResource("2_to0oa")
+
+[node name="Door_To_Hub" type="Area3D" parent="Uptown_Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364052, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Uptown_Door/Door_To_Hub"]
+shape = SubResource("CylinderShape3D_ctag7")
+
+[node name="Spawn_Uptown_From_Hub" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.8563, 33.9444, 67.5875)

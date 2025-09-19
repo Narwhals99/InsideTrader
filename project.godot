@@ -28,6 +28,9 @@ InsiderInfo="*res://scripts/globals/trading/InsiderInfo.gd"
 Inventory="*res://scripts/services/InventoryService.gd"
 NpcSpawnManager="*res://scripts/services/NPCSpawnManager.gd"
 BankService="*res://scripts/services/BankService.gd"
+InventoryUi="*res://scenes/globals/UI/InventoryUI.tscn"
+NeedsSystem="*res://scripts/globals/NeedsSystem.gd"
+NeedsHud="*res://scenes/globals/UI/NeedsHUD.tscn"
 
 [input]
 

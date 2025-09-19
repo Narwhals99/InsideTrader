@@ -4,3 +4,4 @@
 
 [node name="MarketSim" type="Node"]
 script = ExtResource("1_imy4j")
+mover_swing_target_multiplier = 2.0

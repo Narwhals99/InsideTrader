@@ -6,6 +6,7 @@ const MoverTriggerEngine = preload("res://scripts/globals/trading/MoverTriggerEn
 signal price_updated(symbol: StringName, price: float)
 signal prices_changed(prices: Dictionary)
 
+# List of tickers simulated in the market.
 @export var symbols: Array[StringName] = [
 	&"ACME",
 	&"BETA",
@@ -18,6 +19,7 @@ signal prices_changed(prices: Dictionary)
 	&"WAVE",
 	&"ZENX"
 ]
+# Starting price for each symbol in the same order as `symbols`.
 @export var start_prices: Array[float] = [
 	100.0,
 	42.0,
@@ -31,32 +33,52 @@ signal prices_changed(prices: Dictionary)
 	64.0
 ]
 
-# --- Volatility / cadence ---
+# Target absolute daily move (percent) for tickers without movers.
 @export var target_nonmover_abs_move_pct: float = 1.2
+# Fallback per-tick sigma when target_nonmover_abs_move_pct is zero.
 @export var volatility_pct: float = 0.005
+# Real-time seconds between price ticks.
 @export var tick_interval_sec: float = 2.0
+# Baseline in-game minutes advanced per tick.
 @export var base_minutes_rate: float = 0.5
+# Maximum Z-score used to clamp per-tick noise.
 @export var clamp_tick_sigma_z: float = 3.0
 
-# --- Market schedule / behavior ---
+# Restrict ticking to the market phase when true.
 @export var only_when_market_open: bool = true
+# Hard floor for simulated prices.
 @export var clamp_floor: float = 0.01
+# Hard ceiling for simulated prices.
 @export var clamp_ceiling: float = 1000000.0
 
-# --- Mover knobs ---
+# Chance that a mover is generated on a given market open.
 @export var mover_daily_chance: float = 0.5
+# Minimum fraction drift targeted by movers.
 @export var mover_target_min_pct: float = 0.008
+# Maximum fraction drift targeted by movers.
 @export var mover_target_max_pct: float = 0.020
+# Volatility multiplier while a mover is active.
 @export var mover_vol_mult: float = 1.20
+# Number of recent days used by the streak factor.
 @export var mover_streak_length: int = 3
+# Minimum average daily change to qualify for a streak mover.
 @export var mover_streak_min_avg_pct: float = 0.004
+# Lead time (days) before a positive streak mover activates.
 @export var mover_positive_lead_days: int = 1
+# Duration (days) that positive streak movers remain active.
 @export var mover_positive_duration_days: int = 2
+# Lead time (days) before a negative streak mover activates.
 @export var mover_negative_lead_days: int = 0
+# Duration (days) that negative streak movers remain active.
 @export var mover_negative_duration_days: int = 1
+# Multiplier applied to swing mover drift targets.
+@export var mover_swing_target_multiplier: float = 1.5
+# Multiplier applied to intraday mover drift targets.
+@export var mover_intraday_target_multiplier: float = 1.0
 
-# --- Debug overlay ---
+# Enable the on-screen market diagnostics overlay.
 @export var debug_overlay: bool = true
+# Seconds between debug overlay refreshes.
 @export var debug_refresh_sec: float = 0.5
 var _debug_layer: CanvasLayer = null
 var _debug_label: Label = null
@@ -336,7 +358,7 @@ func _daily_roll_mover(day: int, phase: StringName) -> void:
 		return
 
 	_setup_mover_triggers()
-	var context := _build_mover_context(int(day), phase)
+	var context: MoverTriggerEngine.Context = _build_mover_context(int(day), phase)
 	var states: Array = _mover_triggers.evaluate(context)
 	if states.is_empty():
 		return
@@ -355,7 +377,7 @@ func _setup_mover_triggers() -> void:
 	else:
 		_mover_triggers.clear_factors()
 
-	var random_factor := MoverTriggerEngine.RandomDailyFactor.new()
+	var random_factor: MoverTriggerEngine.RandomDailyFactor = MoverTriggerEngine.RandomDailyFactor.new()
 	_mover_triggers.add_factor(random_factor)
 
 	var positive_settings: Dictionary = {
@@ -367,6 +389,7 @@ func _setup_mover_triggers() -> void:
 		"duration_days": max(1, mover_positive_duration_days),
 		"min_average": mover_streak_min_avg_pct,
 		"lead_days": max(0, mover_positive_lead_days),
+		"target_multiplier": mover_swing_target_multiplier,
 		"label": "streak_positive"
 	}
 	_mover_triggers.add_factor(MoverTriggerEngine.StreakFactor.new(positive_settings))
@@ -380,13 +403,14 @@ func _setup_mover_triggers() -> void:
 		"duration_days": max(1, mover_negative_duration_days),
 		"min_average": mover_streak_min_avg_pct,
 		"lead_days": max(0, mover_negative_lead_days),
+		"target_multiplier": mover_intraday_target_multiplier,
 		"label": "streak_negative"
 	}
 	_mover_triggers.add_factor(MoverTriggerEngine.StreakFactor.new(negative_settings))
 
 
 func _build_mover_context(day: int, phase: StringName) -> MoverTriggerEngine.Context:
-	var ctx := MoverTriggerEngine.Context.new()
+	var ctx: MoverTriggerEngine.Context = MoverTriggerEngine.Context.new()
 	ctx.day = day
 	ctx.phase = phase
 	ctx.symbols = symbols.duplicate()

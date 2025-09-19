@@ -48,12 +48,13 @@ class RandomDailyFactor extends MoverFactor:
 			return []
 		if lo <= 0.0:
 			lo = hi * 0.5
-		var symbol: StringName = symbols[rng.randi_range(0, symbols.size() - 1)]
+		var symbol_variant: Variant = symbols[rng.randi_range(0, symbols.size() - 1)]
+		var symbol: StringName = StringName(symbol_variant)
 		var drift: float = abs(rng.randf_range(lo, hi))
 		if drift <= 0.0:
 			drift = hi
 		var direction: int = 1 if rng.randf() >= 0.5 else -1
-		var state := MoverEngine.MoverState.new()
+		var state: MoverEngine.MoverState = MoverEngine.MoverState.new()
 		state.symbol = symbol
 		state.direction = direction
 		state.target_daily_drift = drift
@@ -73,6 +74,7 @@ class StreakFactor extends MoverFactor:
 	var duration_days: int = 2
 	var min_average_magnitude: float = 0.0
 	var lead_days: int = 1
+	var target_multiplier: float = 1.0
 	var label: String = "streak"
 
 	func _init(settings: Dictionary = {}) -> void:
@@ -84,6 +86,7 @@ class StreakFactor extends MoverFactor:
 		duration_days = max(1, int(settings.get("duration_days", 2)))
 		min_average_magnitude = abs(float(settings.get("min_average", 0.0)))
 		lead_days = max(0, int(settings.get("lead_days", 1)))
+		target_multiplier = max(0.1, float(settings.get("target_multiplier", 1.0)))
 		label = String(settings.get("label", "streak"))
 
 	func evaluate(context: Context) -> Array:
@@ -95,8 +98,9 @@ class StreakFactor extends MoverFactor:
 			return []
 		var results: Array = []
 		for raw_symbol in context.symbols:
-			var symbol: StringName = raw_symbol
-			var entries: Array = context.get_last_days.call(symbol, streak_length)
+			var symbol: StringName = StringName(raw_symbol)
+			var entries_variant: Variant = context.get_last_days.call(symbol, streak_length)
+			var entries: Array = entries_variant if entries_variant is Array else []
 			if entries.size() < streak_length:
 				continue
 			if not _matches_direction(entries):
@@ -107,16 +111,35 @@ class StreakFactor extends MoverFactor:
 			var magnitude: float = abs(average_change)
 			if magnitude < min_average_magnitude:
 				continue
+
 			var min_cfg: float = abs(float(context.config.get("mover_target_min_pct", magnitude)))
 			var max_cfg: float = abs(float(context.config.get("mover_target_max_pct", magnitude)))
 			var lo: float = min(min_cfg, max_cfg)
 			var hi: float = max(min_cfg, max_cfg)
 			if hi <= 0.0:
 				hi = magnitude
+				if hi <= 0.0:
+					hi = 0.01
 			if lo <= 0.0:
-				lo = magnitude
-			var target: float = clamp(magnitude, lo, hi)
-			var state := MoverEngine.MoverState.new()
+				lo = hi * 0.5
+
+			var multiplier: float = target_multiplier if target_multiplier > 0.0 else 1.0
+			var lo_scaled: float = lo * multiplier
+			var hi_scaled: float = hi * multiplier
+			if hi_scaled <= 0.0:
+				hi_scaled = hi
+			if lo_scaled <= 0.0:
+				lo_scaled = hi_scaled * 0.5
+			if lo_scaled > hi_scaled:
+				var temp: float = lo_scaled
+				lo_scaled = hi_scaled
+				hi_scaled = temp
+
+			var target: float = clamp(magnitude * multiplier, lo_scaled, hi_scaled)
+			if target <= 0.0:
+				target = hi_scaled
+
+			var state: MoverEngine.MoverState = MoverEngine.MoverState.new()
 			state.symbol = symbol
 			state.direction = direction
 			state.target_daily_drift = target
@@ -132,7 +155,8 @@ class StreakFactor extends MoverFactor:
 			state.metadata = {
 				"factor": label,
 				"streak_days": streak_length,
-				"avg_change": average_change
+				"avg_change": average_change,
+				"target_multiplier": multiplier
 			}
 			results.append(state)
 		return results
@@ -160,8 +184,7 @@ class StreakFactor extends MoverFactor:
 			var close_px: float = float(entry.get("close", open_px))
 			if open_px <= 0.0:
 				continue
-			var pct: float = (close_px - open_px) / open_px
-			sum_change += pct
+			sum_change += (close_px - open_px) / open_px
 			count += 1
 		if count <= 0:
 			return 0.0
@@ -185,22 +208,26 @@ func evaluate(context: Context) -> Array:
 	for factor in _factors:
 		var produced: Array = factor.evaluate(context)
 		for state_obj in produced:
-			var state: MoverEngine.MoverState = state_obj
+			if state_obj == null:
+				continue
+			var state: MoverEngine.MoverState = (state_obj as MoverEngine.MoverState)
 			if state == null:
 				continue
 			if state.symbol == StringName():
 				continue
 			var sym_key: StringName = state.symbol
-			var entry: Dictionary = {}
-			entry["state"] = state
-			entry["priority"] = factor.priority
+			var entry: Dictionary = {
+				"state": state,
+				"priority": factor.priority
+			}
 			if records.has(sym_key):
 				var current_priority: int = int(records[sym_key].get("priority", -2147483648))
 				if factor.priority < current_priority:
 					continue
 			records[sym_key] = entry
 	var result: Array = []
-	for record_dict in records.values():
+	for record_variant in records.values():
+		var record_dict: Dictionary = record_variant
 		var out_state: MoverEngine.MoverState = record_dict.get("state", null)
 		if out_state != null:
 			result.append(out_state)

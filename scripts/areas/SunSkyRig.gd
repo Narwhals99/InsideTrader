@@ -36,7 +36,7 @@ var _color_keys: Array = [_color_morn, _color_noon, _color_eve, _color_nite, _co
 
 func _ready() -> void:
 	# keep this script running when the tree is paused (e.g., phone open)
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_process(true)	# or set_physics_process(true) if you use _physics_process
 	if sun_orbit == null: sun_orbit = $SunOrbit
 	if sun_tilt == null: sun_tilt = $SunOrbit/SunTilt
@@ -58,35 +58,35 @@ func _process(_dt: float) -> void:
 	if follow_clock:
 		_apply_from_clock()
 
-# If you ever flip follow_clock=false, we’ll fall back to phase snaps (still okay)
+# If you ever flip follow_clock=false, weâ€™ll fall back to phase snaps (still okay)
 func _on_phase_changed(_p: StringName, _d: int) -> void:
 	if not follow_clock:
 		_apply_from_clock()
 
 func _apply_from_clock() -> void:
-	# Read minutes; extend past midnight so LateNight→02:00 interpolates cleanly
-	var t: int = 0
-	if Game.has_method("get"): # just to be defensive
-		t = int(Game.clock_minutes)
-	else:
-		t = T_MORNING
-	var t_ext: int = t
-	if t < T_MORNING:
-		t_ext += 24 * 60
+	# Read minutes with fractional precision when available (smoother motion)
+	var minutes: float = float(Game.clock_minutes)
+	if Game.has_method("get_world_seconds"):
+		minutes = Game.get_world_seconds() / 60.0
+	var t_ext: float = minutes
+	if minutes < float(T_MORNING):
+		t_ext += 24.0 * 60.0
 
 	# Find the current segment [i, i+1]
 	var i: int = _times.size() - 2
 	for idx in range(_times.size() - 1):
-		if t_ext >= _times[idx] and t_ext < _times[idx + 1]:
+		var t0_candidate: float = float(_times[idx])
+		var t1_candidate: float = float(_times[idx + 1])
+		if t_ext >= t0_candidate and t_ext < t1_candidate:
 			i = idx
 			break
 
-	var t0: int = _times[i]
-	var t1: int = _times[i + 1]
-	var seg_len: float = float(t1 - t0)
+	var t0: float = float(_times[i])
+	var t1: float = float(_times[i + 1])
+	var seg_len: float = t1 - t0
 	if seg_len <= 0.0:
 		seg_len = 1.0
-	var u: float = float(t_ext - t0) / seg_len
+	var u: float = (t_ext - t0) / seg_len
 	u = clamp(u, 0.0, 1.0)
 
 	# Interpolate angles
@@ -114,7 +114,6 @@ func _apply_from_clock() -> void:
 		var pstr: String = String(Game.phase)
 		var want_on: bool = (pstr == "Evening") or (pstr == "LateNight")
 		_toggle_room(want_on)
-
 func _set_angles(az_deg: float, el_deg: float) -> void:
 	if sun_orbit:
 		sun_orbit.rotation_degrees.y = az_deg

@@ -210,6 +210,23 @@ func _force_notif_label_white(notif: Node) -> void:
 		lbl.add_theme_color_override("font_color", Color.WHITE)
 
 func _input(event: InputEvent) -> void:
+	if current_dialogue:
+		if event.is_action_pressed("dialogue_select"):
+			if _pending_choices.is_empty():
+				hide_dialogue()
+			else:
+				if not _activate_hovered_choice():
+					if not _choice_buttons.is_empty():
+						_focus_choice_button(0)
+			Input.action_release("jump")
+			Input.action_release("dialogue_select")
+			get_viewport().set_input_as_handled()
+			return
+		if event.is_action_pressed("jump"):
+			Input.action_release("jump")
+			Input.action_release("dialogue_select")
+			get_viewport().set_input_as_handled()
+			return
 	if current_dialogue and not _pending_choices.is_empty():
 		if event is InputEventMouseButton and event.pressed:
 			match event.button_index:
@@ -226,8 +243,10 @@ func _input(event: InputEvent) -> void:
 				_on_choice_selected(idx)
 				get_viewport().set_input_as_handled()
 				return
-	if current_dialogue and _pending_choices.is_empty() and event.is_action_pressed("ui_accept"):
+	if current_dialogue and _pending_choices.is_empty() and event.is_action_pressed("dialogue_select"):
 		hide_dialogue()
+		Input.action_release("jump")
+		Input.action_release("dialogue_select")
 		get_viewport().set_input_as_handled()
 
 func _choice_index_from_key(event: InputEventKey) -> int:

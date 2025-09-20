@@ -26,7 +26,7 @@ shape = SubResource("CylinderShape3D_ctag7")
 transform = Transform3D(-0.125524, 0, 0.992091, 0, 1, 0, -0.992091, 0, -0.125524, 80.1882, 34.3554, 67.5875)
 
 [node name="Player" parent="." instance=ExtResource("2_mohk3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.12837, 15.3171, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.8573, 35.9765, 74.6229)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.1525, 37.1418, 81.6202)

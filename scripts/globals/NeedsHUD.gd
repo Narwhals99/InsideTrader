@@ -35,6 +35,7 @@ var energy_bar: ProgressBar
 var energy_label: Label
 var rent_panel: Panel
 var rent_label: Label
+var date_label: Label = null
 
 # State tracking
 var _is_hunger_critical: bool = false
@@ -44,6 +45,8 @@ var _needs_system: Node = null
 
 func _ready() -> void:
 	layer = 5  # Below phone/inventory but above game
+	_create_date_label()
+	_bind_game_signals()
 	
 	# Find NeedsSystem
 	_needs_system = get_node_or_null("/root/NeedsSystem")
@@ -66,6 +69,54 @@ func _ready() -> void:
 	
 	# Initial update
 	_update_all_displays()
+
+func _create_date_label() -> void:
+	if date_label != null:
+		return
+	date_label = Label.new()
+	date_label.name = 'CalendarDateLabel'
+	date_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	date_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	date_label.add_theme_font_size_override('font_size', 20)
+	date_label.add_theme_color_override('font_color', Color.WHITE)
+	date_label.anchor_left = 0.5
+	date_label.anchor_right = 0.5
+	date_label.anchor_top = 0.0
+	date_label.anchor_bottom = 0.0
+	date_label.offset_left = -200.0
+	date_label.offset_right = 200.0
+	date_label.offset_top = 20.0
+	date_label.offset_bottom = 60.0
+	add_child(date_label)
+	_update_date_label()
+
+func _bind_game_signals() -> void:
+	if typeof(Game) == TYPE_NIL:
+		return
+	if not Game.day_advanced.is_connected(_on_game_day_changed):
+		Game.day_advanced.connect(_on_game_day_changed)
+	if not Game.phase_changed.is_connected(_on_game_phase_changed):
+		Game.phase_changed.connect(_on_game_phase_changed)
+	_update_date_label()
+
+func _update_date_label() -> void:
+	if date_label == null:
+		return
+	if typeof(Game) != TYPE_NIL:
+		var text_value: String = ''
+		if Game.has_method('get_calendar_date_string'):
+			text_value = Game.get_calendar_date_string()
+		else:
+			text_value = 'Day ' + str(int(Game.day))
+		date_label.text = text_value
+	else:
+		date_label.text = ''
+
+func _on_game_day_changed(_day: int) -> void:
+	_update_date_label()
+
+func _on_game_phase_changed(_phase: StringName, _day: int) -> void:
+	_update_date_label()
 
 func _create_ui() -> void:
 	# Main container - anchored to bottom left

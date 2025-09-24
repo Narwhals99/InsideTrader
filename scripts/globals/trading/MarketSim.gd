@@ -2,6 +2,7 @@ extends Node
 
 const MoverEngine = preload("res://scripts/globals/trading/MoverEngine.gd")
 const MoverTriggerEngine = preload("res://scripts/globals/trading/MoverTriggerEngine.gd")
+const OptionMarketService = preload("res://scripts/services/OptionMarketService.gd")
 
 signal price_updated(symbol: StringName, price: float)
 signal prices_changed(prices: Dictionary)
@@ -186,6 +187,7 @@ func _seed_prices() -> void:
 		_prices[sym] = max(clamp_floor, p)
 
 	emit_signal("prices_changed", _prices)
+	_refresh_option_market()
 
 func _minutes_per_tick() -> float:
 	return float(base_minutes_rate) * float(tick_interval_sec)
@@ -213,7 +215,10 @@ func _sigma_tick_frac_nonmover() -> float:
 # ---------------- Phase / day ----------------
 func _on_phase_changed(phase: StringName, day: int) -> void:
 	_movers.update_clock(int(day), phase)
-	_is_market_open = (phase == &"Market")
+	var weekend: bool = false
+	if typeof(Game) != TYPE_NIL and Game.has_method("is_weekend"):
+		weekend = Game.is_weekend()
+	_is_market_open = (phase == &"Market") and not weekend
 	if only_when_market_open:
 		if _is_market_open:
 			_daily_roll_mover(int(day), phase)
@@ -233,9 +238,11 @@ func _on_phase_changed(phase: StringName, day: int) -> void:
 
 	if debug_overlay:
 		_update_debug_ui()
+	_refresh_option_market()
 
 func _on_day_advanced(day: int) -> void:
 	_movers.notify_day_advanced(int(day))
+	_refresh_option_market()
 
 # ---------------- Timer scaling ----------------
 func _apply_rate_to_timer(force_restart: bool) -> void:
@@ -308,6 +315,21 @@ func _on_tick() -> void:
 			emit_signal("price_updated", sym, new_p)
 
 	emit_signal("prices_changed", _prices)
+	_refresh_option_market()
+
+func _refresh_option_market() -> void:
+	if typeof(OptionMarketService) == TYPE_NIL:
+		return
+	var current_day: int = 0
+	var phase_sn: StringName = &"Market"
+	if typeof(Game) != TYPE_NIL:
+		current_day = int(Game.day)
+		var gp = Game.phase
+		if gp is StringName:
+			phase_sn = gp
+		else:
+			phase_sn = StringName(String(gp))
+	OptionMarketService.refresh_all(_prices.duplicate(true), current_day, phase_sn)
 
 # ---------------- Public API ----------------
 func get_price(symbol: StringName) -> float:
@@ -323,6 +345,7 @@ func set_price(symbol: StringName, price: float) -> void:
 	_prices[symbol] = p
 	emit_signal("price_updated", symbol, p)
 	emit_signal("prices_changed", _prices)
+	_refresh_option_market()
 
 func set_volatility(percent_stddev: float) -> void:
 	volatility_pct = max(0.0, percent_stddev)

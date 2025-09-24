@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbj3wvgl8e3qj" path="res://scripts/globals/trading/PhoneUI.gd" id="1_uwhl5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwhl5"]
-bg_color = Color(0, 0.613084, 0.148616, 1)
+bg_color = Color(0.188108, 0.160788, 0.206591, 1)
 
 [node name="PhoneUI" type="CanvasLayer" groups=["phone_ui"]]
 layer = 20
@@ -79,6 +79,28 @@ layout_mode = 2
 min_value = 1.0
 value = 1.0
 
+[node name="OptionsFooter" type="HBoxContainer" parent="Root/Panel/VBox/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContractsLabel" type="Label" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+layout_mode = 2
+
+[node name="ContractsSpin" type="SpinBox" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+allow_greater = true
+
+[node name="PremiumPreview" type="Label" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+layout_mode = 2
+
+[node name="PlaceOrderBtn" type="Button" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+layout_mode = 2
+
+[node name="TotalsLabel" type="Label" parent="Root/Panel/VBox/Footer"]
+layout_mode = 2
+
 [node name="InsiderScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
 visible = false
 layout_mode = 2
@@ -86,6 +108,51 @@ size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
 [node name="InsiderList" type="ItemList" parent="Root/Panel/VBox/InsiderScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionsScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="OptionsVbox" type="VBoxContainer" parent="Root/Panel/VBox/OptionsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionsFilters" type="HBoxContainer" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SymbolLabel" type="Label" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+text = "Symbol"
+
+[node name="SymbolSelect" type="OptionButton" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExpiryLabel" type="Label" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+
+[node name="ExpirySelect" type="OptionButton" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StrikeLabel" type="Label" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+
+[node name="StrikeSelect" type="OptionButton" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TypeToggle" type="Button" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+
+[node name="OptionsList" type="VBoxContainer" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

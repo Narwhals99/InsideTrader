@@ -3,7 +3,7 @@ extends Node
 signal phase_changed(phase: StringName, day: int)
 signal day_advanced(day: int)
 
-var next_spawn: String = ""	# used by your portals/doors
+var next_spawn: String = ""    # used by your portals/doors
 var _purchased_portals: Dictionary = {}
 
 # -------------------- PORTAL PURCHASES --------------------
@@ -21,8 +21,20 @@ func unlock_portal_purchase(key: String) -> void:
 
 
 const PHASE_ORDER: Array[StringName] = [&"Morning", &"Market", &"Evening", &"LateNight"]
+const CALENDAR_MONTH_NAMES: Array[String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+const CALENDAR_MONTH_LENGTHS: Array[int] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+const CALENDAR_WEEKDAY_NAMES: Array[String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+const CALENDAR_START_YEAR: int = 2024
+const CALENDAR_START_MONTH: int = 1
+const CALENDAR_START_DAY: int = 1
+const CALENDAR_START_WEEKDAY: int = 0
+
 
 var day: int = 1
+var calendar_year: int = CALENDAR_START_YEAR
+var calendar_month: int = CALENDAR_START_MONTH
+var calendar_day: int = CALENDAR_START_DAY
+var calendar_weekday: int = CALENDAR_START_WEEKDAY
 var phase: StringName = &"Morning"
 var _phase_index: int = 0
 
@@ -33,14 +45,14 @@ const T_MARKET: int = 9 * 60 + 30
 const T_AFTERMARKET: int = 16 * 60
 const T_EVENING_END: int = 22 * 60
 
-@export var minutes_rate: float = 0.5			# in-game minutes per real second
+@export var minutes_rate: float = 0.5            # in-game minutes per real second
 
 var clock_minutes: int = T_MORNING
 var _minute_accum: float = 0.0
 var _clock_running: bool = true
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS	# keep time advancing even if UI pauses the tree
+	process_mode = Node.PROCESS_MODE_ALWAYS    # keep time advancing even if UI pauses the tree
 	set_process(true)
 	# start in Morning, synced
 	clock_minutes = T_MORNING
@@ -70,6 +82,7 @@ func _update_phase_if_needed() -> void:
 		emit_signal("phase_changed", phase, day)
 		if phase == &"Morning":
 			day += 1
+			_advance_calendar_day()
 			emit_signal("day_advanced", day)
 
 func _phase_from_minutes(m: int) -> StringName:
@@ -82,12 +95,17 @@ func _phase_from_minutes(m: int) -> StringName:
 	return &"Morning"
 
 func is_market_open() -> bool:
+	if is_weekend():
+		return false
 	return clock_minutes >= T_MARKET and clock_minutes < T_AFTERMARKET
 
 func minutes_until_market_close() -> int:
 	if clock_minutes >= T_AFTERMARKET:
 		return 0
 	return max(0, T_AFTERMARKET - clock_minutes)
+
+func is_weekend() -> bool:
+	return calendar_weekday >= 5
 
 func get_hour() -> int:
 	return int(floor(float(clock_minutes) / 60.0)) % 24
@@ -107,6 +125,89 @@ func get_time_string() -> String:
 		suffix = " PM"
 	return str(h12).pad_zeros(2) + ":" + str(m).pad_zeros(2) + suffix
 
+
+func get_calendar_date() -> Dictionary:
+	return {
+		"year": calendar_year,
+		"month": calendar_month,
+		"day": calendar_day,
+		"weekday": calendar_weekday,
+		"weekday_name": CALENDAR_WEEKDAY_NAMES[calendar_weekday],
+		"month_name": CALENDAR_MONTH_NAMES[calendar_month - 1]
+	}
+
+func get_calendar_date_string() -> String:
+	var weekday_name: String = CALENDAR_WEEKDAY_NAMES[calendar_weekday]
+	var month_name: String = CALENDAR_MONTH_NAMES[calendar_month - 1]
+	return "%s %s %d, %d" % [weekday_name, month_name, calendar_day, calendar_year]
+
+
+func get_calendar_date_for_day(day_number: int) -> Dictionary:
+	var target: int = max(1, day_number)
+	var year: int = CALENDAR_START_YEAR
+	var month: int = CALENDAR_START_MONTH
+	var day_value: int = CALENDAR_START_DAY
+	var weekday: int = CALENDAR_START_WEEKDAY
+	var remaining: int = target - 1
+	while remaining > 0:
+		weekday = (weekday + 1) % CALENDAR_WEEKDAY_NAMES.size()
+		day_value += 1
+		var month_length: int = _get_month_length(year, month)
+		if day_value > month_length:
+			day_value = 1
+			month += 1
+			if month > CALENDAR_MONTH_NAMES.size():
+				month = 1
+				year += 1
+		remaining -= 1
+	return {
+		"year": year,
+		"month": month,
+		"day": day_value,
+		"weekday": weekday,
+		"weekday_name": CALENDAR_WEEKDAY_NAMES[weekday],
+		"month_name": CALENDAR_MONTH_NAMES[month - 1]
+	}
+
+func get_calendar_date_string_for_day(day_number: int) -> String:
+	var data: Dictionary = get_calendar_date_for_day(day_number)
+	var weekday_name: String = String(data["weekday_name"])
+	var month_name: String = String(data["month_name"])
+	var day_value: int = int(data["day"])
+	var year: int = int(data["year"])
+	return "%s %s %d, %d" % [weekday_name, month_name, day_value, year]
+
+func get_calendar_weekday_name() -> String:
+	return CALENDAR_WEEKDAY_NAMES[calendar_weekday]
+
+func get_calendar_month_name() -> String:
+	return CALENDAR_MONTH_NAMES[calendar_month - 1]
+
+func _advance_calendar_day() -> void:
+	calendar_weekday = (calendar_weekday + 1) % CALENDAR_WEEKDAY_NAMES.size()
+	calendar_day += 1
+	var month_length: int = _get_month_length(calendar_year, calendar_month)
+	if calendar_day > month_length:
+		calendar_day = 1
+		calendar_month += 1
+		if calendar_month > CALENDAR_MONTH_NAMES.size():
+			calendar_month = 1
+			calendar_year += 1
+
+func _get_month_length(year: int, month: int) -> int:
+	var base_length: int = CALENDAR_MONTH_LENGTHS[month - 1]
+	if month == 2 and _is_leap_year(year):
+		return base_length + 1
+	return base_length
+
+func _is_leap_year(year: int) -> bool:
+	if year % 400 == 0:
+		return true
+	if year % 100 == 0:
+		return false
+	return year % 4 == 0
+
+
 func set_clock_running(r: bool) -> void:
 	_clock_running = r
 
@@ -122,6 +223,7 @@ func set_time(h: int, m: int) -> void:
 
 func sleep_to_morning() -> void:
 	day += 1
+	_advance_calendar_day()
 	_phase_index = 0
 	phase = PHASE_ORDER[_phase_index]
 	clock_minutes = T_MORNING
@@ -181,13 +283,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			# Direct phase start times (kept)
 			KEY_1:
-				set_time(6, 0)		# Morning
+				set_time(6, 0)        # Morning
 			KEY_2:
-				set_time(9, 30)		# Market
+				set_time(9, 30)        # Market
 			KEY_3:
-				set_time(16, 0)		# Aftermarket (Evening)
+				set_time(16, 0)        # Aftermarket (Evening)
 			KEY_4:
-				set_time(20, 0)		# LateNight
+				set_time(20, 0)        # LateNight
 
 			# Clock controls
 			KEY_T:
@@ -197,7 +299,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if not _clock_running:
 					status = "paused"
 				print("[Clock] ", status)
-			KEY_EQUAL:				# '+' (Shift + '=' on US)
+			KEY_EQUAL:                # '+' (Shift + '=' on US)
 				minutes_rate = min(minutes_rate * 2.0, 480.0)
 				print("[Clock] rate =", minutes_rate, " min/sec")
 			KEY_MINUS:

@@ -16,6 +16,8 @@ const DEFAULT_DIALOGUE_LOCKED_OUT_GIVE := "No more drinks tonight."
 @export var insider_class: StringName = &"exec_assistant"
 @export var company_name: String = "ACME"
 @export var company_ticker: StringName = &"ACME"
+@export var randomize_company_on_spawn: bool = true
+@export var company_symbol_pool: Array[StringName] = []
 @export var display_name: String = ""
 @export var tip_tickers: Array[StringName] = []
 @export var look_target: NodePath
@@ -62,10 +64,15 @@ var _prompt_timer: Timer = null
 var _locked_until_next_day: bool = false
 var _lockout_reason: String = ""
 var _player_contact_count: int = 0
+var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	_rng.randomize()
 	add_to_group("npc")
 	add_to_group("insider_npc")
+
+	if randomize_company_on_spawn:
+		_assign_random_company()
 
 	var class_lower := String(insider_class).to_lower()
 	var class_group := "%s_npc" % class_lower
@@ -94,14 +101,7 @@ func _ready() -> void:
 
 	_drunk = _ensure_drunk_component()
 	if _drunk:
-		if tip_tickers.is_empty():
-			tip_tickers.append(company_ticker)
-		var ticker_strings: Array[String] = []
-		for t in tip_tickers:
-			ticker_strings.append(String(t))
-		_class_config["debug_logging"] = debug_logging
-		_drunk.setup(display_name, ticker_strings, _class_config)
-		_confidence = _drunk.confidence
+		_reconfigure_drunk_tickers()
 		if not _drunk.drunk_level_changed.is_connected(_on_drunk_level_changed):
 			_drunk.drunk_level_changed.connect(_on_drunk_level_changed)
 		if not _drunk.tip_given.is_connected(_on_tip_given):
@@ -403,19 +403,76 @@ func _apply_class_config() -> void:
 	if _class_config.has("dialogue_passed_out_give") and dialogue_passed_out_give == "Can't drink anymore...":
 		dialogue_passed_out_give = String(_class_config["dialogue_passed_out_give"])
 
-	if display_name.is_empty():
-		var class_title := String(_class_config.get("display_name", "Insider"))
-		if company_name.is_empty():
-			display_name = class_title
-		else:
-			display_name = "%s %s" % [company_name, class_title]
-
-	if String(npc_id).is_empty():
-		npc_id = StringName("%s_%s" % [company_name.to_lower().replace(" ", "_"), String(insider_class).to_lower()])
+	_refresh_company_identity_fields(randomize_company_on_spawn)
 
 	if _label:
 		_update_state_label()
 
+func _refresh_company_identity_fields(force_display_update: bool = false) -> void:
+	if _class_config.is_empty():
+		_class_config = InsiderClasses.get_config(insider_class)
+	var class_title := String(_class_config.get("display_name", "Insider"))
+	var should_update_display := force_display_update or display_name.strip_edges() == ""
+	if should_update_display:
+		if company_name.strip_edges() == "":
+			display_name = class_title
+		else:
+			display_name = "%s %s" % [company_name, class_title]
+
+	var current_id := String(npc_id)
+	if force_display_update or current_id.strip_edges() == "":
+		var prefix := company_name.to_lower().replace(" ", "_")
+		if prefix == "":
+			prefix = class_title.to_lower().replace(" ", "_")
+		if prefix == "":
+			prefix = "insider"
+		npc_id = StringName("%s_%s" % [prefix, String(insider_class).to_lower()])
+
+	if randomize_company_on_spawn:
+		tip_tickers.clear()
+		if company_ticker != StringName():
+			tip_tickers.append(company_ticker)
+	elif tip_tickers.is_empty() and company_ticker != StringName():
+		tip_tickers.append(company_ticker)
+
+	if _label:
+		_update_state_label()
+
+func _assign_random_company() -> void:
+	var symbol := _pick_random_symbol()
+	if symbol == StringName():
+		return
+	company_ticker = symbol
+	company_name = String(symbol)
+
+func _pick_random_symbol() -> StringName:
+	if company_symbol_pool.size() > 0:
+		var idx := _rng.randi_range(0, company_symbol_pool.size() - 1)
+		return company_symbol_pool[idx]
+	if typeof(MarketSim) != TYPE_NIL and MarketSim.symbols.size() > 0:
+		var market_idx := _rng.randi_range(0, MarketSim.symbols.size() - 1)
+		return MarketSim.symbols[market_idx]
+	if company_ticker != StringName():
+		return company_ticker
+	return StringName("ACME")
+
+func _reconfigure_drunk_tickers() -> void:
+	if _drunk == null:
+		return
+	if _class_config.is_empty():
+		_class_config = InsiderClasses.get_config(insider_class)
+	if tip_tickers.is_empty() and company_ticker != StringName():
+		tip_tickers.append(company_ticker)
+	if tip_tickers.is_empty():
+		return
+
+	var ticker_strings: Array[String] = []
+	for t in tip_tickers:
+		ticker_strings.append(String(t))
+
+	_class_config["debug_logging"] = debug_logging
+	_drunk.setup(display_name, ticker_strings, _class_config)
+	_confidence = _drunk.confidence
 func _ensure_drunk_component() -> InsiderDrunkComponent:
 	var component := get_node_or_null("InsiderDrunkComponent") as InsiderDrunkComponent
 	if component == null:
@@ -481,6 +538,10 @@ func _lock_out_for_day(reason: String = "") -> void:
 		_update_state_label("Done for tonight")
 
 func _on_day_advanced(_day: int) -> void:
+	if randomize_company_on_spawn:
+		_assign_random_company()
+		_refresh_company_identity_fields(true)
+		_reconfigure_drunk_tickers()
 	_locked_until_next_day = false
 	_lockout_reason = ""
 	_ready_hint_shown = false

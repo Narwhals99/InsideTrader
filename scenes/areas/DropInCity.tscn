@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://caj45st133ack"]
+[gd_scene load_steps=9 format=3 uid="uid://caj45st133ack"]
+
+[ext_resource type="Texture2D" uid="uid://cg7rsmroin6y6" path="res://assets/environments/road/AsphaltRoad_01_basecolor.png" id="1_f26ty"]
+[ext_resource type="Texture2D" uid="uid://cisba1e7l0egi" path="res://assets/environments/road/AsphaltRoad_01_height.png" id="2_6wfqs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iheyu"]
 size = Vector3(1, 2.04688, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxafq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hv3yp"]
+albedo_texture = ExtResource("1_f26ty")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hc60f"]
+material = SubResource("StandardMaterial3D_hv3yp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwma2"]
+albedo_texture = ExtResource("2_6wfqs")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ohjhm"]
+material = SubResource("StandardMaterial3D_dwma2")
 
 [node name="HUBPROTO" type="Node3D"]
 
@@ -1523,6 +1539,1590 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -45)
 use_collision = true
 size = Vector3(48, 0.3, 18)
 material = SubResource("StandardMaterial3D_jxafq")
+
+[node name="street2" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -39.2813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street7" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -31.7813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street30" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -46.7813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street31" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -54.2813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street32" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -55.7813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street8" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -24.2813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street9" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -16.7813, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street10" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -9.28133, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street11" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -1.78133, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street215" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -39.2813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street216" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -31.7813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street217" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -46.7813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street218" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -54.2813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street219" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -24.2813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street220" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -16.7813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street221" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -9.28133, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street222" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -1.78133, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street223" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, 5.71867, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street224" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, 12.2187, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street225" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -61.2813, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street226" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -64.6969, 0.156718, 45)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street12" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -9.28133, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street14" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, -20.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street15" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, -12.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street16" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, -5.35714)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street17" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 2.14286)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street18" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 9.64286)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street19" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 17.1429)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street20" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 9.64286)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street21" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 24.1429)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street22" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 31.6429)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street23" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, 39.1429)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street43" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, -27.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street44" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -2.84217e-14, 0, -3.75, -63.9242, 0.156718, -35.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street45" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -57.581, 0.156718, -44.983)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street46" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.48133, 0, -0.0555637, 0, 1, 0, -0.0456003, 0, 5.46048, -63.8862, 0.156718, -44.0531)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street33" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 9.4258, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street34" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 1.9258, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street35" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -5.5742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street36" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -13.0742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street37" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -20.5742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street38" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -28.0742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street39" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -20.5742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street40" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -35.0742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street41" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -42.5742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street42" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -50.0742, 0.156718, -45.0071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street47" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -112.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street48" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -104.857)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street49" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -97.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street50" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -89.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street51" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -82.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street52" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -74.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street53" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -82.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street54" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -67.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street55" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -60.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street56" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -52.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street57" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 12.5758, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street58" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 5.07581, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street59" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -2.42419, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street60" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -9.92419, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street61" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, -17.4242, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street67" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 49.8903, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street68" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 42.3903, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street69" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 34.8903, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street70" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 27.3903, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street71" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 19.8903, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street72" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 87.3793, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street73" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 79.8793, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street74" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 72.3793, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street75" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 64.8793, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street76" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 57.3793, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street77" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 124.737, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street78" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 117.237, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street79" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 109.737, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street80" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 102.237, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street81" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 94.7372, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street82" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 162.102, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street83" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 154.602, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street84" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 147.102, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street85" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 139.602, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street86" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 132.102, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street87" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 199.671, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street88" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 192.171, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street89" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 184.671, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street90" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 177.171, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street91" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 169.671, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street92" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -132.149)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street93" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -139.649)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street94" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -147.149)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street97" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -109.751)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street98" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -117.251)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street99" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -124.751)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street100" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -87.346)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street101" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -94.846)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street102" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -102.346)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street103" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -64.9218)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street104" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -72.4218)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street105" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -79.9218)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street106" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -42.3625)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street107" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -49.8625)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street108" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -57.3625)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street109" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -27.1119)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street110" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -34.6119)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street111" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 218.105, 0.156718, -42.1119)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street112" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -123.209)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street113" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -130.709)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street114" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -138.209)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street115" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -100.723)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street116" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -108.223)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street117" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -115.723)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street118" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -78.4507)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street119" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -85.9507)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street120" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -93.4507)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street121" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -55.9648)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street122" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -63.4648)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street123" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -70.9648)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street124" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -33.8248)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street125" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -41.3248)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street126" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -48.8248)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street127" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -11.3389)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street128" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -18.8389)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street129" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -26.3389)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street130" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 10.7899)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street131" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 3.28992)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street132" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, -4.21008)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street133" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 33.2758)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street134" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 25.7758)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street135" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 18.2758)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street136" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 55.5588)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street137" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 48.0588)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street138" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 40.5588)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street139" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 78.0447)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street140" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 70.5446)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street141" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 63.0447)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street142" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 100.182)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street143" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 92.6816)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street144" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 85.1816)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street145" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 122.668)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street146" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 115.167)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street147" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-4.5, 0, -3.27836e-07, 0, 1, 0, -3.93402e-07, 0, 3.75, 114.865, 0.156718, 107.668)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street148" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 102.512, 0.156718, 134.071)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street149" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 107.815, 0.156718, 139.375)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street150" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 113.118, 0.156718, 144.678)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street151" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 86.6118, 0.156718, 118.171)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street152" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 91.9151, 0.156718, 123.475)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street153" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 97.2184, 0.156718, 128.778)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street154" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 74.0117, 0.156718, 105.571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street155" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 79.315, 0.156718, 110.875)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street156" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 84.6183, 0.156718, 116.178)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street157" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 58.1118, 0.156718, 89.6713)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street158" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 63.4151, 0.156718, 94.9746)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street159" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 68.7184, 0.156718, 100.278)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street160" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 45.5117, 0.156718, 77.0712)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street161" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 50.815, 0.156718, 82.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street162" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 56.1183, 0.156718, 87.6778)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street163" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 29.6118, 0.156718, 61.1713)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street164" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 34.9151, 0.156718, 66.4746)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street165" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 40.2184, 0.156718, 71.7779)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street166" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 17.5117, 0.156718, 49.0712)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street167" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 22.815, 0.156718, 54.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street168" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 28.1183, 0.156718, 59.6778)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street169" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 34.9151, 0.156718, 66.4746)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street170" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 40.2184, 0.156718, 71.7779)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street171" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 17.5117, 0.156718, 49.0712)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street172" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 22.815, 0.156718, 54.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street173" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, -2.65165, 0, 1, 0, -3.18198, 0, -2.65165, 28.1183, 0.156718, 59.6778)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street174" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 27.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street175" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 34.8745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street176" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 42.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street177" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 4.8745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street178" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 12.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street179" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 19.8745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street180" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -17.1255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street181" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -9.62549)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street182" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -2.12549)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street183" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -38.1255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street184" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -30.6255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street185" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -23.1255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street186" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 4.8745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street187" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 12.3745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street188" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, 19.8745)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street189" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -9.62549)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street190" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -2.12549)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street191" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 8.9407e-07, 0, 1, 0, 0, 0, -5.625, 14.315, 0.156718, -38.1255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street192" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -30.6255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street193" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 5.96046e-07, 0, 1, 0, 0, 0, -3.75, 14.315, 0.156718, -23.1255)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street95" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 214.605, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street96" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, 3.75, 0, 1, 0, 4.5, 0, 1.63918e-07, 207.105, 0.156718, -146.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street62" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -141.857)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street63" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -147.102)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street64" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -134.857)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street65" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -127.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street66" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(4.5, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, -3.75, -25.4242, 0.156718, -119.857)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street194" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 108.379, 0.156718, -139.16)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street195" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 103.076, 0.156718, -133.857)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street196" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 97.7725, 0.156718, -128.554)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street197" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 94.3791, 0.156718, -125.16)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street198" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 89.0758, 0.156718, -119.857)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street199" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 83.7725, 0.156718, -114.554)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street200" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 78.8791, 0.156718, -109.66)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street201" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 73.5758, 0.156718, -104.357)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street202" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 68.2725, 0.156718, -99.0538)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street203" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 63.3791, 0.156718, -94.1604)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street204" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 58.0758, 0.156718, -88.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street205" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 52.7725, 0.156718, -83.5538)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street206" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 49.3791, 0.156718, -80.1604)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street207" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 44.0758, 0.156718, -74.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street208" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 38.7725, 0.156718, -69.5538)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street209" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 34.3791, 0.156718, -65.1604)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street210" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 29.0758, 0.156718, -59.8571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street211" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 23.7725, 0.156718, -54.5538)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street212" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 23.8791, 0.156718, -54.6604)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street213" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 18.5758, 0.156718, -49.3571)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street214" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, 13.2725, 0.156718, -44.0538)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street24" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, -68.1209, 0.156718, 49.3396)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street26" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, -78.7275, 0.156718, 59.9462)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street27" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, -73.4242, 0.156718, 54.6429)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street25" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, -83.9825, 0.156718, 65.2018)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street28" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, -94.5891, 0.156718, 75.8084)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street29" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(3.18198, 0, 2.65165, 0, 1, 0, 3.18198, 0, -2.65165, -89.2858, 0.156718, 70.5051)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="street13" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.96701e-07, 0, -3.75, 0, 1, 0, -4.5, 0, 1.63918e-07, -1.78133, 0.156718, 0)
+mesh = SubResource("PlaneMesh_hc60f")
+
+[node name="sidewalk" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -40.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk2" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -35.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk3" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -31, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk4" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -26, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk5" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -21, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk6" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -16.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk7" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -11.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk8" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -6.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk9" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -2, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk10" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -40.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk11" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -35.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk12" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -31, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk13" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -26, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk14" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -21, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk15" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -16.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk16" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -11.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk17" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -6.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk18" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -2, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk19" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -40.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk20" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -35.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk21" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -31, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk22" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -26, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk23" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -21, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk24" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -16.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk25" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -11.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk26" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -6.5, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk27" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -2, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk28" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -40.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk29" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -35.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk30" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -31, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk31" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -26, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk32" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -21, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk33" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -16.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk34" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -11.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk35" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -6.5, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk36" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, -2, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk37" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, 2.67529, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk38" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, 7.17529, 0.157344, -6.74596)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk39" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -11.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk40" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -16.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk41" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -21.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk42" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -25.8531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk43" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -30.8531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk44" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -35.8531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk45" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -38.0619)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk55" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.96072, 0.157344, -52.0364)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk46" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, 2.67529, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk47" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.24891, 7.17529, 0.157344, 6.75404)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk48" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -11.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk49" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -16.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk50" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -21.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk51" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -25.8531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk52" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -30.8531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk53" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -35.8531)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk56" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 18.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk57" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 13.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk58" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 8.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk59" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 7.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk60" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -7.35311)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk61" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, -7.00707)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk80" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -25.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk81" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -30.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk82" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -35.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk83" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -40.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk84" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -45.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk85" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -45.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk86" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -40.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk87" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -35.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk88" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -30.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk89" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -25.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk90" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -50.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk91" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -55.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk92" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -60.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk93" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -65.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk94" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -70.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk95" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -70.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk96" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -65.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk97" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -60.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk98" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -55.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk99" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -50.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk100" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -75.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk101" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -80.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk102" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -85.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk103" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -90.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk104" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -95.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk105" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -95.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk106" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -90.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk107" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -85.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk108" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -80.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk109" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -75.8736)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk110" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -100.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk111" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -105.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk112" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -110.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk113" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -115.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk114" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -120.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk115" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -120.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk116" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -115.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk117" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -110.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk118" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -105.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk119" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -100.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk120" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -125.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk121" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -130.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk122" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -135.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk123" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 211.358, 0.157344, -139.374)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk124" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 211.358, 0.157344, -152.985)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk130" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 215.837, 0.157344, -153.018)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk131" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 220.214, 0.157344, -153.018)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk134" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 198.007, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk135" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 202.486, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk136" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 206.864, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk137" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 198.007, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk138" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 202.486, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk139" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 206.864, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk140" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 185.007, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk141" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 189.486, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk142" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 193.864, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk143" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 185.007, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk144" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 189.486, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk145" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 193.864, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk146" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 172.007, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk147" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 176.486, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk148" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 180.864, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk149" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 172.007, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk150" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 176.486, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk151" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 180.864, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk152" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 159.007, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk153" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 163.486, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk154" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 167.864, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk155" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 159.007, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk156" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 163.486, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk157" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 167.864, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk158" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 146.007, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk159" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 150.486, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk160" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 154.864, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk161" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 146.007, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk162" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 150.486, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk163" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 154.864, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk164" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 133.007, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk165" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 137.486, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk166" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 141.864, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk167" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 133.007, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk168" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 137.486, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk169" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 141.864, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk170" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 121.507, 0.157344, -152.959)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk171" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 125.986, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk172" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 130.364, 0.157344, -152.991)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk173" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 121.507, 0.157344, -139.743)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk174" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 125.986, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk175" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.24891, 0, 1, 0, -2.0958, 0, -9.83028e-08, 130.364, 0.157344, -139.776)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk132" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-9.16104e-08, 0, 2.6099, 0, 1, 0, -2.0958, 0, -1.14082e-07, 224.675, 0.157344, -153.018)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk125" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -145.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk133" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.842, 0.157344, -150.279)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk126" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -140.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk127" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -135.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk128" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -130.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk129" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 224.858, 0.157344, -125.874)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk62" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 18.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk63" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 13.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk64" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 8.14689)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk65" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 3.64689)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk66" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -1.35311)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk67" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -6.35311)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk68" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 38.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk69" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 33.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk70" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 28.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk71" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 23.6469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk72" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 18.6469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk73" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 7.56816, 0.157344, 13.6469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk74" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 38.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk75" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 33.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk76" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 28.1469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk77" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 23.6469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk78" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 18.6469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk79" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, 13.6469)
+mesh = SubResource("PlaneMesh_ohjhm")
+
+[node name="sidewalk54" type="MeshInstance3D" parent="Environment/street2"]
+transform = Transform3D(-1.09278e-07, 0, 2.24891, 0, 1, 0, -2.5, 0, -9.83028e-08, 21.0682, 0.157344, -40.3531)
+mesh = SubResource("PlaneMesh_ohjhm")
 
 [node name="street3" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, 60)

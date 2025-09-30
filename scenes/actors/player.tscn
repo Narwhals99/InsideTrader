@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bugch1mtersd1"]
+[gd_scene load_steps=5 format=3 uid="uid://bugch1mtersd1"]
 
 [ext_resource type="Script" uid="uid://d3cgpb1rjvh6w" path="res://scripts/actors/Player.gd" id="1_15tap"]
 [ext_resource type="PackedScene" uid="uid://bnb3f4enhukjp" path="res://assets/actors/CAUCASIAN MAN.glb" id="2_ru62r"]
@@ -10,33 +10,6 @@ height = 1.9
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_15tap"]
 radius = 0.38
 height = 1.78
-
-[sub_resource type="Animation" id="Animation_ktjr4"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("caucasian/Skeleton3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.8, 1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_ru62r"]
-resource_name = "Walk"
-loop_mode = 1
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("caucasian/Skeleton3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.566667, 1, 1, 1, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wueq"]
-_data = {
-&"RESET": SubResource("Animation_ktjr4"),
-&"Walk": SubResource("Animation_ru62r")
-}
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_15tap")
@@ -95,12 +68,10 @@ bones/39/rotation = Quaternion(0.0213679, 0.00501364, 0.0579064, 0.998081)
 visible = false
 mesh = SubResource("CapsuleMesh_15tap")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../ModelPivot/MyModel")
-libraries = {
-&"": SubResource("AnimationLibrary_7wueq")
-}
+[node name="ThirdPerson" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989364, 0.145461, 0, -0.145461, 0.989364, 0, 1.4175, 1.53488)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="Camera3D" type="Camera3D" parent="ThirdPerson"]
+transform = Transform3D(1, 0, 0, 0, 0.960478, 0.278354, 0, -0.278354, 0.960478, 0, 0.0196742, -0.00499701)
 
 [editable path="ModelPivot/MyModel"]

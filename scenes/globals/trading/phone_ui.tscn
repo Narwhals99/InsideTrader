@@ -1,158 +1,357 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctann63bkwex5"]
+[gd_scene load_steps=6 format=3 uid="uid://ctann63bkwex5"]
 
 [ext_resource type="Script" uid="uid://cbj3wvgl8e3qj" path="res://scripts/globals/trading/PhoneUI.gd" id="1_uwhl5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwhl5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bezel"]
+content_margin_left = 16.0
+content_margin_top = 18.0
+content_margin_right = 16.0
+content_margin_bottom = 18.0
+bg_color = Color(0.0666667, 0.0588235, 0.0784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.14902, 0.14902, 0.184314, 1)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.188108, 0.160788, 0.206591, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.274, 0.239, 0.321, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_app_pressed"]
+bg_color = Color(0.22, 0.38, 0.65, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_app_normal"]
+bg_color = Color(0.32, 0.54, 0.85, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
 
 [node name="PhoneUI" type="CanvasLayer" groups=["phone_ui"]]
 layer = 20
 visible = false
 script = ExtResource("1_uwhl5")
 
-[node name="Root" type="CenterContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Panel" type="PanelContainer" parent="Root"]
-custom_minimum_size = Vector2(420, 560)
+[node name="PhoneFrame" type="PanelContainer" parent="Root"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_uwhl5")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bezel")
 
-[node name="VBox" type="VBoxContainer" parent="Root/Panel"]
+[node name="Panel" type="PanelContainer" parent="Root/PhoneFrame"]
+custom_minimum_size = Vector2(520, 760)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Root/PhoneFrame/Panel"]
 layout_mode = 2
 
-[node name="Title" type="HBoxContainer" parent="Root/Panel/VBox"]
+[node name="Title" type="HBoxContainer" parent="Root/PhoneFrame/Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Root/Panel/VBox/Title"]
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/Title"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Phone - Markets"
+text = "Phone"
 
-[node name="CloseBtn" type="Button" parent="Root/Panel/VBox/Title"]
+[node name="CloseBtn" type="Button" parent="Root/PhoneFrame/Panel/VBox/Title"]
 layout_mode = 2
 text = "Close"
 
-[node name="Tabs" type="TabBar" parent="Root/Panel/VBox"]
-layout_mode = 2
-current_tab = 0
-tab_count = 1
-
-[node name="Scroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+[node name="HomeScreen" type="Control" parent="Root/PhoneFrame/Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="List" type="VBoxContainer" parent="Root/Panel/VBox/Scroll"]
-layout_mode = 2
-
-[node name="PosScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PosList" type="VBoxContainer" parent="Root/Panel/VBox/PosScroll"]
+[node name="TopSpacer" type="Control" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AppDockMargin" type="MarginContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 0
+
+[node name="AppDock" type="CenterContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DayScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+[node name="AppGrid" type="GridContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 24
+columns = 4
+
+[node name="Market" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Button" type="Button" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Market"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_normal")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Market"]
+layout_mode = 2
+text = "Market"
+horizontal_alignment = 1
+
+[node name="Positions" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Button" type="Button" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Positions"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_normal")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Positions"]
+layout_mode = 2
+text = "Positions"
+horizontal_alignment = 1
+
+[node name="Today" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Button" type="Button" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Today"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_normal")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Today"]
+layout_mode = 2
+text = "Today"
+horizontal_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Button" type="Button" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Options"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_normal")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Options"]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Insider" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Button" type="Button" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Insider"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_normal")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Insider"]
+layout_mode = 2
+text = "Insider"
+horizontal_alignment = 1
+
+[node name="Banking" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Button" type="Button" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Banking"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_app_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_app_normal")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Banking"]
+layout_mode = 2
+text = "Banking"
+horizontal_alignment = 1
+
+[node name="BottomSpacer" type="Control" parent="Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DayList" type="VBoxContainer" parent="Root/Panel/VBox/DayScroll"]
+[node name="Scroll" type="ScrollContainer" parent="Root/PhoneFrame/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/Scroll"]
+layout_mode = 2
+
+[node name="PosScroll" type="ScrollContainer" parent="Root/PhoneFrame/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PosList" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/PosScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Footer" type="HBoxContainer" parent="Root/Panel/VBox"]
+[node name="DayScroll" type="ScrollContainer" parent="Root/PhoneFrame/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DayList" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/DayScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Footer" type="HBoxContainer" parent="Root/PhoneFrame/Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="QtyLabel" type="Label" parent="Root/Panel/VBox/Footer"]
+[node name="QtyLabel" type="Label" parent="Root/PhoneFrame/Panel/VBox/Footer"]
 layout_mode = 2
 text = "Qty"
 
-[node name="QtySpin" type="SpinBox" parent="Root/Panel/VBox/Footer"]
+[node name="QtySpin" type="SpinBox" parent="Root/PhoneFrame/Panel/VBox/Footer"]
 layout_mode = 2
 min_value = 1.0
 value = 1.0
 
-[node name="OptionsFooter" type="HBoxContainer" parent="Root/Panel/VBox/Footer"]
+[node name="OptionsFooter" type="HBoxContainer" parent="Root/PhoneFrame/Panel/VBox/Footer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ContractsLabel" type="Label" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+[node name="ContractsLabel" type="Label" parent="Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter"]
 layout_mode = 2
 
-[node name="ContractsSpin" type="SpinBox" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+[node name="ContractsSpin" type="SpinBox" parent="Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter"]
 layout_mode = 2
 min_value = 1.0
 value = 1.0
 allow_greater = true
 
-[node name="PremiumPreview" type="Label" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+[node name="PremiumPreview" type="Label" parent="Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter"]
 layout_mode = 2
 
-[node name="PlaceOrderBtn" type="Button" parent="Root/Panel/VBox/Footer/OptionsFooter"]
+[node name="PlaceOrderBtn" type="Button" parent="Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter"]
 layout_mode = 2
 
-[node name="TotalsLabel" type="Label" parent="Root/Panel/VBox/Footer"]
+[node name="TotalsLabel" type="Label" parent="Root/PhoneFrame/Panel/VBox/Footer"]
 layout_mode = 2
 
-[node name="InsiderScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+[node name="InsiderScroll" type="ScrollContainer" parent="Root/PhoneFrame/Panel/VBox"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="InsiderList" type="ItemList" parent="Root/Panel/VBox/InsiderScroll"]
+[node name="InsiderList" type="ItemList" parent="Root/PhoneFrame/Panel/VBox/InsiderScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+same_column_width = true
+fixed_column_width = 480
 
-[node name="OptionsScroll" type="ScrollContainer" parent="Root/Panel/VBox"]
+[node name="OptionsScroll" type="ScrollContainer" parent="Root/PhoneFrame/Panel/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="OptionsVbox" type="VBoxContainer" parent="Root/Panel/VBox/OptionsScroll"]
+[node name="OptionsVbox" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="OptionsFilters" type="HBoxContainer" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox"]
+[node name="OptionsFilters" type="HBoxContainer" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SymbolLabel" type="Label" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+[node name="SymbolLabel" type="Label" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
 layout_mode = 2
 text = "Symbol"
 
-[node name="SymbolSelect" type="OptionButton" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+[node name="SymbolSelect" type="OptionButton" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ExpiryLabel" type="Label" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+[node name="ExpiryLabel" type="Label" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
 layout_mode = 2
 
-[node name="ExpirySelect" type="OptionButton" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="StrikeLabel" type="Label" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
-layout_mode = 2
-
-[node name="StrikeSelect" type="OptionButton" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+[node name="ExpirySelect" type="OptionButton" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TypeToggle" type="Button" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+[node name="StrikeLabel" type="Label" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
 layout_mode = 2
 
-[node name="OptionsList" type="VBoxContainer" parent="Root/Panel/VBox/OptionsScroll/OptionsVbox"]
+[node name="StrikeSelect" type="OptionButton" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TypeToggle" type="Button" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters"]
+layout_mode = 2
+
+[node name="OptionsList" type="VBoxContainer" parent="Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

@@ -220,7 +220,7 @@ func open() -> void:
 	# Play open sound if available
 	EventBus.emit_signal("ui_opened", "inventory")
 
-func close() -> void:
+func close(restore_mouse_mode: bool = true) -> void:
 	if not is_open:
 		return
 	
@@ -232,8 +232,8 @@ func close() -> void:
 		process_mode = Node.PROCESS_MODE_INHERIT
 	
 	# Restore mouse mode for FPS
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	if restore_mouse_mode:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Hide info panel
 	if item_info_panel:
 		item_info_panel.visible = false
@@ -427,6 +427,8 @@ func _show_food_options(item_id: String, food_data: FoodData) -> void:
 	# Connect to response if not already
 	if not EventBus.dialogue_completed.is_connected(_on_food_choice):
 		EventBus.dialogue_completed.connect(_on_food_choice)
+	if is_open:
+		close(false)
 
 func _on_food_choice(choice_index: int) -> void:
 	if _current_food_item == "" or not _current_food_data:

@@ -12,6 +12,8 @@ var _choice_buttons: Array[Button] = []
 var _hovered_choice: int = -1
 var _mouse_mode_restore: int = Input.MOUSE_MODE_VISIBLE
 var _mouse_mode_changed: bool = false
+var _dialogue_timer: Timer = null
+var _suppress_dialogue_select: bool = false
 
 @export var enable_choice_hotkeys: bool = false
 
@@ -41,12 +43,15 @@ func show_dialogue(speaker: String, text: String, duration: float = 0.0) -> void
 		_mouse_mode_changed = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+	_clear_dialogue_timer()
+
 	if current_dialogue:
 		current_dialogue.queue_free()
 
 	current_dialogue = dialogue_scene.instantiate()
 	add_child(current_dialogue)
 
+	_suppress_dialogue_select = true
 	_pending_choices.clear()
 	_choice_buttons.clear()
 	_hovered_choice = -1
@@ -64,17 +69,18 @@ func show_dialogue(speaker: String, text: String, duration: float = 0.0) -> void
 		text_label.text = text
 
 	if duration > 0.0:
-		var timer := Timer.new()
-		timer.wait_time = duration
-		timer.one_shot = true
-		timer.timeout.connect(_on_dialogue_timeout)
-		add_child(timer)
-		timer.start()
+		_dialogue_timer = Timer.new()
+		_dialogue_timer.wait_time = duration
+		_dialogue_timer.one_shot = true
+		_dialogue_timer.timeout.connect(_on_dialogue_timeout)
+		add_child(_dialogue_timer)
+		_dialogue_timer.start()
 
 func _on_dialogue_timeout() -> void:
 	hide_dialogue()
 
 func hide_dialogue() -> void:
+	_clear_dialogue_timer()
 	_pending_choices.clear()
 	_choice_buttons.clear()
 	_hovered_choice = -1
@@ -83,6 +89,16 @@ func hide_dialogue() -> void:
 		tween.tween_property(current_dialogue, "modulate:a", 0.0, 0.3)
 		tween.tween_callback(current_dialogue.queue_free)
 		current_dialogue = null
+	if _mouse_mode_changed:
+		Input.set_mouse_mode(_mouse_mode_restore)
+		_mouse_mode_changed = false
+	_suppress_dialogue_select = false
+
+func _clear_dialogue_timer() -> void:
+	if _dialogue_timer and is_instance_valid(_dialogue_timer):
+		_dialogue_timer.stop()
+		_dialogue_timer.queue_free()
+	_dialogue_timer = null
 
 func show_choices(speaker: String, text: String, options: Array) -> void:
 	show_dialogue(speaker, text, 0.0)
@@ -210,6 +226,12 @@ func _force_notif_label_white(notif: Node) -> void:
 		lbl.add_theme_color_override("font_color", Color.WHITE)
 
 func _input(event: InputEvent) -> void:
+	if _suppress_dialogue_select and current_dialogue and event.is_action_pressed("dialogue_select"):
+		_suppress_dialogue_select = false
+		Input.action_release("jump")
+		Input.action_release("dialogue_select")
+		get_viewport().set_input_as_handled()
+		return
 	if current_dialogue:
 		if event.is_action_pressed("dialogue_select"):
 			if _pending_choices.is_empty():

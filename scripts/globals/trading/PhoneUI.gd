@@ -2,54 +2,68 @@ extends CanvasLayer
 const OptionMarketService = preload("res://scripts/services/OptionMarketService.gd")
 
 const OptionContract = preload("res://scripts/resources/OptionContract.gd")
+const PhoneMarketTab = preload("res://scripts/globals/trading/phone/phone_market_tab.gd")
+
+const APP_HOME := "home"
+const APP_MARKET := "market"
+const APP_POSITIONS := "positions"
+const APP_TODAY := "today"
+const APP_OPTIONS := "options"
+const APP_INSIDER := "insider"
+const APP_BANKING := "banking"
 
 
 @export var pause_game_on_open: bool = true
 @export var show_market_eta: bool = true
 @export var refresh_interval_sec: float = 0.5
 
-# MARKET: Row widgets per symbol: { "price": Label, "buy": Button, "sell": Button }
-var _rows: Dictionary = {}
 # POSITIONS: Row widgets per symbol: { "qty": Label, "avg": Label, "price": Label, "pnl": Label, "close": Button }
 var _pos_rows: Dictionary = {}
 # TODAY: Row widgets per symbol: { "open": Label, "price": Label, "chg": Label, "close": Label }
 var _day_rows: Dictionary = {}
 
-@onready var _title_label: Label = $Root/Panel/VBox/Title/Label
-@onready var _close_btn: Button = $Root/Panel/VBox/Title/CloseBtn
-@onready var _tabs: TabBar = $Root/Panel/VBox/Tabs
+@onready var _title_label: Label = $Root/PhoneFrame/Panel/VBox/Title/Label
+@onready var _close_btn: Button = $Root/PhoneFrame/Panel/VBox/Title/CloseBtn
+@onready var _market_scroll: ScrollContainer = $Root/PhoneFrame/Panel/VBox/Scroll
+@onready var _list: VBoxContainer = $Root/PhoneFrame/Panel/VBox/Scroll/List
 
-@onready var _market_scroll: ScrollContainer = $Root/Panel/VBox/Scroll
-@onready var _list: VBoxContainer = $Root/Panel/VBox/Scroll/List
+@onready var _pos_scroll: ScrollContainer = $Root/PhoneFrame/Panel/VBox/PosScroll
+@onready var _pos_list: VBoxContainer = $Root/PhoneFrame/Panel/VBox/PosScroll/PosList
 
-@onready var _pos_scroll: ScrollContainer = $Root/Panel/VBox/PosScroll
-@onready var _pos_list: VBoxContainer = $Root/Panel/VBox/PosScroll/PosList
+@onready var _day_scroll: ScrollContainer = $Root/PhoneFrame/Panel/VBox/DayScroll
+@onready var _day_list: VBoxContainer = $Root/PhoneFrame/Panel/VBox/DayScroll/DayList
 
-@onready var _day_scroll: ScrollContainer = $Root/Panel/VBox/DayScroll
-@onready var _day_list: VBoxContainer = $Root/Panel/VBox/DayScroll/DayList
-
-@onready var _footer: HBoxContainer = $Root/Panel/VBox/Footer
-@onready var _qty_label: Label = $Root/Panel/VBox/Footer/QtyLabel
-@onready var _qty_spin: SpinBox = $Root/Panel/VBox/Footer/QtySpin
+@onready var _footer: HBoxContainer = $Root/PhoneFrame/Panel/VBox/Footer
+@onready var _qty_label: Label = $Root/PhoneFrame/Panel/VBox/Footer/QtyLabel
+@onready var _qty_spin: SpinBox = $Root/PhoneFrame/Panel/VBox/Footer/QtySpin
+@onready var _home_screen: Control = $Root/PhoneFrame/Panel/VBox/HomeScreen
+@onready var _app_dock: CenterContainer = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock
+@onready var _app_button_market: Button = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Market/Button
+@onready var _app_button_positions: Button = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Positions/Button
+@onready var _app_button_today: Button = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Today/Button
+@onready var _app_button_options: Button = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Options/Button
+@onready var _app_button_insider: Button = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Insider/Button
+@onready var _app_button_banking: Button = $Root/PhoneFrame/Panel/VBox/HomeScreen/VBoxContainer/AppDockMargin/AppDock/AppGrid/Banking/Button
 
 # --- new for Insider Info ---
-@onready var insider_scroll: ScrollContainer = $Root/Panel/VBox/InsiderScroll
-@onready var insider_list: ItemList = $Root/Panel/VBox/InsiderScroll/InsiderList
-var _insider_tab_index: int = -1
+@onready var insider_scroll: ScrollContainer = $Root/PhoneFrame/Panel/VBox/InsiderScroll
+@onready var insider_list: ItemList = $Root/PhoneFrame/Panel/VBox/InsiderScroll/InsiderList
 
-var _options_tab_index: int = -1
-@onready var _options_scroll: ScrollContainer = $Root/Panel/VBox/OptionsScroll
-@onready var _options_vbox: VBoxContainer = $Root/Panel/VBox/OptionsScroll/OptionsVbox
-@onready var _options_filters: HBoxContainer = $Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters
-@onready var _symbol_select: OptionButton = $Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/SymbolSelect
-@onready var _expiry_select: OptionButton = $Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/ExpirySelect
-@onready var _strike_select: OptionButton = $Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/StrikeSelect
-@onready var _type_toggle: Button = $Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/TypeToggle
-@onready var _options_list: VBoxContainer = $Root/Panel/VBox/OptionsScroll/OptionsVbox/OptionsList
-@onready var _options_footer: HBoxContainer = $Root/Panel/VBox/Footer/OptionsFooter
-@onready var _contracts_spin: SpinBox = $Root/Panel/VBox/Footer/OptionsFooter/ContractsSpin
-@onready var _premium_preview: Label = $Root/Panel/VBox/Footer/OptionsFooter/PremiumPreview
-@onready var _place_option_btn: Button = $Root/Panel/VBox/Footer/OptionsFooter/PlaceOrderBtn
+@onready var _options_scroll: ScrollContainer = $Root/PhoneFrame/Panel/VBox/OptionsScroll
+@onready var _options_vbox: VBoxContainer = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox
+@onready var _options_filters: HBoxContainer = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters
+@onready var _symbol_select: OptionButton = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/SymbolSelect
+@onready var _expiry_select: OptionButton = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/ExpirySelect
+@onready var _strike_select: OptionButton = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/StrikeSelect
+@onready var _type_toggle: Button = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsFilters/TypeToggle
+@onready var _options_list: VBoxContainer = $Root/PhoneFrame/Panel/VBox/OptionsScroll/OptionsVbox/OptionsList
+@onready var _options_footer: HBoxContainer = $Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter
+@onready var _contracts_spin: SpinBox = $Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter/ContractsSpin
+@onready var _premium_preview: Label = $Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter/PremiumPreview
+@onready var _place_option_btn: Button = $Root/PhoneFrame/Panel/VBox/Footer/OptionsFooter/PlaceOrderBtn
+@onready var _root_control: Control = $Root
+@onready var _panel_window: PanelContainer = $Root/PhoneFrame/Panel
+@onready var _title_bar: HBoxContainer = $Root/PhoneFrame/Panel/VBox/Title
 
 var _selected_option_id: String = ""
 var _selected_quote: Dictionary = {}
@@ -63,6 +77,12 @@ var _options_filters_initialized: bool = false
 var _options_symbol: String = ""
 var _selected_option_row: PanelContainer = null
 var _option_chain: Dictionary = {}
+var _market_tab: PhoneMarketTab = null
+var _app_buttons: Dictionary = {}
+var _current_app: String = APP_HOME
+var _dragging_window: bool = false
+var _window_drag_offset: Vector2 = Vector2.ZERO
+var _has_custom_window_position: bool = false
 
 
 var _clock_accum: float = 0.0
@@ -81,7 +101,6 @@ var _details_sector: Label = null
 var _details_list: VBoxContainer = null
 
 # === ADD THESE MEMBER VARIABLES AT THE TOP ===
-var _banking_tab_index: int = -1
 @onready var banking_scroll: ScrollContainer = null  # Will be created dynamically
 @onready var banking_container: VBoxContainer = null  # Will be created dynamically
 var _bank_balance_label: Label = null
@@ -104,8 +123,9 @@ func _refresh_insider_info() -> void:
 		var line := str(t.ticker) + " - " + str(t.message) + "  (" + expires + ")"
 		insider_list.add_item(line)
 
-	if _tabs and _insider_tab_index >= 0:
-		_tabs.set_tab_title(_insider_tab_index, "Insider Info (" + str(data.size()) + ")")
+	if _app_button_insider:
+		_app_button_insider.tooltip_text = "Insider Info (" + str(data.size()) + ")"
+		_app_button_insider.button_pressed = (_current_app == APP_INSIDER)
 
 func _on_close_button_gui_input(event: InputEvent, sym: String) -> void:
 	# Right-click opens partial close popup
@@ -155,38 +175,25 @@ func _on_close_popup_ok() -> void:
 	# Refresh affected views
 	_refresh_positions()
 	_refresh_totals()
-	_refresh_market_all()
+	if _market_tab != null:
+		_market_tab.refresh_full()
 	_refresh_day()
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	set_process_input(true)
+	set_process_unhandled_input(true)
+	if _title_bar and not _title_bar.gui_input.is_connected(_on_title_bar_gui_input):
+		_title_bar.gui_input.connect(_on_title_bar_gui_input)
+	var viewport := get_viewport()
+	if viewport and not viewport.size_changed.is_connected(_on_viewport_resized):
+		viewport.size_changed.connect(_on_viewport_resized)
+	call_deferred("_center_window_if_needed")
 
-	# Tabs setup
-	if _tabs != null:
-		_tabs.clear_tabs()
-		_tabs.add_tab("Market")
-		_tabs.add_tab("Positions")
-		_tabs.add_tab("Today")
+	_setup_app_buttons()
+	_set_active_app(_current_app)
 
-		_options_tab_index = _tabs.get_tab_count()
-		_tabs.add_tab("Options")
-
-		# --- Insider Info tab ---
-		_insider_tab_index = _tabs.get_tab_count()
-		_tabs.add_tab("Insider Info (0)")
-
-		# NEW: Banking tab
-		_banking_tab_index = _tabs.get_tab_count()
-		_tabs.add_tab("Banking")
-
-		_tabs.current_tab = 0
-		if not _tabs.tab_changed.is_connected(_on_tab_selected):
-			_tabs.tab_changed.connect(_on_tab_selected)
-		if not _tabs.tab_selected.is_connected(_on_tab_selected):
-			_tabs.tab_selected.connect(_on_tab_selected)
-		_on_tab_selected(_tabs.current_tab)
-			
 	# Add banking UI creation
 	_create_banking_ui()
 	_init_options_ui()
@@ -197,7 +204,12 @@ func _ready() -> void:
 			BankService.bank_balance_changed.connect(_on_bank_balance_changed)
 
 	# Build initial market rows and wire signals
-	_build_market_rows()
+	if _market_tab == null:
+		_market_tab = PhoneMarketTab.new(self, _market_scroll, _list, _qty_spin, _footer)
+	var symbols: Array = []
+	if typeof(MarketSim) != TYPE_NIL:
+		symbols = MarketSim.symbols
+	_market_tab.build_rows(symbols)
 	_wire_signals()
 
 	# Ensure headers (placed just above their scrolls)
@@ -297,10 +309,9 @@ func _ready() -> void:
 
 
 
-	# Default to Market tab visibility
-	_on_tab_selected(0)
 
-	_refresh_market_all()
+	if _market_tab != null:
+		_market_tab.refresh_full()
 	_refresh_totals()
 	_update_title_clock()
 
@@ -316,14 +327,19 @@ func open() -> void:
 	else:
 		process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	_refresh_market_all()
+	_set_active_app(APP_HOME)
+	if _market_tab != null:
+		_market_tab.refresh_full()
 	_refresh_positions()
 	_refresh_day()
 	_refresh_totals()
 	_update_title_clock()
-	if _tabs != null and _tabs.current_tab == _options_tab_index:
+	if _current_app == APP_OPTIONS:
 		_refresh_option_filters()
 		_refresh_option_chain()
+
+func show_app(app_key: String) -> void:
+	_set_active_app(app_key)
 
 func close() -> void:
 	if pause_game_on_open:
@@ -331,6 +347,13 @@ func close() -> void:
 		process_mode = Node.PROCESS_MODE_INHERIT
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func after_equity_trade() -> void:
+	_refresh_positions()
+	_refresh_totals()
+	_refresh_day()
+	if _current_app == APP_POSITIONS:
+		_refresh_positions_values_only()
 
 func _on_close() -> void:
 	close()
@@ -342,22 +365,49 @@ func _process(dt: float) -> void:
 	if _clock_accum >= refresh_interval_sec:
 		_clock_accum = 0.0
 		_update_title_clock()
-		# live PnL refresh when on Positions tab
-		if _tabs != null and _tabs.current_tab == 1:
+		# live PnL refresh when Positions app is active
+		if _current_app == APP_POSITIONS:
 			_refresh_positions_values_only()
-		# live Today tab refresh
-		if _tabs != null and _tabs.current_tab == 2:
+		# live Today app refresh
+		if _current_app == APP_TODAY:
 			_refresh_day_values_only()
 
-# ---------------- Tabs ----------------
-# === UPDATE _on_tab_selected FUNCTION ===
-func _on_tab_selected(idx: int) -> void:
-	var show_market: bool = (idx == 0)
-	var show_positions: bool = (idx == 1)
-	var show_today: bool = (idx == 2)
-	var show_options: bool = (_options_tab_index >= 0 and idx == _options_tab_index)
-	var show_insider: bool = (_insider_tab_index >= 0 and idx == _insider_tab_index)
-	var show_banking: bool = (_banking_tab_index >= 0 and idx == _banking_tab_index)
+func _setup_app_buttons() -> void:
+	_app_buttons = {
+		APP_MARKET: _app_button_market,
+		APP_POSITIONS: _app_button_positions,
+		APP_TODAY: _app_button_today,
+		APP_OPTIONS: _app_button_options,
+		APP_INSIDER: _app_button_insider,
+		APP_BANKING: _app_button_banking,
+	}
+
+	for key in _app_buttons.keys():
+		var btn: Button = _app_buttons[key]
+		if btn == null:
+			continue
+		btn.toggle_mode = true
+		btn.button_pressed = false
+		btn.focus_mode = Control.FOCUS_ALL
+		var callable := Callable(self, "_on_app_button_pressed").bind(key)
+		if not btn.pressed.is_connected(callable):
+			btn.pressed.connect(callable)
+
+func _on_app_button_pressed(app_key: String) -> void:
+	_set_active_app(app_key)
+
+func _set_active_app(app_key: String) -> void:
+	if app_key == "":
+		app_key = APP_HOME
+	if app_key != APP_HOME and (not _app_buttons.has(app_key) or _app_buttons[app_key] == null):
+		app_key = APP_HOME
+
+	_current_app = app_key
+
+	for key in _app_buttons.keys():
+		var btn: Button = _app_buttons[key]
+		if btn:
+			btn.button_pressed = (key == _current_app)
 
 	if _market_scroll: _market_scroll.visible = false
 	if _pos_scroll: _pos_scroll.visible = false
@@ -371,30 +421,40 @@ func _on_tab_selected(idx: int) -> void:
 	if _options_footer: _options_footer.visible = false
 	if _qty_label: _qty_label.visible = true
 	if _qty_spin: _qty_spin.visible = true
+	if _home_screen: _home_screen.visible = false
+	if _app_dock: _app_dock.visible = false
 
-	if show_market:
-		if _market_scroll: _market_scroll.visible = true
-		if _footer: _footer.visible = true
-	elif show_positions:
-		if _pos_scroll: _pos_scroll.visible = true
-		if _pos_header: _pos_header.visible = true
-	elif show_today:
-		if _day_scroll: _day_scroll.visible = true
-		if _day_header: _day_header.visible = true
-	elif show_options:
-		if _options_scroll: _options_scroll.visible = true
-		if _footer: _footer.visible = true
-		if _options_footer: _options_footer.visible = true
-		if _qty_label: _qty_label.visible = false
-		if _qty_spin: _qty_spin.visible = false
-		_refresh_option_filters()
-		_refresh_option_chain()
-	elif show_insider:
-		if insider_scroll: insider_scroll.visible = true
-		_refresh_insider_info()
-	elif show_banking:
-		if banking_scroll: banking_scroll.visible = true
-		_refresh_banking_tab()
+	match _current_app:
+		APP_HOME:
+			if _home_screen:
+				_home_screen.visible = true
+			if _app_dock:
+				_app_dock.visible = true
+		APP_MARKET:
+			if _market_scroll: _market_scroll.visible = true
+			if _footer: _footer.visible = true
+		APP_POSITIONS:
+			if _pos_scroll: _pos_scroll.visible = true
+			if _pos_header: _pos_header.visible = true
+		APP_TODAY:
+			if _day_scroll: _day_scroll.visible = true
+			if _day_header: _day_header.visible = true
+		APP_OPTIONS:
+			if _options_scroll: _options_scroll.visible = true
+			if _footer: _footer.visible = true
+			if _options_footer: _options_footer.visible = true
+			if _qty_label: _qty_label.visible = false
+			if _qty_spin: _qty_spin.visible = false
+			_refresh_option_filters()
+			_refresh_option_chain()
+		APP_INSIDER:
+			if insider_scroll:
+				insider_scroll.visible = true
+			_refresh_insider_info()
+		APP_BANKING:
+			if banking_scroll:
+				banking_scroll.visible = true
+			_refresh_banking_tab()
 
 # ------------- Signals wiring -------------
 func _wire_signals() -> void:
@@ -413,101 +473,111 @@ func _wire_signals() -> void:
 		if not Portfolio.order_executed.is_connected(_on_order_executed):
 			Portfolio.order_executed.connect(_on_order_executed)
 
-# ------------- Market tab (existing flow) -------------
-func _build_market_rows() -> void:
-	for child in _list.get_children():
-		child.queue_free()
-	_rows.clear()
+# ------------- Window movement -------------
+func _on_title_bar_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			_begin_window_drag(event.global_position)
+		else:
+			_dragging_window = false
+		get_viewport().set_input_as_handled()
+	elif event is InputEventMouseMotion and _dragging_window:
+		_set_window_position(event.global_position + _window_drag_offset, true)
+		get_viewport().set_input_as_handled()
 
-	for sn in MarketSim.symbols:
-		var sym: String = String(sn)
-
-		var row := HBoxContainer.new()
-		row.name = "Row_" + sym
-		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.size_flags_vertical = Control.SIZE_FILL
-
-		var name_label := Label.new()
-		name_label.text = sym
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		# NEW: make ticker clickable on Market tab
-		name_label.mouse_filter = Control.MOUSE_FILTER_STOP
-		name_label.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		name_label.gui_input.connect(_on_ticker_label_gui_input.bind(sym))
-
-		var price_label := Label.new()
-		price_label.text = "$0.00"
-		price_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-		var buy_btn := Button.new()
-		buy_btn.text = "Buy"
-		buy_btn.name = "Buy_" + sym
-		buy_btn.pressed.connect(_on_buy_pressed.bind(sym))
-
-		var sell_btn := Button.new()
-		sell_btn.text = "Sell"
-		sell_btn.name = "Sell_" + sym
-		sell_btn.pressed.connect(_on_sell_pressed.bind(sym))
-
-		row.add_child(name_label)
-		row.add_child(price_label)
-		row.add_child(buy_btn)
-		row.add_child(sell_btn)
-		_list.add_child(row)
-
-		_rows[sym] = {"price": price_label, "buy": buy_btn, "sell": sell_btn}
-
-
-func _refresh_market_all() -> void:
-	var market_open: bool = _is_market_open()
-	for sn in MarketSim.symbols:
-		var sym: String = String(sn)
-		var price: float = MarketSim.get_price(StringName(sym))
-		_update_market_row(sym, price, market_open)
-
-func _update_market_row(sym: String, price: float, market_open: bool) -> void:
-	var price_label: Label = _rows.get(sym, {}).get("price", null)
-	if price_label != null:
-		price_label.text = "$" + String.num(price, 2)
-	var buy_btn: Button = _rows.get(sym, {}).get("buy", null)
-	if buy_btn != null:
-		buy_btn.disabled = not market_open
-	var sell_btn: Button = _rows.get(sym, {}).get("sell", null)
-	if sell_btn != null:
-		sell_btn.disabled = not market_open
-
-func _on_buy_pressed(sym: String) -> void:
-	if not _is_market_open():
-		print("[Phone] Market closed")
+func _begin_window_drag(global_pos: Vector2) -> void:
+	if _root_control == null:
 		return
-	var qty: int = int(_qty_spin.value)
-	if qty <= 0:
-		return
-	var px: float = MarketSim.get_price(StringName(sym))
-	var ok: bool = Portfolio.buy(StringName(sym), qty, px)
-	print("[Phone BUY]", sym, qty, "@", px, " ok=", ok)
-	_refresh_market_all()
-	_refresh_totals()
-	_refresh_positions()
-	_refresh_day()
+	_dragging_window = true
+	_window_drag_offset = _root_control.global_position - global_pos
 
-func _on_sell_pressed(sym: String) -> void:
-	if not _is_market_open():
-		print("[Phone] Market closed")
+func _set_window_position(global_pos: Vector2, mark_custom: bool) -> void:
+	if _root_control == null:
 		return
-	var qty: int = int(_qty_spin.value)
-	if qty <= 0:
-		return
-	var px: float = MarketSim.get_price(StringName(sym))
-	var ok: bool = Portfolio.sell(StringName(sym), qty, px)
-	print("[Phone SELL]", sym, qty, "@", px, " ok=", ok)
-	_refresh_market_all()
-	_refresh_totals()
-	_refresh_positions()
-	_refresh_day()
+	var clamped := _clamp_to_viewport(global_pos, _get_window_size())
+	_root_control.position = clamped
+	if mark_custom:
+		_has_custom_window_position = true
 
-# ------------- Positions tab -------------
+func _get_window_size() -> Vector2:
+	if _panel_window:
+		var size := _panel_window.size
+		if size == Vector2.ZERO:
+			size = _panel_window.get_combined_minimum_size()
+		return size
+	return Vector2.ZERO
+
+func _clamp_to_viewport(pos: Vector2, size: Vector2) -> Vector2:
+	var viewport := get_viewport()
+	if viewport == null:
+		return pos
+	var limits := viewport.get_visible_rect().size - size
+	limits.x = max(limits.x, 0.0)
+	limits.y = max(limits.y, 0.0)
+	return Vector2(
+		clamp(pos.x, 0.0, limits.x),
+		clamp(pos.y, 0.0, limits.y)
+	)
+
+func _center_window() -> void:
+	var viewport := get_viewport()
+	if viewport == null:
+		return
+	var target := (viewport.get_visible_rect().size - _get_window_size()) * 0.5
+	_set_window_position(target, false)
+
+func _keep_window_inside_viewport() -> void:
+	if _root_control == null:
+		return
+	_set_window_position(_root_control.position, _has_custom_window_position)
+
+func _on_viewport_resized() -> void:
+	if _has_custom_window_position:
+		_keep_window_inside_viewport()
+	else:
+		_center_window()
+
+func _handle_mouse_navigation(mouse_event: InputEventMouseButton) -> bool:
+	if not visible:
+		return false
+	if not mouse_event.pressed:
+		return false
+	if mouse_event.button_index != MOUSE_BUTTON_RIGHT:
+		return false
+	if _current_app != APP_HOME:
+		_set_active_app(APP_HOME)
+	var viewport := get_viewport()
+	if viewport:
+		viewport.set_input_as_handled()
+	return true
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		if _handle_mouse_navigation(mouse_event):
+			return
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible:
+		return
+	if event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		if _handle_mouse_navigation(mouse_event):
+			return
+		if _dragging_window and mouse_event.button_index == MOUSE_BUTTON_LEFT and not mouse_event.pressed:
+			_dragging_window = false
+
+func _center_window_if_needed() -> void:
+	if _panel_window == null or _root_control == null:
+		return
+	if _panel_window.size == Vector2.ZERO:
+		call_deferred("_center_window_if_needed")
+		return
+	if _has_custom_window_position:
+		_keep_window_inside_viewport()
+	else:
+		_center_window()
+
 func _refresh_positions() -> void:
 	if _pos_list == null or typeof(Portfolio) == TYPE_NIL:
 		return
@@ -812,7 +882,8 @@ func _on_close_position_pressed(sym: String) -> void:
 	print("[Phone CLOSE]", sym, shares, "@", px, " ok=", ok)
 	_refresh_positions()
 	_refresh_totals()
-	_refresh_market_all()
+	if _market_tab != null:
+		_market_tab.refresh_full()
 	_refresh_day()
 
 func _on_close_option_pressed(option_id: String) -> void:
@@ -968,54 +1039,54 @@ func _refresh_totals() -> void:
 
 # ------------- React to external changes -------------
 func _on_prices_changed(_prices: Dictionary = {}) -> void:
-	_refresh_market_all()
-	if _tabs != null and _tabs.current_tab == 1:
+	if _market_tab != null:
+		_market_tab.refresh_full()
+	if _current_app == APP_POSITIONS:
 		_refresh_positions_values_only()
-	if _tabs != null and _tabs.current_tab == 2:
+	if _current_app == APP_TODAY:
 		_refresh_day_values_only()
-	if _tabs != null and _options_tab_index >= 0:
-		if _tabs.current_tab == _options_tab_index:
-			_refresh_option_chain()
-		elif _selected_option_id != "":
-			_update_selected_option_quote()
+	if _current_app == APP_OPTIONS:
+		_refresh_option_chain()
+	elif _selected_option_id != "":
+		_update_selected_option_quote()
 	_refresh_totals()
 	_update_title_clock()
 
 func _on_phase_changed(_p: StringName, _d: int) -> void:
-	_refresh_market_all()
-	if _tabs != null and _tabs.current_tab == 1:
+	if _market_tab != null:
+		_market_tab.refresh_full()
+	if _current_app == APP_POSITIONS:
 		_refresh_positions_values_only()
-	if _tabs != null and _tabs.current_tab == 2:
+	if _current_app == APP_TODAY:
 		_refresh_day()
-	if _tabs != null and _options_tab_index >= 0:
-		if _tabs.current_tab == _options_tab_index:
-			_refresh_option_chain()
-		elif _selected_option_id != "":
-			_update_selected_option_quote()
+	if _current_app == APP_OPTIONS:
+		_refresh_option_chain()
+	elif _selected_option_id != "":
+		_update_selected_option_quote()
 	_update_title_clock()
 
 func _on_portfolio_changed() -> void:
-	_refresh_market_all()
+	if _market_tab != null:
+		_market_tab.refresh_full()
 	_refresh_positions()
-	if _tabs != null and _tabs.current_tab == 2:
+	if _current_app == APP_TODAY:
 		_refresh_day()
-	if _tabs != null and _options_tab_index >= 0:
-		if _tabs.current_tab == _options_tab_index:
-			_refresh_option_chain()
-		elif _selected_option_id != "":
-			_update_selected_option_quote()
+	if _current_app == APP_OPTIONS:
+		_refresh_option_chain()
+	elif _selected_option_id != "":
+		_update_selected_option_quote()
 	_refresh_totals()
 
 func _on_order_executed(_order: Dictionary) -> void:
-	_refresh_market_all()
+	if _market_tab != null:
+		_market_tab.refresh_full()
 	_refresh_positions()
-	if _tabs != null and _tabs.current_tab == 2:
+	if _current_app == APP_TODAY:
 		_refresh_day()
-	if _tabs != null and _options_tab_index >= 0:
-		if _tabs.current_tab == _options_tab_index:
-			_refresh_option_chain()
-		elif _selected_option_id != "":
-			_update_selected_option_quote()
+	if _current_app == APP_OPTIONS:
+		_refresh_option_chain()
+	elif _selected_option_id != "":
+		_update_selected_option_quote()
 	_refresh_totals()
 
 # ---------------- Clock / Title ----------------
@@ -1053,6 +1124,9 @@ func _time_string_safe() -> String:
 		return hh + ":" + mm + suf
 	return "??:??"
 
+func is_market_open() -> bool:
+	return _is_market_open()
+
 func _is_market_open() -> bool:
 	if typeof(Game) == TYPE_NIL:
 		return false
@@ -1071,9 +1145,9 @@ func _minutes_until_close_safe() -> int:
 func _ensure_pos_header() -> void:
 	if _pos_header != null:
 		return
-	var vbox: VBoxContainer = $Root/Panel/VBox
+	var vbox: VBoxContainer = $Root/PhoneFrame/Panel/VBox
 	if vbox == null:
-		push_warning("[PhoneUI] VBox not found at $Root/Panel/VBox")
+		push_warning("[PhoneUI] VBox not found at $Root/PhoneFrame/Panel/VBox")
 		return
 
 	var existing: HBoxContainer = vbox.get_node_or_null("PosHeader") as HBoxContainer
@@ -1107,9 +1181,9 @@ func _ensure_pos_header() -> void:
 func _ensure_day_header() -> void:
 	if _day_header != null:
 		return
-	var vbox: VBoxContainer = $Root/Panel/VBox
+	var vbox: VBoxContainer = $Root/PhoneFrame/Panel/VBox
 	if vbox == null:
-		push_warning("[PhoneUI] VBox not found at $Root/Panel/VBox")
+		push_warning("[PhoneUI] VBox not found at $Root/PhoneFrame/Panel/VBox")
 		return
 
 	var existing: HBoxContainer = vbox.get_node_or_null("DayHeader") as HBoxContainer
@@ -1290,7 +1364,7 @@ func _create_banking_ui() -> void:
 		banking_scroll.visible = false
 		banking_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		banking_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		$Root/Panel/VBox.add_child(banking_scroll)
+		$Root/PhoneFrame/Panel/VBox.add_child(banking_scroll)
 	
 	# Create container
 	if banking_container == null:
@@ -2151,5 +2225,5 @@ func _refresh_banking_tab() -> void:
 			_transaction_list.add_child(empty_label)
 
 func _on_bank_balance_changed(_new_balance: float) -> void:
-	if _tabs and _tabs.current_tab == _banking_tab_index:
+	if _current_app == APP_BANKING:
 		_refresh_banking_tab()

@@ -4,6 +4,7 @@ signal phase_changed(phase: StringName, day: int)
 signal day_advanced(day: int)
 
 var next_spawn: String = ""    # used by your portals/doors
+var player_prefers_first_person: bool = true
 var _purchased_portals: Dictionary = {}
 
 # -------------------- PORTAL PURCHASES --------------------
